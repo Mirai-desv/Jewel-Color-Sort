@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe9c19fcbe13214d8d564487f18bef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundView
-  washOut: 0.45
+  washOut: 0
   sortingOrder: 0
 --- !u!212 &293674491
 SpriteRenderer:
@@ -976,7 +976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelSession: {fileID: 2079913238}
-  levels: []
+  levels:
+  - {fileID: 11400000, guid: f28e6fd4557e44a0baf741da64de6e78, type: 2}
   debugLog: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

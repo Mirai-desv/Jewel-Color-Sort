@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad42c3a8286d4448ae703f74dadd2d7, type: 3}
   m_Name: ColorPalette
   m_EditorClassIdentifier: Assembly-CSharp::ColorPalette
-  beadSprite: {fileID: -3485945902487237853, guid: e8fe404398954c243928a23ae3ad8a7b, type: 3}
+  beadSprite: {fileID: 21300000, guid: 0122a74c46db4f34bfc424ac2c5b3f22, type: 3}
   entries:
   - type: 0
     color: {r: 1, g: 1, b: 1, a: 0}
   - type: 1
-    color: {r: 0.8784314, g: 0.06666667, b: 0.37254903, a: 1}
+    color: {r: 0.99215686, g: 0.42745098, b: 0.6392157, a: 1}
   - type: 2
-    color: {r: 0.05882353, g: 0.32156864, b: 0.7294118, a: 0}
+    color: {r: 0.05882353, g: 0.32156864, b: 0.7294118, a: 1}
   - type: 3
-    color: {r: 0.3137255, g: 0.78431374, b: 0.47058824, a: 0}
+    color: {r: 0.3137255, g: 0.78431374, b: 0.47058824, a: 1}
   - type: 4
-    color: {r: 1, g: 0.78431374, b: 0.4862745, a: 0}
+    color: {r: 1, g: 0.78431374, b: 0.4862745, a: 1}
   - type: 5
-    color: {r: 0.6, g: 0.4, b: 0.8, a: 0}
+    color: {r: 0.6, g: 0.4, b: 0.8, a: 1}
   - type: 6
-    color: {r: 0.7254902, g: 0.9490196, b: 1, a: 0}
+    color: {r: 0.99607843, g: 0.94509804, b: 0.81960785, a: 1}
   - type: 7
-    color: {r: 1, g: 0.7490196, b: 0, a: 0}
+    color: {r: 0.8156863, g: 0.4627451, b: 0.27450982, a: 1}
   - type: 8
-    color: {r: 0.105882354, g: 0.105882354, b: 0.105882354, a: 0}
+    color: {r: 0.12, g: 0.12, b: 0.12, a: 1}
