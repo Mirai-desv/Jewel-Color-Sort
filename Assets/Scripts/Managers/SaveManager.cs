@@ -1,13 +1,18 @@
 using UnityEngine;
 
+/// <summary>
+/// Lưu tiến độ và cài đặt bằng PlayerPrefs. Là static class nên KHÔNG cần đặt vào scene.
+/// </summary>
 public static class SaveManager
 {
     private const string LevelKey = "bead.level";
     private const string CoinsKey = "bead.coins";
     private const string MusicKey = "bead.music";
     private const string SfxKey = "bead.sfx";
+    private const string MusicVolumeKey = "bead.musicVolume";
+    private const string SfxVolumeKey = "bead.sfxVolume";
 
-    // Level sẽ chơi khi bấm Start (0 = Level 1)
+    /// <summary>Level sẽ chơi khi bấm Start (0 = Level 1).</summary>
     public static int CurrentLevelIndex
     {
         get => PlayerPrefs.GetInt(LevelKey, 0);
@@ -32,9 +37,23 @@ public static class SaveManager
         set => PlayerPrefs.SetInt(SfxKey, value ? 1 : 0);
     }
 
+    /// <summary>Âm lượng nhạc nền, 0..1 (mặc định 1).</summary>
+    public static float MusicVolume
+    {
+        get => PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+        set => PlayerPrefs.SetFloat(MusicVolumeKey, Mathf.Clamp01(value));
+    }
+
+    /// <summary>Âm lượng hiệu ứng, 0..1 (mặc định 1).</summary>
+    public static float SfxVolume
+    {
+        get => PlayerPrefs.GetFloat(SfxVolumeKey, 1f);
+        set => PlayerPrefs.SetFloat(SfxVolumeKey, Mathf.Clamp01(value));
+    }
+
     public static void Save() => PlayerPrefs.Save();
 
-    // Xoá tiến độ và tiền (giữ lại cài đặt âm thanh). Dùng khi test
+    /// <summary>Xoá tiến độ và tiền (giữ lại cài đặt âm thanh). Dùng khi test.</summary>
     public static void ResetProgress()
     {
         PlayerPrefs.DeleteKey(LevelKey);

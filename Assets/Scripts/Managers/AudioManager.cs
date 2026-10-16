@@ -52,6 +52,19 @@ public class AudioManager : MonoBehaviour
 
     public void SetSfxOn(bool on) => SaveManager.SfxOn = on;
 
+    public void SetMusicVolume(float volume)
+    {
+        SaveManager.MusicVolume = volume;
+        if(volume > 0f && !SaveManager.MusicOn) SaveManager.MusicOn = true;
+        ApplyMusic();
+    }
+
+     public void SetSfxVolume(float volume)
+    {
+        SaveManager.SfxVolume = volume;
+        if(volume > 0f && !SaveManager.SfxOn) SaveManager.SfxOn = true;
+    }   
+
     private void Play(Sfx sfx)
     {
         if (!SaveManager.SfxOn) return;
@@ -72,7 +85,11 @@ public class AudioManager : MonoBehaviour
 
     private void ApplyMusic()
     {
-        if (music == null) return;
+        if (musicSource == null) return;
+
+        musicSource.volume = SaveManager.MusicOn ? SaveManager.MusicVolume : 0f;
+
+        if(music == null) return;
 
         musicSource.clip = music;
         if (SaveManager.MusicOn)
