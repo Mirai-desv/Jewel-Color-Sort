@@ -40,13 +40,17 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
         beadIcon.sprite = sprite;
         beadIcon.color = color;
 
-        countText.gameObject.SetActive(true);
-        countText.SetText("{0}", count); // không cấp phát chuỗi mới
+        if (countText != null)
+        {
+            countText.gameObject.SetActive(true);
+            countText.SetText("{0}", count);
+        }
     }
 
     public void SetEmpty()
     {
         beadIcon.enabled = false;
+        if (countText != null) countText.gameObject.SetActive(false);
     }
 
     public void SetSelected(bool selected)

@@ -115,6 +115,8 @@ public class LevelSession : MonoBehaviour
             return;
         }
 
+        if (!CheckReferences()) return;
+
         _level = data;
         _level.Validate(); // báo lỗi nhập tay ngay trong Console
 
@@ -143,6 +145,29 @@ public class LevelSession : MonoBehaviour
         LevelStarted?.Invoke();
         RaiseProgress();
         EvaluateEnd();
+    }
+
+    /// <summary>Kiểm tra các tham chiếu bắt buộc, báo lỗi rõ ràng thay vì để NullReferenceException khó hiểu.</summary>
+    private bool CheckReferences()
+    {
+        bool ok = true;
+        if (gridView == null) { Debug.LogError("[LevelSession] Chưa gán Grid View.", this); ok = false; }
+        if (trayView == null) { Debug.LogError("[LevelSession] Chưa gán Tray View.", this); ok = false; }
+        if (inputHandler == null) { Debug.LogError("[LevelSession] Chưa gán Input Handler.", this); ok = false; }
+        if (flyAnimator == null) { Debug.LogError("[LevelSession] Chưa gán Fly Animator: cần 1 object trong scene có component BeadFlyAnimator.", this); ok = false; }
+
+        if (cameraController != null && !cameraController.gameObject.scene.IsValid())
+        {
+            Debug.LogError("[LevelSession] Camera Controller đang trỏ vào PREFAB trong Project, không phải Main Camera trong scene. Hãy kéo Main Camera từ Hierarchy vào ô này.", this);
+            ok = false;
+        }
+
+        if (FindFirstObjectByType<GestureDetector>() == null)
+        {
+            Debug.LogError("[LevelSession] Scene chưa có GestureDetector nên sẽ không nhận được click. Hãy thêm component GestureDetector vào object Session.", this);
+            ok = false;
+        }
+        return ok;
     }
 
     [ContextMenu("Restart Level")]
