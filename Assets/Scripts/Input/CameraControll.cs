@@ -1,33 +1,53 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Điều khiển Camera 2D (Orthographic): tự canh GIỮA lưới và fit vừa màn hình khi nạp level,
+/// cho phép pan (kéo) và zoom (pinch / lăn chuột), luôn giữ lưới nằm trong tầm nhìn.
+/// Nhận cử chỉ từ GestureDetector. Gắn script này lên Main Camera.
+/// LevelSession gọi FitToGrid() sau mỗi lần dựng lưới.
+/// </summary>
 [RequireComponent(typeof(Camera))]
 public class CameraControll : MonoBehaviour
 {
     [SerializeField] private GridView gridView;
+    [SerializeField] private GestureDetector gesture; // để trống thì tự tìm trong scene
 
     [Header("Zoom")]
-    [SerializeField] private float minZoomMultiplier = 1f; // 1 = không cho zoom OUT nhỏ hơn khung fit ban đầu
+    [SerializeField] private float minZoomMultiplier = 1f; // 1 = không cho zoom OUT quá khung fit ban đầu
     [SerializeField] private float maxZoomMultiplier = 3f; // cho zoom IN tối đa gấp 3 lần khung fit
-    [SerializeField] private float scrollZoomSpeed = 0.5f; // chỉ dùng khi test bằng lăn chuột trong Editor
+    [SerializeField] private float scrollZoomSpeed = 0.5f; // chỉ để test bằng lăn chuột trong Editor
 
     [Header("Lề")]
-    [SerializeField] private float paddingCells = 0.5f; // chừa thêm viền quanh lưới khi fit (tính theo số ô)
+    [SerializeField] private float paddingCells = 0.5f; // chừa viền quanh lưới khi fit (tính theo số ô)
 
     private Camera _camera;
     private Bounds _bounds;
-    private float _fitSize; // Orthographic Size khi vừa khít màn hình
-    private float _minSize; // size nhỏ nhất (zoom in nhiều nhất)
-    private float _maxSize; // size lớn nhất (zoom out nhiều nhất)
+    private float _fitSize;
+    private float _minSize; // zoom in nhiều nhất
+    private float _maxSize; // zoom out nhiều nhất
 
-    private bool _dragging;
-    private Vector2 _lastScreenPos;
+    private void Awake()
+    {
+        _camera = GetComponent<Camera>();
+        if (gesture == null) gesture = FindFirstObjectByType<GestureDetector>();
+    }
 
-    private bool _pinching;
-    private float _lastPinchDistance;
+    private void OnEnable()
+    {
+        if (gesture == null) return;
+        gesture.Dragged += OnDragged;
+        gesture.Pinched += OnPinched;
+    }
 
-    private void Awake() => _camera = GetComponent<Camera>();
+    private void OnDisable()
+    {
+        if (gesture == null) return;
+        gesture.Dragged -= OnDragged;
+        gesture.Pinched -= OnPinched;
+    }
 
+    /// <summary>Canh giữa camera vào tâm lưới và tính lại khung zoom. Gọi lại mỗi khi nạp level mới.</summary>
     public void FitToGrid()
     {
         _bounds = gridView.WorldBounds;
@@ -47,71 +67,9 @@ public class CameraControll : MonoBehaviour
 
     private void Update()
     {
-        if (_bounds.size == Vector3.zero) return; // chưa gọi FitToGrid() thì chưa có gì để xử lý
+        if (_bounds.size == Vector3.zero) return;
 
-        HandlePinch();
-        if (!_pinching) HandleDrag();
-        HandleScrollZoom();
-    }
-
-    private void HandleDrag()
-    {
-        Pointer pointer = Pointer.current;
-        if (pointer == null) return;
-
-        bool isPressed = pointer.press.isPressed;
-        Vector2 pos = pointer.position.ReadValue();
-
-        if (isPressed && !_dragging)
-        {
-            _dragging = true;
-            _lastScreenPos = pos;
-        }
-        else if (isPressed && _dragging)
-        {
-            Vector2 delta = pos - _lastScreenPos;
-            _lastScreenPos = pos;
-
-            // Quy đổi delta pixel -> đơn vị thế giới theo mức zoom hiện tại
-            float unitsPerPixel = (_camera.orthographicSize * 2f) / Screen.height;
-            transform.position -= new Vector3(delta.x, delta.y, 0f) * unitsPerPixel;
-
-            ClampPosition();
-        }
-        else if (!isPressed && _dragging)
-        {
-            _dragging = false;
-        }
-    }
-
-    private void HandlePinch()
-    {
-        Touchscreen touch = Touchscreen.current;
-        if (touch == null || touch.touches.Count < 2) { _pinching = false; return; }
-
-        var t0 = touch.touches[0];
-        var t1 = touch.touches[1];
-        if (!t0.press.isPressed || !t1.press.isPressed) { _pinching = false; return; }
-
-        float distance = Vector2.Distance(t0.position.ReadValue(), t1.position.ReadValue());
-
-        if (!_pinching)
-        {
-            _pinching = true;
-            _lastPinchDistance = distance;
-            return;
-        }
-
-        if (_lastPinchDistance > 0.01f)
-        {
-            float ratio = _lastPinchDistance / distance; // 2 ngón ra xa nhau hơn -> zoom in (size giảm)
-            ApplyZoom(_camera.orthographicSize * ratio);
-        }
-        _lastPinchDistance = distance;
-    }
-
-    private void HandleScrollZoom()
-    {
+        // Lăn chuột (chỉ để test trong Editor)
         Mouse mouse = Mouse.current;
         if (mouse == null) return;
 
@@ -119,6 +77,23 @@ public class CameraControll : MonoBehaviour
         if (Mathf.Abs(scroll) < 0.01f) return;
 
         ApplyZoom(_camera.orthographicSize - scroll * scrollZoomSpeed * 0.01f);
+    }
+
+    private void OnDragged(Vector2 deltaPixels)
+    {
+        if (_bounds.size == Vector3.zero) return;
+
+        // Đổi pixel -> đơn vị thế giới theo mức zoom hiện tại
+        float unitsPerPixel = (_camera.orthographicSize * 2f) / Screen.height;
+        transform.position -= new Vector3(deltaPixels.x, deltaPixels.y, 0f) * unitsPerPixel;
+
+        ClampPosition();
+    }
+
+    private void OnPinched(float factor)
+    {
+        if (_bounds.size == Vector3.zero) return;
+        ApplyZoom(_camera.orthographicSize / factor); // 2 ngón xa nhau (factor > 1) -> size giảm -> zoom in
     }
 
     private void ApplyZoom(float size)
@@ -137,7 +112,7 @@ public class CameraControll : MonoBehaviour
         float minY = _bounds.min.y + halfH;
         float maxY = _bounds.max.y - halfH;
 
-        // Khung nhìn rộng/cao hơn cả lưới thì không có khoảng để kéo -> giữ nguyên giữa
+        // Khung nhìn rộng/cao hơn cả lưới thì không có khoảng để kéo -> giữ ở giữa
         float x = minX > maxX ? _bounds.center.x : Mathf.Clamp(transform.position.x, minX, maxX);
         float y = minY > maxY ? _bounds.center.y : Mathf.Clamp(transform.position.y, minY, maxY);
 

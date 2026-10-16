@@ -3,108 +3,192 @@ using UnityEngine;
 
 /// <summary>
 /// Cầu nối duy nhất: Input -> Logic (GridModel, TrayModel, RegionFinder) -> View.
-/// Nguyên tắc: cập nhật dữ liệu (model) TRƯỚC, rồi mới cập nhật hiển thị (view).
+/// Nguyên tắc: cập nhật dữ liệu (model) TRƯỚC, rồi mới cập nhật hiển thị (view + animation).
 ///
 /// Luật chơi:
 ///  - Click hạt chưa khoá  -> chọn vùng hạt cùng màu kề cạnh (BFS). Click lại vùng đó để bỏ chọn.
-///  - Đang chọn hạt trên lưới + click 1 ô khay ĐANG TRỐNG -> lần lượt lấp vào các ô khay trống
-///    (mỗi ô chỉ chứa 1 hạt) cho đến khi đủ số hạt hoặc hết ô trống.
+///  - Đang chọn hạt trên lưới + click 1 ô khay ĐANG TRỐNG -> lần lượt lấp vào các ô khay trống (mỗi ô 1 hạt).
 ///  - Click 1 ô khay ĐANG CÓ HẠT -> tự chọn tất cả ô khay khác đang cùng màu.
-///  - Đang chọn nhóm trong khay + click ô lưới đang rỗng có màu nền trùng -> đặt các hạt đó về lưới.
-///  - Số lượng lệch nhau thì lấy k = min(nguồn, đích), lan BFS từ điểm click cho đủ k (phía lưới).
-///  - Hạt đặt về đúng màu nền sẽ bị khoá. Thắng khi mọi ô đều đúng.
+///  - Đang chọn hạt (lưới hoặc khay) + click ô lưới đang rỗng có màu nền trùng -> đặt hạt về lưới.
+///  - Số lượng lệch nhau thì lấy k = min(nguồn, đích), lan BFS từ điểm click cho đủ k.
+///  - Hạt đặt về đúng màu nền sẽ bị khoá. Thắng khi mọi ô đều đúng, thua khi hết nước đi.
+///  - Mỗi nước đi lưu vào UndoStack. Thắng/thua chỉ được báo SAU KHI animation hạt bay xong.
 /// </summary>
 public class LevelSession : MonoBehaviour
 {
     [Header("Tham chiếu")]
-    [SerializeField] private LevelData level;
     [SerializeField] private GridView gridView;
     [SerializeField] private TrayView trayView;
     [SerializeField] private InputHandler inputHandler;
-    [SerializeField] private CameraControll cameraControll;
+    [SerializeField] private BeadFlyAnimator flyAnimator;
+    [SerializeField] private CameraControll cameraController; // tuỳ chọn
+    [SerializeField] private GameConfig config;                  // tuỳ chọn (thiếu thì dùng giá trị mặc định)
+    [SerializeField] private Camera worldCamera;                 // để trống thì dùng Camera.main
 
     [Header("Debug")]
     [SerializeField] private bool debugLog = true;
 
-    /// <summary>Phát ra khi người chơi hoàn thành level.</summary>
     public event System.Action Won;
+    public event System.Action Lost;
+    public event System.Action LevelStarted;
+    public event System.Action<float> ProgressChanged; // 0..1
 
-    public bool IsWon => _isWon;
+    /// <summary>GameManager bật/tắt: chỉ nhận thao tác khi đang ở trạng thái Playing.</summary>
+    public bool InputEnabled { get; set; } = true;
+
+    public bool IsBusy => flyAnimator != null && flyAnimator.IsBusy;
+
+    public bool CanUndo =>
+        _undo.Count > 0 && !IsBusy && _pendingEnd == EndState.None && _ended != EndState.Win;
+
+    private bool CanAcceptInput =>
+        InputEnabled && !IsBusy && _pendingEnd == EndState.None && _ended == EndState.None;
 
     private enum SelectionKind { None, Grid, Tray }
 
     private readonly GridModel _grid = new GridModel();
     private readonly TrayModel _tray = new TrayModel();
     private readonly RegionFinder _finder = new RegionFinder();
+    private readonly WinLoseChecker _checker = new WinLoseChecker();
+    private readonly UndoStack _undo = new UndoStack();
 
     // Danh sách dùng lại, tránh cấp phát mỗi lần click
-    private readonly List<int> _selection = new List<int>(256);     // vùng hạt trên lưới đang chọn
-    private readonly List<int> _source = new List<int>(256);        // ô hạt (lưới) sẽ di chuyển
-    private readonly List<int> _dest = new List<int>(256);          // ô đích (lưới) sẽ nhận hạt
-    private readonly List<int> _traySelection = new List<int>(64);  // ô khay đang chọn
-    private readonly List<int> _trayEmptySlots = new List<int>(64); // ô khay đang trống (dùng khi lưới -> khay)
-    private readonly List<int> _traySource = new List<int>(64);     // ô khay sẽ di chuyển (dùng khi khay -> lưới)
+    private readonly List<int> _selection = new List<int>(256);
+    private readonly List<int> _source = new List<int>(256);
+    private readonly List<int> _dest = new List<int>(256);
+    private readonly List<int> _traySelection = new List<int>(64);
+    private readonly List<int> _trayEmptySlots = new List<int>(64);
+    private readonly List<int> _traySource = new List<int>(64);
 
+    private LevelData _level;
     private SelectionKind _kind = SelectionKind.None;
     private Type _selectedType = Type.None;
-    private int _selectedOrigin;  // ô lưới đã click để chọn (dùng khi cần BFS lại để cắt bớt)
-    private bool _isWon;
+    private int _selectedOrigin;
+    private EndState _pendingEnd = EndState.None; // đã đạt thắng/thua, chờ animation xong mới báo
+    private EndState _ended = EndState.None;      // đã báo thắng/thua
+
+    private Camera Cam => worldCamera != null ? worldCamera : (worldCamera = Camera.main);
+
+    // ---------- Vòng đời ----------
 
     private void OnEnable()
     {
         if (inputHandler != null) inputHandler.CellClicked += OnCellClicked;
         if (trayView != null) trayView.SlotClicked += OnSlotClicked;
+        if (flyAnimator != null) flyAnimator.ArrivedAtTray += OnTrayArrived;
     }
 
     private void OnDisable()
     {
         if (inputHandler != null) inputHandler.CellClicked -= OnCellClicked;
         if (trayView != null) trayView.SlotClicked -= OnSlotClicked;
+        if (flyAnimator != null) flyAnimator.ArrivedAtTray -= OnTrayArrived;
     }
 
-    //private void Start() => StartLevel(level);
+    private void Update()
+    {
+        // Báo thắng/thua khi hạt đã bay xong hết
+        if (_pendingEnd == EndState.None || IsBusy) return;
 
-    [ContextMenu("Restart Level")]
-    private void Restart() => StartLevel(level);
+        EndState end = _pendingEnd;
+        _pendingEnd = EndState.None;
+        _ended = end;
 
+        if (end == EndState.Win)
+        {
+            Log("THẮNG!");
+            Won?.Invoke();
+        }
+        else
+        {
+            Log("THUA: không còn nước đi.");
+            Lost?.Invoke();
+        }
+    }
+
+    /// <summary>Nạp 1 level và bắt đầu chơi (do LevelManager / GameManager gọi).</summary>
     public void StartLevel(LevelData data)
     {
         if (data == null)
         {
-            Debug.LogError("[LevelSession] Chưa gán LevelData.", this);
+            Debug.LogError("[LevelSession] LevelData bị trống.", this);
             return;
         }
 
-        level = data;
-        level.Validate(); // báo lỗi nhập tay ngay trong Console
+        _level = data;
+        _level.Validate(); // báo lỗi nhập tay ngay trong Console
+
+        if (flyAnimator != null) flyAnimator.CancelAll();
 
         _selection.Clear();
         _traySelection.Clear();
         _kind = SelectionKind.None;
         _selectedType = Type.None;
-        _isWon = false;
+        _pendingEnd = EndState.None;
+        _ended = EndState.None;
+        _undo.Clear();
 
-        _grid.Init(level);
-        _tray.Init(level.TraySlotCount);
+        _grid.Init(_level);
+        _tray.Init(_level.TraySlotCount);
 
-        gridView.Build(level);
-        cameraControll.FitToGrid();
+        gridView.Build(_level);
         trayView.Build(_tray.SlotCount);
+        if (cameraController != null) cameraController.FitToGrid();
 
         for (int i = 0; i < _grid.Size; i++)
         {
             if (_grid.IsInside(i) && _grid.IsLocked(i)) gridView.SetLocked(i, true);
         }
 
-        CheckWin();
+        LevelStarted?.Invoke();
+        RaiseProgress();
+        EvaluateEnd();
     }
+
+    [ContextMenu("Restart Level")]
+    public void Restart()
+    {
+        if (_level != null) StartLevel(_level);
+    }
+
+    /// <summary>Hoàn tác nước đi gần nhất (hạt bay ngược về chỗ cũ).</summary>
+    public void Undo()
+    {
+        if (!CanUndo) return;
+
+        ClearSelection();
+        MoveCommand command = _undo.Pop();
+        IReadOnlyList<MoveStep> steps = command.Steps;
+        float step = StaggerStep(steps.Count);
+
+        int n = 0;
+        for (int i = steps.Count - 1; i >= 0; i--, n++)
+        {
+            MoveStep s = steps[i];
+            float delay = n * step;
+
+            // Đảo chiều từng bước
+            switch (s.Kind)
+            {
+                case MoveKind.GridToGrid: BeadGridToGrid(s.To, s.From, s.BeadType, delay); break;
+                case MoveKind.GridToTray: BeadTrayToGrid(s.To, s.From, s.BeadType, delay); break;
+                case MoveKind.TrayToGrid: BeadGridToTray(s.To, s.From, s.BeadType, delay); break;
+            }
+        }
+
+        _ended = EndState.None; // undo được cả khi đang ở trạng thái thua
+        RaiseProgress();
+        EvaluateEnd();
+    }
+
+    // ---------- Xử lý click trên lưới ----------
 
     private void OnCellClicked(int x, int y)
     {
-        if (_isWon) return;
+        if (!CanAcceptInput) return;
 
         int index = gridView.ToIndex(x, y);
-        if (!_grid.IsInside(index)) return; // click ngoài hình
+        if (!_grid.IsInside(index)) return;
 
         if (_grid.HasBead(index)) HandleBeadClick(index);
         else HandleEmptyCellClick(index);
@@ -130,7 +214,7 @@ public class LevelSession : MonoBehaviour
 
         if (_grid.GetBackground(index) != _selectedType)
         {
-            Log("Màu nền của khu vực này không khớp màu hạt.");
+            Invalid("Màu nền của khu vực này không khớp màu hạt.");
             return;
         }
 
@@ -138,33 +222,36 @@ public class LevelSession : MonoBehaviour
         else MoveTrayToGrid(index);
     }
 
+    // ---------- Xử lý click trên khay ----------
 
     private void OnSlotClicked(int slot)
     {
-        if (_isWon || !_tray.IsValid(slot)) return;
+        if (!CanAcceptInput || !_tray.IsValid(slot)) return;
 
         if (_kind == SelectionKind.Grid)
         {
-            if (_tray.IsEmpty(slot)) MoveGridToTray(slot);
-            else Log("Ô khay đã có hạt, không nhét thêm được.");
+            if (_tray.IsEmpty(slot)) MoveGridToTray();
+            else Invalid("Ô khay đã có hạt, không nhét thêm được.");
             return;
         }
 
         if (_kind == SelectionKind.Tray && _traySelection.Contains(slot))
         {
-            ClearSelection(); // click lại 1 ô trong vùng đang chọn -> bỏ chọn
+            ClearSelection();
             return;
         }
 
         if (_tray.IsEmpty(slot))
         {
-            Log("Ô khay trống, không có gì để chọn.");
+            Invalid("Ô khay trống, không có gì để chọn.");
             return;
         }
 
         ClearSelection();
         SelectTrayGroup(slot);
     }
+
+    // ---------- Chọn / bỏ chọn ----------
 
     private void SelectGridRegion(int index)
     {
@@ -174,9 +261,10 @@ public class LevelSession : MonoBehaviour
 
         _finder.FindBeadRegion(_grid, index, 0, _selection);
         gridView.SetSelected(_selection, true);
+        AudioManager.PlaySfx(Sfx.Select);
     }
 
-    // Chọn tất cả ô khay đang cùng màu với ô vừa click
+    /// <summary>Chọn tất cả ô khay đang cùng màu với ô vừa click (không cần kề nhau).</summary>
     private void SelectTrayGroup(int slot)
     {
         _selectedType = _tray.GetSlotType(slot);
@@ -189,6 +277,7 @@ public class LevelSession : MonoBehaviour
         }
 
         for (int i = 0; i < _traySelection.Count; i++) trayView.SetSelected(_traySelection[i], true);
+        AudioManager.PlaySfx(Sfx.Select);
     }
 
     private void ClearSelection()
@@ -208,7 +297,9 @@ public class LevelSession : MonoBehaviour
         _selectedType = Type.None;
     }
 
-    // Lưới -> lưới: hạt đang chọn bay vào vùng ô rỗng cùng màu nền
+    // ---------- Nước đi của người chơi ----------
+
+    /// <summary>Lưới -> lưới: hạt đang chọn bay vào vùng ô rỗng cùng màu nền.</summary>
     private void MoveGridToGrid(int destOrigin)
     {
         _finder.FindEmptyRegion(_grid, destOrigin, _selection.Count, _dest);
@@ -219,23 +310,19 @@ public class LevelSession : MonoBehaviour
         Type type = _selectedType;
         ClearSelection();
 
+        var command = new MoveCommand();
+        float step = StaggerStep(k);
         for (int i = 0; i < k; i++)
         {
-            int from = _source[i];
-            int to = _dest[i];
-
-            _grid.RemoveBead(from);
-            gridView.RemoveBead(from);
-
-            _grid.PlaceBead(to, type);
-            gridView.PlaceBead(to, type).SetLocked(true);
+            BeadGridToGrid(_source[i], _dest[i], type, i * step);
+            command.Add(MoveKind.GridToGrid, _source[i], _dest[i], type);
         }
 
-        CheckWin();
+        CommitMove(command);
     }
 
-    // Lưới -> khay: lần lượt lấp hạt đang chọn vào các ô khay đang trống
-    private void MoveGridToTray(int clickedSlot)
+    /// <summary>Lưới -> khay: lần lượt lấp hạt đang chọn vào các ô khay đang trống.</summary>
+    private void MoveGridToTray()
     {
         _trayEmptySlots.Clear();
         for (int i = 0; i < _tray.SlotCount; i++)
@@ -246,7 +333,7 @@ public class LevelSession : MonoBehaviour
         int k = Mathf.Min(_selection.Count, _trayEmptySlots.Count);
         if (k <= 0)
         {
-            Log("Khay đã đầy, không còn ô trống.");
+            Invalid("Khay đã đầy, không còn ô trống.");
             return;
         }
 
@@ -254,18 +341,19 @@ public class LevelSession : MonoBehaviour
         Type type = _selectedType;
         ClearSelection();
 
+        var command = new MoveCommand();
+        float step = StaggerStep(k);
         for (int i = 0; i < k; i++)
         {
-            _grid.RemoveBead(_source[i]);
-            gridView.RemoveBead(_source[i]);
-
             int slot = _trayEmptySlots[i];
-            _tray.Set(slot, type);
-            trayView.SetSlot(slot, type);
+            BeadGridToTray(_source[i], slot, type, i * step);
+            command.Add(MoveKind.GridToTray, _source[i], slot, type);
         }
+
+        CommitMove(command);
     }
 
-    // Khay -> lưới: các hạt trong khay đang chọn lấp vào vùng ô rỗng cùng màu nền
+    /// <summary>Khay -> lưới: các hạt trong khay đang chọn lấp vào vùng ô rỗng cùng màu nền.</summary>
     private void MoveTrayToGrid(int destOrigin)
     {
         _finder.FindEmptyRegion(_grid, destOrigin, _traySelection.Count, _dest);
@@ -278,20 +366,21 @@ public class LevelSession : MonoBehaviour
         Type type = _selectedType;
         ClearSelection();
 
+        var command = new MoveCommand();
+        float step = StaggerStep(k);
         for (int i = 0; i < k; i++)
         {
-            int slot = _traySource[i];
-            _tray.Clear(slot);
-            trayView.SetSlot(slot, Type.None);
-
-            int to = _dest[i];
-            _grid.PlaceBead(to, type);
-            gridView.PlaceBead(to, type).SetLocked(true);
+            BeadTrayToGrid(_traySource[i], _dest[i], type, i * step);
+            command.Add(MoveKind.TrayToGrid, _traySource[i], _dest[i], type);
         }
 
-        CheckWin();
+        CommitMove(command);
     }
 
+    /// <summary>
+    /// Lập danh sách k ô hạt nguồn (trên lưới). Nếu k nhỏ hơn vùng đang chọn thì BFS lại
+    /// từ ô đã click với giới hạn k (lấy phần gần điểm click nhất, vẫn liền khối).
+    /// </summary>
     private void BuildSource(int k)
     {
         if (k >= _selection.Count)
@@ -305,15 +394,94 @@ public class LevelSession : MonoBehaviour
         }
     }
 
-    // Đại đại để test trước đã, chuyển sau
-
-    private void CheckWin()
+    private void CommitMove(MoveCommand command)
     {
-        if (_isWon || !_grid.IsSolved) return;
+        _undo.Push(command);
+        AudioManager.PlaySfx(Sfx.Move);
+        RaiseProgress();
+        EvaluateEnd();
+    }
 
-        _isWon = true;
-        Log("THẮNG!");
-        Won?.Invoke();
+    // ---------- Di chuyển 1 hạt: cập nhật MODEL trước, rồi VIEW + animation ----------
+
+    private void BeadGridToGrid(int from, int to, Type type, float delay)
+    {
+        _grid.RemoveBead(from);
+        _grid.PlaceBead(to, type);
+
+        BeadView bead = gridView.TakeBead(from);
+        if (bead == null) // phòng hờ view lệch model
+        {
+            gridView.PlaceBead(to, type).SetLocked(_grid.IsLocked(to));
+            return;
+        }
+
+        bead.SetSelected(false);
+        gridView.AttachBead(to, bead);
+        bead.SetLocked(_grid.IsLocked(to));
+        flyAnimator.FlyOnGrid(bead, gridView.CellToWorld(to), delay, gridView.BeadSortingOrder);
+    }
+
+    private void BeadGridToTray(int from, int slot, Type type, float delay)
+    {
+        _grid.RemoveBead(from);
+        _tray.Set(slot, type);
+
+        BeadView bead = gridView.TakeBead(from);
+        if (bead == null)
+        {
+            trayView.SetSlot(slot, type);
+            return;
+        }
+
+        bead.SetSelected(false);
+        bead.SetLocked(false);
+        // Ô khay chỉ hiện icon khi hạt bay tới nơi (sự kiện ArrivedAtTray)
+        flyAnimator.FlyToTray(bead, trayView.GetSlotWorldPosition(slot, Cam), delay, slot);
+    }
+
+    private void BeadTrayToGrid(int slot, int to, Type type, float delay)
+    {
+        _tray.Clear(slot);
+        trayView.SetSlot(slot, Type.None);
+        _grid.PlaceBead(to, type);
+
+        Vector3 start = trayView.GetSlotWorldPosition(slot, Cam);
+        BeadView bead = gridView.PlaceBead(to, type);
+        bead.SetLocked(_grid.IsLocked(to));
+        bead.transform.position = start; // xuất phát từ ô khay
+        flyAnimator.FlyFromTray(bead, gridView.CellToWorld(to), delay, gridView.BeadSortingOrder);
+    }
+
+    private void OnTrayArrived(int slot) => trayView.SetSlot(slot, _tray.GetSlotType(slot));
+
+    // ---------- Phụ trợ ----------
+
+    private float StaggerStep(int count)
+    {
+        if (count <= 1) return 0f;
+
+        float step = config != null ? config.StaggerStep : 0.02f;
+        float maxTotal = config != null ? config.MaxTotalStagger : 0.4f;
+        return Mathf.Min(step, maxTotal / count);
+    }
+
+    private void EvaluateEnd()
+    {
+        EndState state = _checker.Evaluate(_grid, _tray);
+        if (state != EndState.None) _pendingEnd = state;
+    }
+
+    private void RaiseProgress()
+    {
+        float progress = _grid.TotalCells > 0 ? (float)_grid.CorrectCount / _grid.TotalCells : 0f;
+        ProgressChanged?.Invoke(progress);
+    }
+
+    private void Invalid(string message)
+    {
+        AudioManager.PlaySfx(Sfx.Invalid);
+        Log(message);
     }
 
     private void Log(string message)
