@@ -1,22 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Bộ cập nhật TẬP TRUNG cho mọi hạt đang bay (không dùng coroutine/tween riêng từng hạt).
-/// Logic đã cập nhật xong trước; animator chỉ lo phần nhìn: hạt trượt từ vị trí đầu tới vị trí đích.
-/// - FlyOnGrid:   lưới -> lưới (hạt ở lại lưới sau khi tới nơi)
-/// - FlyToTray:   lưới -> khay (tới nơi thì trả hạt về pool, rồi báo ArrivedAtTray để TrayView hiện icon)
-/// - FlyFromTray: khay -> lưới (hạt xuất phát nhỏ rồi phóng to dần)
-/// </summary>
 public class BeadFlyAnimator : MonoBehaviour
 {
     [SerializeField] private GameConfig config;
     [SerializeField] private BeadPool pool;
 
-    /// <summary>Phát ra khi 1 hạt bay vào ô khay xong (tham số: index ô khay).</summary>
     public event System.Action<int> ArrivedAtTray;
 
-    /// <summary>Còn hạt đang bay (hoặc đang chờ tới lượt xuất phát).</summary>
     public bool IsBusy => _flights.Count > 0;
 
     private struct Flight
@@ -48,7 +39,7 @@ public class BeadFlyAnimator : MonoBehaviour
     public void FlyToTray(BeadView bead, Vector3 to, float delay, int slot) =>
         Add(bead, to, delay, 1f, TrayScale, 0, slot);
 
-    /// <summary>Huỷ mọi chuyến bay (khi nạp level mới / restart), trả hạt về pool.</summary>
+    // Huỷ mọi chuyến bay
     public void CancelAll()
     {
         for (int i = 0; i < _flights.Count; i++)

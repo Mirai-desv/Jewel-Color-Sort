@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public enum MoveKind { GridToGrid, GridToTray, TrayToGrid }
 
-/// <summary>1 hạt di chuyển. From/To là index ô lưới, hoặc index ô khay tuỳ theo Kind.</summary>
+// 1 hạt di chuyển. From/To là index ô lưới, hoặc index ô khay tuỳ theo Kind
 public readonly struct MoveStep
 {
     public readonly MoveKind Kind;
@@ -19,7 +19,7 @@ public readonly struct MoveStep
     }
 }
 
-/// <summary>1 nước đi của người chơi = nhiều hạt di chuyển cùng lúc. Dùng để Undo.</summary>
+// 1 nước đi của người chơi = nhiều hạt di chuyển cùng lúc. Dùng để Undo
 public class MoveCommand
 {
     private readonly List<MoveStep> _steps = new List<MoveStep>(16);

@@ -10,7 +10,6 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private GestureDetector gesture; // để trống thì tự tìm trong scene
     [SerializeField] private Camera worldCamera;      // để trống thì dùng Camera.main
 
-    /// <summary>Phát ra toạ độ ô (x, y) mà người chơi vừa chạm.</summary>
     public event System.Action<int, int> CellClicked;
 
     private void Awake()

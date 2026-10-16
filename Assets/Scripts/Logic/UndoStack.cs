@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-/// <summary>Lịch sử nước đi của level hiện tại.</summary>
+// Lịch sử nước đi của level hiện tại
 public class UndoStack
 {
     private readonly Stack<MoveCommand> _stack = new Stack<MoveCommand>();

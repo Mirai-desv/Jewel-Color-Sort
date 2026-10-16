@@ -2,8 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// HUD khi chơi: số level, thời gian chơi (đếm lên), tiền, tiến độ (% ô đã đúng).
-// Ô nào không gán trong Inspector thì bỏ qua.
 public class HUDPanel : BasePanel
 {
     [Header("Tham chiếu")]

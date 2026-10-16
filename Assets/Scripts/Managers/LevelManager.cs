@@ -1,11 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Giữ danh sách level theo thứ tự chơi (phần tử 0 = Level 1) và nạp level vào LevelSession.
-/// Việc "khi nào nạp / khi nào chuyển level" do GameManager quyết định.
-/// Hai công tắc bên dưới chỉ dùng để TEST nhanh khi chưa dựng GameManager và UI.
-/// </summary>
 public class LevelManager : MonoBehaviour
 {
     [Header("Tham chiếu")]
@@ -21,7 +16,7 @@ public class LevelManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool debugLog = true;
 
-    /// <summary>Chỉ số level hiện tại (0 = Level 1). -1 nếu chưa nạp level nào.</summary>
+    // Chỉ số level hiện tại (0 = Level 1). -1 nếu chưa nạp level nào
     public int CurrentIndex { get; private set; } = -1;
     public int LevelCount => levels.Count;
     public bool HasNext => CurrentIndex + 1 < levels.Count;
@@ -46,7 +41,7 @@ public class LevelManager : MonoBehaviour
         if (autoAdvanceOnWin && HasNext) LoadNext();
     }
 
-    /// <summary>Nạp level theo chỉ số (0 = Level 1). Trả về false nếu không nạp được.</summary>
+    // Nạp level theo chỉ số (0 = Level 1). Trả về false nếu không nạp được
     public bool LoadLevel(int index)
     {
         if (levelSession == null)

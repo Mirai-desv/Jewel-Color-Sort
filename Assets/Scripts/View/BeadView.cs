@@ -1,10 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Đại diện cho 1 hạt trên màn hình. Chỉ lo hiển thị, không chứa luật chơi.
-/// Đổi trạng thái bằng scale và vertex color (không dùng MaterialPropertyBlock)
-/// nên vẫn giữ được batching.
-/// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 public class BeadView : MonoBehaviour
 {

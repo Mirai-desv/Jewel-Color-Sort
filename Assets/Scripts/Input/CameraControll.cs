@@ -1,31 +1,44 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Điều khiển Camera 2D (Orthographic): tự canh GIỮA lưới và fit vừa màn hình khi nạp level,
-/// cho phép pan (kéo) và zoom (pinch / lăn chuột), luôn giữ lưới nằm trong tầm nhìn.
-/// Nhận cử chỉ từ GestureDetector. Gắn script này lên Main Camera.
-/// LevelSession gọi FitToGrid() sau mỗi lần dựng lưới.
-/// </summary>
 [RequireComponent(typeof(Camera))]
 public class CameraControll : MonoBehaviour
 {
     [SerializeField] private GridView gridView;
     [SerializeField] private GestureDetector gesture; // để trống thì tự tìm trong scene
 
-    [Header("Zoom")]
-    [SerializeField] private float minZoomMultiplier = 1f; // 1 = không cho zoom OUT quá khung fit ban đầu
-    [SerializeField] private float maxZoomMultiplier = 3f; // cho zoom IN tối đa gấp 3 lần khung fit
-    [SerializeField] private float scrollZoomSpeed = 0.5f; // chỉ để test bằng lăn chuột trong Editor
+    [Header("Vùng khả dụng (tính theo % chiều cao / chiều rộng màn hình)")]
+    [Tooltip("Gán khay (hoặc cả cụm HUD + khay) nằm ở đỉnh màn hình. Ảnh sẽ nằm phía dưới mép dưới của nó.")]
+    [SerializeField] private RectTransform topUIRect;
+    [Tooltip("Dùng khi KHÔNG gán Top UI Rect: phần đỉnh màn hình dành cho khay/HUD.")]
+    [SerializeField, Range(0f, 0.6f)] private float topReservedFraction = 0.25f;
+    [Tooltip("Khoảng hở giữa mép dưới Top UI Rect và ảnh.")]
+    [SerializeField, Range(0f, 0.2f)] private float topGapFraction = 0.02f;
+    [Tooltip("Phần đáy màn hình dành cho nút (Undo...).")]
+    [SerializeField, Range(0f, 0.4f)] private float bottomReservedFraction = 0.08f;
+    [SerializeField, Range(0f, 0.3f)] private float sidePaddingFraction = 0.05f;
 
-    [Header("Lề")]
-    [SerializeField] private float paddingCells = 0.5f; // chừa viền quanh lưới khi fit (tính theo số ô)
+    [Header("Kích thước ảnh lúc mới vào level")]
+    [Tooltip("Ảnh chiếm bao nhiêu phần vùng khả dụng. Nhỏ hơn = ảnh bé hơn.")]
+    [SerializeField, Range(0.3f, 1f)] private float fillRatio = 0.85f;
+
+    [Header("Zoom")]
+    [Tooltip("Phóng to tối đa gấp bao nhiêu lần so với lúc mới vào level.")]
+    [SerializeField, Min(1f)] private float zoomInMultiplier = 4f;
+    [Tooltip("Thu nhỏ tối đa gấp bao nhiêu lần so với lúc mới vào level.")]
+    [SerializeField, Min(1f)] private float zoomOutMultiplier = 2f;
+    [Tooltip("Mỗi nấc lăn chuột zoom thêm bấy nhiêu % (chỉ để test trong Editor).")]
+    [SerializeField, Range(0.02f, 0.5f)] private float scrollZoomStep = 0.1f;
 
     private Camera _camera;
     private Bounds _bounds;
-    private float _fitSize;
-    private float _minSize; // zoom in nhiều nhất
-    private float _maxSize; // zoom out nhiều nhất
+    private bool _ready;
+    private Vector2 _focus;   // điểm thế giới đang nằm ở TÂM vùng khả dụng
+    private float _minSize;   // zoom in nhiều nhất
+    private float _maxSize;   // zoom out nhiều nhất
+    private float _top;       // phần đỉnh đang dành cho UI (0..1)
+    private float _bottom;    // phần đáy đang dành cho UI (0..1)
+    private readonly Vector3[] _corners = new Vector3[4];
 
     private void Awake()
     {
@@ -47,75 +60,115 @@ public class CameraControll : MonoBehaviour
         gesture.Pinched -= OnPinched;
     }
 
-    /// <summary>Canh giữa camera vào tâm lưới và tính lại khung zoom. Gọi lại mỗi khi nạp level mới.</summary>
+    // Đặt lại khung nhìn cho level hiện tại. LevelSession gọi mỗi khi dựng lưới
     public void FitToGrid()
     {
+        Canvas.ForceUpdateCanvases(); // để kích thước khay đã được Layout tính xong
+
         _bounds = gridView.WorldBounds;
+        _top = ComputeTopReserved();
+        _bottom = bottomReservedFraction;
 
-        float halfH = _bounds.size.y * 0.5f + paddingCells;
-        float halfWByAspect = (_bounds.size.x * 0.5f + paddingCells) / _camera.aspect;
-        _fitSize = Mathf.Max(halfH, halfWByAspect);
+        float usableH = Mathf.Max(0.1f, 1f - _top - _bottom);
+        float usableW = Mathf.Max(0.1f, 1f - 2f * sidePaddingFraction);
 
-        _minSize = _fitSize / maxZoomMultiplier;
-        _maxSize = _fitSize * minZoomMultiplier;
+        // Orthographic Size nhỏ nhất để cả bức ảnh lọt vào vùng khả dụng, rồi nới ra theo Fill Ratio
+        float sizeByHeight = _bounds.size.y * 0.5f / usableH;
+        float sizeByWidth = _bounds.size.x * 0.5f / (_camera.aspect * usableW);
+        float fitSize = Mathf.Max(sizeByHeight, sizeByWidth) / fillRatio;
 
-        _camera.orthographicSize = _fitSize;
-        transform.position = new Vector3(_bounds.center.x, _bounds.center.y, transform.position.z);
+        _minSize = fitSize / zoomInMultiplier;
+        _maxSize = fitSize * zoomOutMultiplier;
 
-        ClampPosition();
+        _focus = _bounds.center;
+        _camera.orthographicSize = fitSize;
+        _ready = true;
+        ApplyCamera();
     }
 
     private void Update()
     {
-        if (_bounds.size == Vector3.zero) return;
+        if (!_ready) return;
 
-        // Lăn chuột (chỉ để test trong Editor)
+        // Lăn chuột (chỉ để test trong Editor): zoom quanh vị trí con trỏ
         Mouse mouse = Mouse.current;
         if (mouse == null) return;
 
         float scroll = mouse.scroll.ReadValue().y;
         if (Mathf.Abs(scroll) < 0.01f) return;
 
-        ApplyZoom(_camera.orthographicSize - scroll * scrollZoomSpeed * 0.01f);
+        float factor = scroll > 0f ? 1f + scrollZoomStep : 1f / (1f + scrollZoomStep);
+        ZoomAt(_camera.orthographicSize / factor, mouse.position.ReadValue());
     }
 
+    // Thao tác
     private void OnDragged(Vector2 deltaPixels)
     {
-        if (_bounds.size == Vector3.zero) return;
+        if (!_ready) return;
 
-        // Đổi pixel -> đơn vị thế giới theo mức zoom hiện tại
-        float unitsPerPixel = (_camera.orthographicSize * 2f) / Screen.height;
-        transform.position -= new Vector3(deltaPixels.x, deltaPixels.y, 0f) * unitsPerPixel;
-
-        ClampPosition();
+        // Đổi pixel -> đơn vị thế giới theo mức zoom hiện tại, kéo ảnh theo ngón tay
+        float unitsPerPixel = (_camera.orthographicSize * 2f) / _camera.pixelHeight;
+        _focus -= deltaPixels * unitsPerPixel;
+        ApplyCamera();
     }
 
-    private void OnPinched(float factor)
+    private void OnPinched(float factor, Vector2 screenMidpoint)
     {
-        if (_bounds.size == Vector3.zero) return;
-        ApplyZoom(_camera.orthographicSize / factor); // 2 ngón xa nhau (factor > 1) -> size giảm -> zoom in
+        if (!_ready) return;
+        ZoomAt(_camera.orthographicSize / factor, screenMidpoint); // 2 ngón xa nhau (factor > 1) -> zoom in
     }
 
-    private void ApplyZoom(float size)
+    // Zoom sao cho điểm thế giới đang nằm dưới screenPoint vẫn đứng yên
+    private void ZoomAt(float newSize, Vector2 screenPoint)
     {
-        _camera.orthographicSize = Mathf.Clamp(size, _minSize, _maxSize);
-        ClampPosition();
+        newSize = Mathf.Clamp(newSize, _minSize, _maxSize);
+        if (Mathf.Approximately(newSize, _camera.orthographicSize)) return;
+
+        Vector3 before = ScreenToWorld(screenPoint);
+        _camera.orthographicSize = newSize;
+        ApplyCamera();
+        Vector3 after = ScreenToWorld(screenPoint);
+
+        _focus += (Vector2)(before - after);
+        ApplyCamera();
     }
 
-    private void ClampPosition()
+    private Vector3 ScreenToWorld(Vector2 p) =>
+        _camera.ScreenToWorldPoint(new Vector3(p.x, p.y, -transform.position.z));
+
+    // Đặt camera
+
+    // Giữ điểm focus (trong phạm vi bức ảnh) nằm ở tâm vùng khả dụng.
+    // Vùng khả dụng lệch khỏi tâm màn hình (vì khay ở trên, nút ở dưới) nên camera phải dịch ngược lại.
+
+    private void ApplyCamera()
     {
-        float halfH = _camera.orthographicSize;
-        float halfW = halfH * _camera.aspect;
+        _focus.x = Mathf.Clamp(_focus.x, _bounds.min.x, _bounds.max.x);
+        _focus.y = Mathf.Clamp(_focus.y, _bounds.min.y, _bounds.max.y);
 
-        float minX = _bounds.min.x + halfW;
-        float maxX = _bounds.max.x - halfW;
-        float minY = _bounds.min.y + halfH;
-        float maxY = _bounds.max.y - halfH;
+        float yOffset = (_top - _bottom) * _camera.orthographicSize;
+        transform.position = new Vector3(_focus.x, _focus.y + yOffset, transform.position.z);
+    }
 
-        // Khung nhìn rộng/cao hơn cả lưới thì không có khoảng để kéo -> giữ ở giữa
-        float x = minX > maxX ? _bounds.center.x : Mathf.Clamp(transform.position.x, minX, maxX);
-        float y = minY > maxY ? _bounds.center.y : Mathf.Clamp(transform.position.y, minY, maxY);
+    // Phần đỉnh màn hình bị UI chiếm (0..1), tính từ mép dưới của Top UI Rect
+    private float ComputeTopReserved()
+    {
+        if (topUIRect == null) return topReservedFraction;
 
-        transform.position = new Vector3(x, y, transform.position.z);
+        Canvas canvas = topUIRect.GetComponentInParent<Canvas>();
+        Camera uiCamera = null;
+        if (canvas != null && canvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            uiCamera = canvas.rootCanvas.worldCamera;
+
+        topUIRect.GetWorldCorners(_corners);
+        float lowest = float.MaxValue;
+        for (int i = 0; i < 4; i++)
+        {
+            float y = RectTransformUtility.WorldToScreenPoint(uiCamera, _corners[i]).y;
+            if (y < lowest) lowest = y;
+        }
+
+        float reserved = 1f - lowest / _camera.pixelHeight + topGapFraction;
+        return Mathf.Clamp(reserved, 0f, 0.6f);
     }
 }

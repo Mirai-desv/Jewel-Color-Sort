@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Co RectTransform này vừa vào "vùng an toàn" của màn hình (tránh tai thỏ, góc bo, thanh vuốt home).
-/// Gắn vào 1 RectTransform kéo giãn kín Canvas, rồi đặt toàn bộ UI (HUD, khay...) làm con của nó.
-/// </summary>
 [RequireComponent(typeof(RectTransform))]
 public class SafeAreaFitter : MonoBehaviour
 {

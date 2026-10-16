@@ -1,9 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Điều phối trạng thái tổng của game (Menu / Playing / Paused / Win / Lose),
-/// bật tắt các panel tương ứng, và là nơi các Button gọi vào.
-/// </summary>
+/// Điều phối trạng thái tổng của game (Menu / Playing / Paused / Win / Lose), bật tắt các panel tương ứng, và là nơi các Button gọi vào.
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }

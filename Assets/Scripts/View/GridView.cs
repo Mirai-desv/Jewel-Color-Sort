@@ -1,13 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// "Nhạc trưởng" phần hiển thị lưới: dựng nền, dựng hạt, cập nhật khi Logic báo đổi,
-/// và cung cấp quy đổi toạ độ ô <-> thế giới cho Input / Camera / Animator.
-///
-/// Quy ước: gốc ở góc dưới trái, y hướng lên, index = y * Width + x.
-/// Lưu ý: GridView không nên bị scale/rotate (giữ scale = 1, rotation = 0).
-/// </summary>
 public class GridView : MonoBehaviour
 {
     [Header("Tham chiếu")]
@@ -28,10 +21,10 @@ public class GridView : MonoBehaviour
     public int Height => _height;
     public float CellSize => _cellSize;
 
-    /// <summary>Thứ tự vẽ của hạt đứng yên trên lưới (animator dùng để trả lại sau khi bay xong).</summary>
+    // Thứ tự vẽ của hạt đứng yên trên lưới (animator dùng để trả lại sau khi bay xong)
     public int BeadSortingOrder => beadSortingOrder;
 
-    /// <summary>Vùng thế giới mà lưới chiếm, dùng cho CameraController.</summary>
+    // Vùng thế giới mà lưới chiếm, dùng cho CameraController
     public Bounds WorldBounds
     {
         get
@@ -79,7 +72,7 @@ public class GridView : MonoBehaviour
 
     // ---------- Cập nhật khi Logic báo thay đổi ----------
 
-    /// <summary>Đặt 1 hạt mới vào ô (nếu ô đã có hạt thì thay thế).</summary>
+    // Đặt 1 hạt mới vào ô (nếu ô đã có hạt thì thay thế)
     public BeadView PlaceBead(int index, Type type)
     {
         if (_beads[index] != null) RemoveBead(index);
@@ -92,7 +85,7 @@ public class GridView : MonoBehaviour
         return bead;
     }
 
-    /// <summary>Gỡ hạt khỏi ô nhưng KHÔNG trả về pool, để animator cho nó bay đi.</summary>
+    // Gỡ hạt khỏi ô nhưng KHÔNG trả về pool, để animator cho nó bay đi
     public BeadView TakeBead(int index)
     {
         BeadView bead = _beads[index];
@@ -100,14 +93,14 @@ public class GridView : MonoBehaviour
         return bead;
     }
 
-    /// <summary>Gắn 1 hạt có sẵn (đang bay) vào ô đích. Vị trí hạt do animator lo.</summary>
+    // Gắn 1 hạt có sẵn (đang bay) vào ô đích. Vị trí hạt do animator lo.
     public void AttachBead(int index, BeadView bead)
     {
         if (_beads[index] != null && _beads[index] != bead) RemoveBead(index);
         _beads[index] = bead;
     }
 
-    /// <summary>Gỡ hạt khỏi ô và trả về pool ngay.</summary>
+    // Gỡ hạt khỏi ô và trả về pool ngay
     public void RemoveBead(int index)
     {
         BeadView bead = TakeBead(index);
@@ -131,7 +124,7 @@ public class GridView : MonoBehaviour
         if (_beads[index] != null) _beads[index].SetLocked(locked);
     }
 
-    // ---------- Quy đổi toạ độ ----------
+    // Quy đổi toạ độ
 
     public bool InBounds(int x, int y) => x >= 0 && x < _width && y >= 0 && y < _height;
 
@@ -142,7 +135,7 @@ public class GridView : MonoBehaviour
 
     public Vector3 CellToWorld(int index) => CellToWorld(index % _width, index / _width);
 
-    /// <summary>Đổi toạ độ thế giới (từ Input) sang ô (x, y). Trả về false nếu chạm ngoài lưới.</summary>
+    // Đổi toạ độ thế giới (từ Input) sang ô (x, y). Trả về false nếu chạm ngoài lưới
     public bool TryWorldToCell(Vector2 world, out int x, out int y)
     {
         Vector2 local = world - (Vector2)transform.position;

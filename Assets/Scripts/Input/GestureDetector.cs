@@ -3,20 +3,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-/// <summary>
-/// Nơi DUY NHẤT đọc con trỏ (chuột / cảm ứng) bằng Input System và phân loại cử chỉ:
-///  - Tapped(screenPos): nhấn rồi nhả mà gần như không di chuyển
-///  - Dragged(deltaPixels): kéo 1 ngón / giữ chuột trái và kéo (sau khi vượt ngưỡng click)
-///  - Pinched(factor): 2 ngón; factor > 1 là 2 ngón xa nhau ra (zoom in)
-/// Quy tắc: nếu lúc nhấn con trỏ đang nằm trên UI thì bỏ qua cả lần chạm đó;
-/// nếu có pinch trong lần chạm thì không tính là tap / drag.
-/// Đọc input bằng cách poll trong Update() (IsPointerOverGameObject chỉ đáng tin ở đây).
-/// </summary>
 public class GestureDetector : MonoBehaviour
 {
     public event System.Action<Vector2> Tapped;
     public event System.Action<Vector2> Dragged;
-    public event System.Action<float> Pinched;
+    public event System.Action<float, Vector2> Pinched; // (hệ số zoom, vị trí giữa 2 ngón trên màn hình)
 
     private bool _active;
     private bool _blockedByUI;
@@ -25,6 +16,7 @@ public class GestureDetector : MonoBehaviour
     private Vector2 _startPos;
     private Vector2 _lastPos;
     private float _lastPinchDistance;
+    private Vector2 _lastPinchMid;
 
     private void Update()
     {
@@ -90,11 +82,16 @@ public class GestureDetector : MonoBehaviour
     private void HandlePinch(Vector2 p0, Vector2 p1)
     {
         float distance = Vector2.Distance(p0, p1);
+        Vector2 mid = (p0 + p1) * 0.5f;
 
         if (_lastPinchDistance > 1f && distance > 1f)
-            Pinched?.Invoke(distance / _lastPinchDistance);
+        {
+            Dragged?.Invoke(mid - _lastPinchMid);                  // 2 ngón trượt đi: kéo ảnh
+            Pinched?.Invoke(distance / _lastPinchDistance, mid);   // 2 ngón xa/gần nhau: zoom quanh điểm giữa
+        }
 
         _lastPinchDistance = distance;
+        _lastPinchMid = mid;
         _consumed = true;
         _dragging = false;
     }
@@ -111,7 +108,7 @@ public class GestureDetector : MonoBehaviour
         if (isTap) Tapped?.Invoke(_lastPos);
     }
 
-    /// <summary>Trường hợp khung hình giật: nhấn và nhả chuột trong cùng 1 khung hình.</summary>
+    // Trường hợp khung hình giật: nhấn và nhả chuột trong cùng 1 khung hình
     private void CheckInstantMouseClick()
     {
         Mouse mouse = Mouse.current;
@@ -122,10 +119,8 @@ public class GestureDetector : MonoBehaviour
         Tapped?.Invoke(mouse.position.ReadValue());
     }
 
-    /// <summary>
-    /// Trả về số con trỏ đang nhấn (cảm ứng ưu tiên, không có thì dùng chuột trái).
-    /// p0, p1 là vị trí 2 con trỏ đầu tiên; touchId = -1 nếu là chuột.
-    /// </summary>
+    // Trả về số con trỏ đang nhấn (cảm ứng ưu tiên, không có thì dùng chuột trái).
+    // p0, p1 là vị trí 2 con trỏ đầu tiên, touchId = -1 nếu là chuột.
     private static int ReadPointers(out Vector2 p0, out Vector2 p1, out int touchId)
     {
         p0 = default;

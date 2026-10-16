@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Lớp cha của mọi panel: ẩn/hiện bằng CanvasGroup (alpha + chặn raycast), có fade nhẹ.
-/// Panel luôn ở trạng thái active trong scene (chỉ trong suốt khi ẩn) nên vẫn lắng nghe sự kiện được.
-/// </summary>
 [RequireComponent(typeof(CanvasGroup))]
 public abstract class BasePanel : MonoBehaviour
 {

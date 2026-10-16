@@ -2,10 +2,6 @@ using UnityEngine;
 
 public enum Sfx { Click, Select, Move, Invalid, Win, Lose }
 
-/// <summary>
-/// Phát nhạc nền và hiệu ứng âm thanh. Clip nào để trống thì bỏ qua (chưa có âm thanh vẫn chạy bình thường).
-/// Gọi từ bất kỳ đâu: AudioManager.PlaySfx(Sfx.Click);
-/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -42,7 +38,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    /// <summary>Phát hiệu ứng (an toàn khi chưa có AudioManager trong scene).</summary>
+    // Phát hiệu ứng (an toàn khi chưa có AudioManager trong scene)
     public static void PlaySfx(Sfx sfx)
     {
         if (Instance != null) Instance.Play(sfx);

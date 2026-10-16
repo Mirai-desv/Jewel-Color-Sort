@@ -1,14 +1,5 @@
 public enum EndState { None, Win, Lose }
 
-/// <summary>
-/// Kiểm tra thắng / thua (thuần C#).
-/// - Thắng: mọi ô nền đều có hạt đúng màu.
-/// - Thua: không còn nước đi hợp lệ nào.
-///
-/// Nước đi hợp lệ tồn tại khi:
-///  (a) khay còn ô trống và trên lưới còn hạt chưa khoá (đưa hạt vào khay), hoặc
-///  (b) có hạt (trên lưới chưa khoá, hoặc trong khay) mà lưới đang có ô rỗng với màu nền trùng màu hạt đó.
-/// </summary>
 public class WinLoseChecker
 {
     // Đánh dấu "màu nền X đang có ô rỗng", tra cứu theo giá trị enum

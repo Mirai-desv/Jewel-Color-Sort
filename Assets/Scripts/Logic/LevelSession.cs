@@ -1,19 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Cầu nối duy nhất: Input -> Logic (GridModel, TrayModel, RegionFinder) -> View.
-/// Nguyên tắc: cập nhật dữ liệu (model) TRƯỚC, rồi mới cập nhật hiển thị (view + animation).
-///
-/// Luật chơi:
-///  - Click hạt chưa khoá  -> chọn vùng hạt cùng màu kề cạnh (BFS). Click lại vùng đó để bỏ chọn.
-///  - Đang chọn hạt trên lưới + click 1 ô khay ĐANG TRỐNG -> lần lượt lấp vào các ô khay trống (mỗi ô 1 hạt).
-///  - Click 1 ô khay ĐANG CÓ HẠT -> tự chọn tất cả ô khay khác đang cùng màu.
-///  - Đang chọn hạt (lưới hoặc khay) + click ô lưới đang rỗng có màu nền trùng -> đặt hạt về lưới.
-///  - Số lượng lệch nhau thì lấy k = min(nguồn, đích), lan BFS từ điểm click cho đủ k.
-///  - Hạt đặt về đúng màu nền sẽ bị khoá. Thắng khi mọi ô đều đúng, thua khi hết nước đi.
-///  - Mỗi nước đi lưu vào UndoStack. Thắng/thua chỉ được báo SAU KHI animation hạt bay xong.
-/// </summary>
 public class LevelSession : MonoBehaviour
 {
     [Header("Tham chiếu")]
@@ -33,7 +20,7 @@ public class LevelSession : MonoBehaviour
     public event System.Action LevelStarted;
     public event System.Action<float> ProgressChanged; // 0..1
 
-    /// <summary>GameManager bật/tắt: chỉ nhận thao tác khi đang ở trạng thái Playing.</summary>
+    // GameManager bật/tắt: chỉ nhận thao tác khi đang ở trạng thái Playing
     public bool InputEnabled { get; set; } = true;
 
     public bool IsBusy => flyAnimator != null && flyAnimator.IsBusy;
@@ -106,7 +93,7 @@ public class LevelSession : MonoBehaviour
         }
     }
 
-    /// <summary>Nạp 1 level và bắt đầu chơi (do LevelManager / GameManager gọi).</summary>
+    // Nạp 1 level và bắt đầu chơi (do LevelManager / GameManager gọi)
     public void StartLevel(LevelData data)
     {
         if (data == null)
@@ -147,7 +134,7 @@ public class LevelSession : MonoBehaviour
         EvaluateEnd();
     }
 
-    /// <summary>Kiểm tra các tham chiếu bắt buộc, báo lỗi rõ ràng thay vì để NullReferenceException khó hiểu.</summary>
+    // Kiểm tra các tham chiếu bắt buộc, báo lỗi rõ ràng thay vì để NullReferenceException khó hiểu
     private bool CheckReferences()
     {
         bool ok = true;
@@ -176,7 +163,7 @@ public class LevelSession : MonoBehaviour
         if (_level != null) StartLevel(_level);
     }
 
-    /// <summary>Hoàn tác nước đi gần nhất (hạt bay ngược về chỗ cũ).</summary>
+    // Hoàn tác nước đi gần nhất (hạt bay ngược về chỗ cũ)
     public void Undo()
     {
         if (!CanUndo) return;
@@ -206,7 +193,7 @@ public class LevelSession : MonoBehaviour
         EvaluateEnd();
     }
 
-    // ---------- Xử lý click trên lưới ----------
+    // Xử lý click trên lưới
 
     private void OnCellClicked(int x, int y)
     {
@@ -247,7 +234,7 @@ public class LevelSession : MonoBehaviour
         else MoveTrayToGrid(index);
     }
 
-    // ---------- Xử lý click trên khay ----------
+    // Xử lý click trên khay
 
     private void OnSlotClicked(int slot)
     {
@@ -276,7 +263,7 @@ public class LevelSession : MonoBehaviour
         SelectTrayGroup(slot);
     }
 
-    // ---------- Chọn / bỏ chọn ----------
+    // Chọn, bỏ chọn
 
     private void SelectGridRegion(int index)
     {
@@ -289,7 +276,7 @@ public class LevelSession : MonoBehaviour
         AudioManager.PlaySfx(Sfx.Select);
     }
 
-    /// <summary>Chọn tất cả ô khay đang cùng màu với ô vừa click (không cần kề nhau).</summary>
+    // Chọn tất cả ô khay đang cùng màu với ô vừa click (không cần kề nhau)
     private void SelectTrayGroup(int slot)
     {
         _selectedType = _tray.GetSlotType(slot);
@@ -322,9 +309,7 @@ public class LevelSession : MonoBehaviour
         _selectedType = Type.None;
     }
 
-    // ---------- Nước đi của người chơi ----------
-
-    /// <summary>Lưới -> lưới: hạt đang chọn bay vào vùng ô rỗng cùng màu nền.</summary>
+    // Lưới -> lưới: hạt đang chọn bay vào vùng ô rỗng cùng màu nền
     private void MoveGridToGrid(int destOrigin)
     {
         _finder.FindEmptyRegion(_grid, destOrigin, _selection.Count, _dest);
@@ -346,7 +331,7 @@ public class LevelSession : MonoBehaviour
         CommitMove(command);
     }
 
-    /// <summary>Lưới -> khay: lần lượt lấp hạt đang chọn vào các ô khay đang trống.</summary>
+    // Lưới -> khay: lần lượt lấp hạt đang chọn vào các ô khay đang trống
     private void MoveGridToTray()
     {
         _trayEmptySlots.Clear();
@@ -378,7 +363,7 @@ public class LevelSession : MonoBehaviour
         CommitMove(command);
     }
 
-    /// <summary>Khay -> lưới: các hạt trong khay đang chọn lấp vào vùng ô rỗng cùng màu nền.</summary>
+    // Khay -> lưới: các hạt trong khay đang chọn lấp vào vùng ô rỗng cùng màu nền
     private void MoveTrayToGrid(int destOrigin)
     {
         _finder.FindEmptyRegion(_grid, destOrigin, _traySelection.Count, _dest);
@@ -402,10 +387,7 @@ public class LevelSession : MonoBehaviour
         CommitMove(command);
     }
 
-    /// <summary>
-    /// Lập danh sách k ô hạt nguồn (trên lưới). Nếu k nhỏ hơn vùng đang chọn thì BFS lại
-    /// từ ô đã click với giới hạn k (lấy phần gần điểm click nhất, vẫn liền khối).
-    /// </summary>
+    /// Lập danh sách k ô hạt nguồn (trên lưới). Nếu k nhỏ hơn vùng đang chọn thì BFS lại từ ô đã click với giới hạn k (lấy phần gần điểm click nhất, vẫn liền khối).
     private void BuildSource(int k)
     {
         if (k >= _selection.Count)
@@ -427,7 +409,7 @@ public class LevelSession : MonoBehaviour
         EvaluateEnd();
     }
 
-    // ---------- Di chuyển 1 hạt: cập nhật MODEL trước, rồi VIEW + animation ----------
+    // Di chuyển 1 hạt: cập nhật MODEL trước, rồi VIEW + animation
 
     private void BeadGridToGrid(int from, int to, Type type, float delay)
     {

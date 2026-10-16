@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Bảng cài đặt: bật/tắt nhạc nền và hiệu ứng. Nút đóng dùng ResumeButton.</summary>
 public class SettingPanel : BasePanel
 {
     [SerializeField] private Toggle musicToggle;

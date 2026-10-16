@@ -2,10 +2,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// Lớp cha của mọi nút: lo phần chung (nghe click, âm thanh, hiệu ứng nhấn thu nhỏ nhẹ).
-/// Lớp con chỉ định nghĩa việc phải làm khi bấm trong OnClicked().
-/// </summary>
 [RequireComponent(typeof(Button))]
 public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -38,7 +34,7 @@ public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerU
         OnClicked();
     }
 
-    /// <summary>Việc nút này làm khi được bấm.</summary>
+    // Việc nút này làm khi được bấm
     protected abstract void OnClicked();
 
     public void OnPointerDown(PointerEventData eventData)

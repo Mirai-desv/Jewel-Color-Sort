@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>Bảng thắng: tên level đã xong, tiền thưởng. Nút sang level tiếp dùng NextLevelButton.</summary>
 public class WinPanel : BasePanel
 {
     [SerializeField] private TMP_Text titleText;

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>Bảng thua (hết nước đi). Nên đặt kèm UndoButton và RestartButton.</summary>
+// bug, kệ nó
 public class LosePanel : BasePanel
 {
     [SerializeField] private TMP_Text messageText;

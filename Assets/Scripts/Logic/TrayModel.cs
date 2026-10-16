@@ -20,7 +20,7 @@ public class TrayModel
     // Dọn trống 1 ô
     public void Clear(int slot) => _slots[slot] = Type.None;
 
-    /// <summary>Đếm số ô đang trống.</summary>
+    // Đếm số ô đang trống
     public int CountEmpty()
     {
         int n = 0;
