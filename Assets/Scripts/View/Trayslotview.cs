@@ -31,6 +31,17 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
         SetLocked(false);
     }
 
+    public void SetSize(float size)
+    {
+        RectTransform rt = (RectTransform)transform;
+        rt.sizeDelta = new Vector2(size, size);
+        if (beadIcon != null)
+        {
+            float iconSize = size * 0.75f;
+            beadIcon.rectTransform.sizeDelta = new Vector2(iconSize, iconSize);
+        }
+    }
+
     // Hiển thị 1 nhóm hạt cùng màu
     public void SetContent(Sprite sprite, Color color, int count)
     {

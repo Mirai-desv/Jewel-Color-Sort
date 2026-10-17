@@ -4,7 +4,7 @@ using UnityEngine;
 public class BackgroundView : MonoBehaviour
 {
     private const int CellResolution = 16;
-    [SerializeField, Range(0f, 1f)] private float washOut = 0.45f;
+    [SerializeField, Range(0f, 1f)] private float washOut = 0f;
     [SerializeField] private int sortingOrder = 0;
 
     private SpriteRenderer _renderer;
@@ -45,13 +45,10 @@ public class BackgroundView : MonoBehaviour
             if (c.x < 0 || c.x >= width || c.y < 0 || c.y >= height) continue;
 
             Color rawColor = palette.GetColor(c.type);
-            float effectiveWash = Mathf.Max(washOut, 0.45f);
-            if (rawColor.grayscale < 0.25f)
-            {
-                effectiveWash = 0.55f; // Tăng độ sáng nền cho các ô màu tối/đen
-            }
-
-            Color baseColor = Color.Lerp(rawColor, Color.white, effectiveWash);
+            // Giữ nguyên 100% màu sắc gốc (không ép washOut pha trắng làm biến đổi sắc độ/tông màu)
+            Color baseColor = (washOut > 0f) ? Color.Lerp(rawColor, Color.white, washOut) : rawColor;
+            float gray = baseColor.grayscale;
+            bool isDark = gray < 0.22f;
 
             int startX = c.x * CellResolution;
             int startY = c.y * CellResolution;
@@ -69,27 +66,40 @@ public class BackgroundView : MonoBehaviour
                     float g = baseColor.g;
                     float b = baseColor.b;
 
-                    if (dist < 3.5f)
+                    if (dist < 3.8f)
                     {
-                        // Lỗ cắm hạt (concave socket hole)
+                        // Lỗ cắm hạt (concave socket hole): giữ nguyên màu gốc, đổ bóng nhẹ tạo chiều sâu 3D
                         float shade = 1f - (dy * 0.04f);
-                        r = (r * 0.42f + 0.08f) * shade;
-                        g = (g * 0.42f + 0.08f) * shade;
-                        b = (b * 0.42f + 0.10f) * shade;
+                        float factor = 0.78f * shade;
+                        r *= factor;
+                        g *= factor;
+                        b *= factor;
                     }
-                    else if (dist <= 5.5f)
+                    else if (dist <= 5.4f)
                     {
                         // Viền mép lõm (socket bevel ring)
-                        r *= 0.82f;
-                        g *= 0.82f;
-                        b *= 0.82f;
+                        if (isDark)
+                        {
+                            // Đối với các ô màu tối / đen: làm sáng nhẹ viền khuyên để người chơi thấy rõ lỗ cắm hạt
+                            r = Mathf.Min(1f, r * 1.2f + 0.22f);
+                            g = Mathf.Min(1f, g * 1.2f + 0.22f);
+                            b = Mathf.Min(1f, b * 1.2f + 0.22f);
+                        }
+                        else
+                        {
+                            // Hiệu ứng viền nổi 3D
+                            float bevel = 1f - (dy * 0.05f);
+                            r = Mathf.Clamp01(r * bevel);
+                            g = Mathf.Clamp01(g * bevel);
+                            b = Mathf.Clamp01(b * bevel);
+                        }
                     }
                     else if (dist >= 7.0f)
                     {
-                        // Đường viền ngăn cách giữa các ô
-                        r *= 0.92f;
-                        g *= 0.92f;
-                        b *= 0.92f;
+                        // Đường viền ngăn cách giữa các ô trên lưới
+                        r *= 0.88f;
+                        g *= 0.88f;
+                        b *= 0.88f;
                     }
 
                     pixels[rowIdx + (startX + px)] = new Color(

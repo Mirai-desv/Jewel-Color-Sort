@@ -71,6 +71,13 @@ public class LevelDataGeneratorWindow : EditorWindow
         {
             EditorGUILayout.HelpBox("Chọn một file LevelData trong 'Assets/Data/' để kiểm tra hoặc gán vào Scene.", MessageType.None);
         }
+
+        EditorGUILayout.Space(20);
+        EditorGUILayout.LabelField("Xuất Bản Game", EditorStyles.boldLabel);
+        if (GUILayout.Button("🚀 Mở Tool Build WebGL (Itch.io)", GUILayout.Height(35)))
+        {
+            WebGLBuilder.ShowWindow();
+        }
     }
 }
 #endif

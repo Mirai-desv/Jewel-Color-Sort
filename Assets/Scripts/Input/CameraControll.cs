@@ -16,6 +16,10 @@ public class CameraControll : MonoBehaviour
     [SerializeField, Range(0f, 0.2f)] private float topGapFraction = 0.02f;
     [Tooltip("Phần đáy màn hình dành cho nút (Undo...).")]
     [SerializeField, Range(0f, 0.4f)] private float bottomReservedFraction = 0.08f;
+    [Tooltip("Khay ở đáy màn hình. Nếu để trống thì tự tìm TrayView.")]
+    [SerializeField] private RectTransform bottomUIRect;
+    [Tooltip("Khoảng hở giữa mép trên Bottom UI Rect và ảnh.")]
+    [SerializeField, Range(0f, 0.2f)] private float bottomGapFraction = 0.02f;
     [SerializeField, Range(0f, 0.3f)] private float sidePaddingFraction = 0.05f;
 
     [Header("Kích thước ảnh lúc mới vào level")]
@@ -43,7 +47,7 @@ public class CameraControll : MonoBehaviour
     private void Awake()
     {
         _camera = GetComponent<Camera>();
-        if (gesture == null) gesture = FindFirstObjectByType<GestureDetector>();
+        if (gesture == null) gesture = FindAnyObjectByType<GestureDetector>();
     }
 
     private void OnEnable()
@@ -67,7 +71,7 @@ public class CameraControll : MonoBehaviour
 
         _bounds = gridView.WorldBounds;
         _top = ComputeTopReserved();
-        _bottom = bottomReservedFraction;
+        _bottom = ComputeBottomReserved();
 
         float usableH = Mathf.Max(0.1f, 1f - _top - _bottom);
         float usableW = Mathf.Max(0.1f, 1f - 2f * sidePaddingFraction);
@@ -170,5 +174,34 @@ public class CameraControll : MonoBehaviour
 
         float reserved = 1f - lowest / _camera.pixelHeight + topGapFraction;
         return Mathf.Clamp(reserved, 0f, 0.6f);
+    }
+
+    // Phần đáy màn hình bị UI chiếm (0..1), tính từ mép trên của Bottom UI Rect (khay)
+    private float ComputeBottomReserved()
+    {
+        if (bottomUIRect == null)
+        {
+            TrayView tray = FindAnyObjectByType<TrayView>();
+            if (tray != null && tray.BackgroundRect != null)
+                bottomUIRect = tray.BackgroundRect;
+        }
+
+        if (bottomUIRect == null) return bottomReservedFraction;
+
+        Canvas canvas = bottomUIRect.GetComponentInParent<Canvas>();
+        Camera uiCamera = null;
+        if (canvas != null && canvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            uiCamera = canvas.rootCanvas.worldCamera;
+
+        bottomUIRect.GetWorldCorners(_corners);
+        float highest = float.MinValue;
+        for (int i = 0; i < 4; i++)
+        {
+            float y = RectTransformUtility.WorldToScreenPoint(uiCamera, _corners[i]).y;
+            if (y > highest) highest = y;
+        }
+
+        float reserved = highest / _camera.pixelHeight + bottomGapFraction;
+        return Mathf.Clamp(reserved, bottomReservedFraction, 0.5f);
     }
 }

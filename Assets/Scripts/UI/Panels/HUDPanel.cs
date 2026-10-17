@@ -81,7 +81,7 @@ public class HUDPanel : BasePanel
         int idx = (levelManager != null && levelManager.CurrentIndex >= 0)
             ? levelManager.CurrentIndex
             : SaveManager.CurrentLevelIndex;
-        levelText.SetText("Lv {0}", idx + 1);
+        levelText.SetText("Level {0}", idx + 1);
     }
 
     private void EnsureTextSorting()
@@ -91,6 +91,13 @@ public class HUDPanel : BasePanel
         if (c == null) c = levelText.gameObject.AddComponent<Canvas>();
         c.overrideSorting = true;
         c.sortingOrder = 205; // Nổi lên trên khung gỗ Level Image (200)
+
+        RectTransform rt = levelText.rectTransform;
+        if (rt != null && rt.sizeDelta.x < 350f)
+        {
+            rt.sizeDelta = new Vector2(350f, Mathf.Max(60f, rt.sizeDelta.y));
+        }
+        levelText.alignment = TextAlignmentOptions.Center;
     }
 
     private void OnProgressChanged(float progress)
