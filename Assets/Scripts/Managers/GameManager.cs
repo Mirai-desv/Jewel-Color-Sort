@@ -114,7 +114,11 @@ public class GameManager : MonoBehaviour
         SetState(_resumeState);
     }
 
-    public void GoToMenu() => SetState(GameState.Menu);
+    public void GoToMenu()
+    {
+        if (levelSession != null) levelSession.ClearSession();
+        SetState(GameState.Menu);
+    }
 
     public void QuitGame()
     {

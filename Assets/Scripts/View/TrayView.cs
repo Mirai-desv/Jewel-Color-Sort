@@ -15,6 +15,31 @@ public class TrayView : MonoBehaviour
 
     public event System.Action<int> SlotClicked;
 
+    private void Awake()
+    {
+        // Đảm bảo khay luôn hiển thị trên ảnh màn chơi và hạt trên bảng (sortingOrder 200 > 10)
+        Canvas c = GetComponent<Canvas>();
+        if (c == null) c = gameObject.AddComponent<Canvas>();
+        c.overrideSorting = true;
+        c.sortingOrder = 200;
+        if (GetComponent<UnityEngine.UI.GraphicRaycaster>() == null)
+            gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+
+        // Tìm khung gỗ header của khay (Level Image) để cùng đưa lên sortingOrder 200
+        Transform parent = transform.parent;
+        if (parent != null)
+        {
+            Transform header = parent.Find("Level Image");
+            if (header != null)
+            {
+                Canvas hc = header.GetComponent<Canvas>();
+                if (hc == null) hc = header.gameObject.AddComponent<Canvas>();
+                hc.overrideSorting = true;
+                hc.sortingOrder = 200;
+            }
+        }
+    }
+
     // ---------- Dựng / dọn ----------
 
     public void Build(int slotCount)

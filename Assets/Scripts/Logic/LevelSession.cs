@@ -163,6 +163,20 @@ public class LevelSession : MonoBehaviour
         if (_level != null) StartLevel(_level);
     }
 
+    public void ClearSession()
+    {
+        if (flyAnimator != null) flyAnimator.CancelAll();
+        _selection.Clear();
+        _traySelection.Clear();
+        _kind = SelectionKind.None;
+        _selectedType = Type.None;
+        _pendingEnd = EndState.None;
+        _ended = EndState.None;
+        _undo.Clear();
+        if (gridView != null) gridView.Clear();
+        if (trayView != null) trayView.Clear();
+    }
+
     // Hoàn tác nước đi gần nhất (hạt bay ngược về chỗ cũ)
     public void Undo()
     {
@@ -208,7 +222,15 @@ public class LevelSession : MonoBehaviour
 
     private void HandleBeadClick(int index)
     {
-        if (_grid.IsLocked(index)) return; // hạt đã đúng chỗ: không cho chọn
+        if (_grid.IsLocked(index))
+        {
+            // Bấm vào ô đã hoàn thành: nếu đang nhấc hạt thì hạ hạt xuống
+            if (_kind != SelectionKind.None)
+            {
+                ClearSelection();
+            }
+            return;
+        }
 
         if (_kind == SelectionKind.Grid && _selection.Contains(index))
         {
@@ -226,6 +248,8 @@ public class LevelSession : MonoBehaviour
 
         if (_grid.GetBackground(index) != _selectedType)
         {
+            // Bấm sai màu: hạ hạt xuống và báo invalid
+            ClearSelection();
             Invalid("Màu nền của khu vực này không khớp màu hạt.");
             return;
         }
@@ -242,21 +266,40 @@ public class LevelSession : MonoBehaviour
 
         if (_kind == SelectionKind.Grid)
         {
-            if (_tray.IsEmpty(slot)) MoveGridToTray();
-            else Invalid("Ô khay đã có hạt, không nhét thêm được.");
+            if (!_tray.IsEmpty(slot))
+            {
+                // Vị trí đang ấn vào đã có hạt: hạ hạt xuống và báo invalid
+                ClearSelection();
+                Invalid("Ô khay đã có hạt, không nhét thêm được.");
+                return;
+            }
+
+            if (_tray.CountEmpty() == 0)
+            {
+                // Khay đã đầy: hạ hạt xuống và báo invalid
+                ClearSelection();
+                Invalid("Khay đã đầy, không còn ô trống.");
+                return;
+            }
+
+            MoveGridToTray();
             return;
         }
 
-        if (_kind == SelectionKind.Tray && _traySelection.Contains(slot))
+        if (_kind == SelectionKind.Tray)
         {
-            ClearSelection();
-            return;
-        }
+            if (_traySelection.Contains(slot))
+            {
+                ClearSelection();
+                return;
+            }
 
-        if (_tray.IsEmpty(slot))
-        {
-            Invalid("Ô khay trống, không có gì để chọn.");
-            return;
+            if (_tray.IsEmpty(slot))
+            {
+                ClearSelection();
+                Invalid("Ô khay trống, không có gì để chọn.");
+                return;
+            }
         }
 
         ClearSelection();
@@ -318,7 +361,21 @@ public class LevelSession : MonoBehaviour
 
         BuildSource(k);
         Type type = _selectedType;
-        ClearSelection();
+
+        for (int i = 0; i < k; i++)
+        {
+            _selection.Remove(_source[i]);
+        }
+
+        if (_selection.Count == 0)
+        {
+            _kind = SelectionKind.None;
+            _selectedType = Type.None;
+        }
+        else
+        {
+            _selectedOrigin = _selection[0];
+        }
 
         var command = new MoveCommand();
         float step = StaggerStep(k);
@@ -343,13 +400,28 @@ public class LevelSession : MonoBehaviour
         int k = Mathf.Min(_selection.Count, _trayEmptySlots.Count);
         if (k <= 0)
         {
+            ClearSelection();
             Invalid("Khay đã đầy, không còn ô trống.");
             return;
         }
 
         BuildSource(k);
         Type type = _selectedType;
-        ClearSelection();
+
+        for (int i = 0; i < k; i++)
+        {
+            _selection.Remove(_source[i]);
+        }
+
+        if (_selection.Count == 0)
+        {
+            _kind = SelectionKind.None;
+            _selectedType = Type.None;
+        }
+        else
+        {
+            _selectedOrigin = _selection[0];
+        }
 
         var command = new MoveCommand();
         float step = StaggerStep(k);
@@ -371,10 +443,22 @@ public class LevelSession : MonoBehaviour
         if (k == 0) return;
 
         _traySource.Clear();
-        for (int i = 0; i < k; i++) _traySource.Add(_traySelection[i]);
+        for (int i = 0; i < k; i++)
+        {
+            int slot = _traySelection[i];
+            _traySource.Add(slot);
+            trayView.SetSelected(slot, false);
+        }
 
         Type type = _selectedType;
-        ClearSelection();
+        _traySelection.RemoveRange(0, k);
+
+        // Nếu đã thả hết thì hết chọn, nếu còn thì giữ nguyên trạng thái nhấc hạt
+        if (_traySelection.Count == 0)
+        {
+            _kind = SelectionKind.None;
+            _selectedType = Type.None;
+        }
 
         var command = new MoveCommand();
         float step = StaggerStep(k);

@@ -16,5 +16,5 @@ MonoBehaviour:
   staggerStep: 0.02
   maxTotalStagger: 0.4
   trayFlyScale: 0.7
-  flySortingOrder: 100
+  flySortingOrder: 250
   winReward: 10
