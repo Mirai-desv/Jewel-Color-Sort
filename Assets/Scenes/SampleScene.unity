@@ -1213,7 +1213,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9882353, g: 0.9529412, b: 0.90588235, a: 1}
+  m_BackGroundColor: {r: 0.9882353, g: 0.9529412, b: 0.90588236, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1287,6 +1287,8 @@ MonoBehaviour:
   topReservedFraction: 0.08
   topGapFraction: 0.02
   bottomReservedFraction: 0.08
+  bottomUIRect: {fileID: 0}
+  bottomGapFraction: 0.02
   sidePaddingFraction: 0.05
   fillRatio: 0.85
   zoomInMultiplier: 4
@@ -3413,6 +3415,8 @@ MonoBehaviour:
   slotPrefab: {fileID: -1119913321295661465, guid: 474ef6e518285704a9d714e1018ba761, type: 3}
   slotContainer: {fileID: 289322716}
   palette: {fileID: 11400000, guid: 17d01146c670b4f47a072a233a32a20c, type: 2}
+  trayBackground: {fileID: 0}
+  backgroundSprite: {fileID: 0}
 --- !u!1 &1487321895
 GameObject:
   m_ObjectHideFlags: 0
