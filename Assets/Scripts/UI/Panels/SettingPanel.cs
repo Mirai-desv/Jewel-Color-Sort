@@ -20,6 +20,13 @@ public class SettingPanel : BasePanel
     {
         base.Awake();
 
+        // Đảm bảo SettingPanel luôn có mức ưu tiên cao nhất (nằm trên cả hạt thế giới và animation)
+        Canvas c = GetComponent<Canvas>();
+        if (c == null) c = gameObject.AddComponent<Canvas>();
+        c.overrideSorting = true;
+        c.sortingOrder = 500;
+        if (GetComponent<GraphicRaycaster>() == null) gameObject.AddComponent<GraphicRaycaster>();
+
         if (musicToggle != null) musicToggle.onValueChanged.AddListener(OnMusicToggled);
         if (sfxToggle != null) sfxToggle.onValueChanged.AddListener(OnSfxToggled);
 
@@ -29,6 +36,7 @@ public class SettingPanel : BasePanel
 
     protected override void OnShow()
     {
+        transform.SetAsLastSibling();
         RefreshToggles();
         RefreshSliders();
     }

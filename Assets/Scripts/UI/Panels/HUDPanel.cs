@@ -19,8 +19,21 @@ public class HUDPanel : BasePanel
     private int _shownSeconds = -1;
     private int _shownCoins = -1;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        EnsureTextSorting();
+    }
+
+    protected override void OnShow()
+    {
+        base.OnShow();
+        UpdateLevelText();
+    }
+
     private void OnEnable()
     {
+        UpdateLevelText();
         if (levelSession == null) return;
         levelSession.LevelStarted += OnLevelStarted;
         levelSession.ProgressChanged += OnProgressChanged;
@@ -58,9 +71,33 @@ public class HUDPanel : BasePanel
     {
         _elapsed = 0f;
         _shownSeconds = -1;
+        UpdateLevelText();
+    }
 
-        if (levelText != null && levelManager != null)
-            levelText.SetText("Lv {0}", levelManager.CurrentIndex + 1);
+    public void UpdateLevelText()
+    {
+        if (levelText == null) return;
+        EnsureTextSorting();
+        int idx = (levelManager != null && levelManager.CurrentIndex >= 0)
+            ? levelManager.CurrentIndex
+            : SaveManager.CurrentLevelIndex;
+        levelText.SetText("Level {0}", idx + 1);
+    }
+
+    private void EnsureTextSorting()
+    {
+        if (levelText == null) return;
+        Canvas c = levelText.GetComponent<Canvas>();
+        if (c == null) c = levelText.gameObject.AddComponent<Canvas>();
+        c.overrideSorting = true;
+        c.sortingOrder = 205; // Nổi lên trên khung gỗ Level Image (200)
+
+        RectTransform rt = levelText.rectTransform;
+        if (rt != null && rt.sizeDelta.x < 350f)
+        {
+            rt.sizeDelta = new Vector2(350f, Mathf.Max(60f, rt.sizeDelta.y));
+        }
+        levelText.alignment = TextAlignmentOptions.Center;
     }
 
     private void OnProgressChanged(float progress)

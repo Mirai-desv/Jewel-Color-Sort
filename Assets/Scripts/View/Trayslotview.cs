@@ -12,6 +12,10 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject selectedMarker; // viền/hiệu ứng khi đang chọn (tuỳ chọn)
     [SerializeField] private GameObject lockIcon;       // icon khoá (tuỳ chọn)
 
+    [Header("Hiệu ứng khi nhấc/chọn")]
+    [SerializeField, Range(1f, 1.6f)] private float selectedScale = 1.3f;
+    [SerializeField] private float selectedLift = 8f;
+
     public int Index { get; private set; }
     public bool IsSelected { get; private set; }
     public bool IsLocked { get; private set; }
@@ -27,6 +31,17 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
         SetLocked(false);
     }
 
+    public void SetSize(float size)
+    {
+        RectTransform rt = (RectTransform)transform;
+        rt.sizeDelta = new Vector2(size, size);
+        if (beadIcon != null)
+        {
+            float iconSize = size * 0.75f;
+            beadIcon.rectTransform.sizeDelta = new Vector2(iconSize, iconSize);
+        }
+    }
+
     // Hiển thị 1 nhóm hạt cùng màu
     public void SetContent(Sprite sprite, Color color, int count)
     {
@@ -39,6 +54,7 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
         beadIcon.enabled = true;
         beadIcon.sprite = sprite;
         beadIcon.color = color;
+        ApplySelectEffect();
 
         if (countText != null)
         {
@@ -50,6 +66,11 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
     public void SetEmpty()
     {
         beadIcon.enabled = false;
+        if (beadIcon != null)
+        {
+            beadIcon.transform.localScale = Vector3.one;
+            beadIcon.rectTransform.anchoredPosition = Vector2.zero;
+        }
         if (countText != null) countText.gameObject.SetActive(false);
     }
 
@@ -57,6 +78,15 @@ public class TraySlotView : MonoBehaviour, IPointerClickHandler
     {
         IsSelected = selected;
         if (selectedMarker != null) selectedMarker.SetActive(selected);
+        ApplySelectEffect();
+    }
+
+    private void ApplySelectEffect()
+    {
+        if (beadIcon == null) return;
+        float scale = IsSelected ? selectedScale : 1f;
+        beadIcon.transform.localScale = new Vector3(scale, scale, 1f);
+        beadIcon.rectTransform.anchoredPosition = new Vector2(0f, IsSelected ? selectedLift : 0f);
     }
 
     public void SetLocked(bool locked)

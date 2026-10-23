@@ -9,7 +9,7 @@ public class GameConfig : ScriptableObject
     [SerializeField, Min(0f)] private float staggerStep = 0.02f;          // hạt sau xuất phát trễ hơn hạt trước bấy nhiêu giây
     [SerializeField, Min(0f)] private float maxTotalStagger = 0.4f;       // tổng độ trễ tối đa của cả nhóm (nhóm lớn thì tự rút ngắn)
     [SerializeField, Range(0.2f, 1f)] private float trayFlyScale = 0.7f;  // hạt thu nhỏ còn bấy nhiêu khi bay vào/ra khay
-    [SerializeField] private int flySortingOrder = 100;                   // hạt đang bay nằm trên mọi thứ
+    [SerializeField] private int flySortingOrder = 250;                   // hạt đang bay nằm trên mọi thứ (trên khay 200, dưới popup 500)
 
     [Header("Thưởng")]
     [SerializeField, Min(0)] private int winReward = 10;
