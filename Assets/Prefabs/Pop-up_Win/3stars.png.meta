@@ -150,7 +150,7 @@ TextureImporter:
         width: 65
         height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -172,7 +172,7 @@ TextureImporter:
         width: 133
         height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,11 +185,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 3stars_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 197
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b38debf9890d57479594b117913f903
+      internalID: 855941013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6e15f93b321fdba4b845add7e29e6a95
     internalID: 0
     vertices: []
     indices: 
@@ -201,6 +223,7 @@ TextureImporter:
     nameFileIdTable:
       3stars_0: -4684498312927209150
       3stars_1: -2321868672842415780
+      3stars_2: 855941013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
