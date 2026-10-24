@@ -18,3 +18,10 @@ MonoBehaviour:
   trayFlyScale: 0.7
   flySortingOrder: 250
   winReward: 10
+  baseScore: 200
+  maxTimeBonus: 500
+  timeBonusWindow: 120
+  maxMoveBonus: 500
+  movePenalty: 25
+  undoPenalty: 50
+  defaultParMoves: 30

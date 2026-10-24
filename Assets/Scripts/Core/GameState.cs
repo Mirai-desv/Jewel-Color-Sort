@@ -4,5 +4,7 @@ public enum GameState
     Playing,
     Paused,
     Win,
-    Lose
+    Lose,
+    LevelSelect,
+    PostLevel
 }

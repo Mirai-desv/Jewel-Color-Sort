@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     public int CurrentIndex { get; private set; } = -1;
     public int LevelCount => levels.Count;
     public bool HasNext => CurrentIndex + 1 < levels.Count;
+    
+    public LevelData CurrentLevel => CurrentIndex >= 0 && CurrentIndex < levels.Count ? levels[CurrentIndex] : null;
 
     private void OnEnable()
     {

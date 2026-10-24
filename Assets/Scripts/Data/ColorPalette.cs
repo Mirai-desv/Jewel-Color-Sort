@@ -18,7 +18,7 @@ public class ColorPalette : ScriptableObject
 
     public Sprite BeadSprite => beadSprite;
 
-    // Trả về màu của loại; thiếu khai báo thì trả magenta để dễ nhận ra
+    // Trả về màu của loại
     public Color GetColor(Type type)
     {
         if (_lookup == null) BuildLookup();
@@ -26,6 +26,8 @@ public class ColorPalette : ScriptableObject
         return (i >= 0 && i < _lookup.Length) ? _lookup[i] : Color.magenta;
     }
 
+    // Đầu tiên thì tô bằng màu magenta, sau đó mới tô bằng màu thật
+    // Nếu mà ko có màu đúng thì thay bằng màu magenta để dễ nhận ra và điều chỉnh (màu cam cũng dễ nhận biết mà nhỉ)
     private void BuildLookup()
     {
         int size = 1;
@@ -38,7 +40,7 @@ public class ColorPalette : ScriptableObject
         for (int i = 0; i < entries.Count; i++)
         {
             Color c = entries[i].color;
-            c.a = 1f; // tránh quên chỉnh Alpha trong Inspector làm hạt tàng hình
+            c.a = 1f; // a ở đây là Alpha
             _lookup[(int)entries[i].type] = c;
         }
     }

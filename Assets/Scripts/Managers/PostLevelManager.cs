@@ -1,135 +1,85 @@
-/*using System;
+using System;
 using UnityEngine;
 
+// Chạy chuỗi sau khi qua màn: Dialogue (nếu có) -> Reward (nếu có) -> gọi callback.
+// Chỉ lo phần trình chiếu, việc cộng điểm / vật phẩm đã làm ở GameManager lúc thắng.
 public class PostLevelManager : MonoBehaviour
 {
     [SerializeField] private DialoguePanel dialoguePanel;
-
     [SerializeField] private RewardPanel rewardPanel;
 
-    private enum FlowState
+    private enum Step { None, Dialogue, Reward }
+
+    private Step _step = Step.None;
+    private LevelData _level;
+    private Action _onFinished;
+
+    public bool IsRunning => _step != Step.None;
+
+    // Level này có gì để chiếu không (dialogue hoặc vật phẩm)
+    public bool HasContent(LevelData level)
     {
-        None,
-        Dialogue,
-        Reward
+        if (level == null) return false;
+        bool hasDialogue = dialoguePanel != null && level.Dialogue != null && level.Dialogue.HasDialogue;
+        bool hasReward = rewardPanel != null && level.Reward != null;
+        return hasDialogue || hasReward;
     }
 
-    private FlowState _state = FlowState.None;
-
-    private LevelData _levelData;
-
-    private string _npcName;
-
-    public bool IsRunning =>
-        _state != FlowState.None;
-
-    public void StartFlow(
-        LevelData levelData,
-        string npcName = null)
+    public void StartFlow(LevelData level, Action onFinished)
     {
         if (IsRunning)
         {
-            Debug.LogWarning(
-                "PostLevelManager: Flow is already running."
-            );
-
+            Debug.LogWarning("[PostLevelManager] Flow đang chạy.", this);
             return;
         }
 
-        if (levelData == null)
+        _level = level;
+        _onFinished = onFinished;
+
+        DialogueData dialogue = level != null ? level.Dialogue : null;
+        if (dialoguePanel != null && dialogue != null && dialogue.HasDialogue)
         {
-            Debug.LogWarning(
-                "PostLevelManager: LevelData is null."
-            );
-
-            FinishFlow();
-            return;
-        }
-
-        _levelData = levelData;
-        _npcName = npcName;
-
-        DialogueData dialogue = _levelData.Dialogue;
-
-        if (dialogue != null && dialogue.HasDialogue)
-        {
-            StartDialogue(dialogue);
+            _step = Step.Dialogue;
+            dialoguePanel.Setup(dialogue, StartReward);
             return;
         }
 
         StartReward();
     }
 
-    private void StartDialogue(DialogueData dialogue)
-    {
-        if (dialoguePanel == null)
-        {
-            Debug.LogWarning(
-                "PostLevelManager: DialoguePanel is missing."
-            );
-
-            StartReward();
-            return;
-        }
-
-        _state = FlowState.Dialogue;
-
-        dialoguePanel.Setup(
-            dialogue,
-            StartReward
-        );
-    }
-
     private void StartReward()
     {
-        RewardData reward =
-            _levelData != null
-                ? _levelData.Reward
-                : null;
-
-        if (reward == null)
+        RewardData reward = _level != null ? _level.Reward : null;
+        if (reward == null || rewardPanel == null)
         {
-            FinishFlow();
+            Finish();
             return;
         }
 
-        if (rewardPanel == null)
-        {
-            Debug.LogWarning(
-                "PostLevelManager: RewardPanel is missing."
-            );
-
-            FinishFlow();
-            return;
-        }
-
-        _state = FlowState.Reward;
-
-        rewardPanel.Setup(
-            reward,
-            _npcName,
-            FinishFlow
-        );
+        _step = Step.Reward;
+        rewardPanel.Setup(reward, Finish);
     }
 
-    private void FinishFlow()
+    private void Finish()
     {
-        _state = FlowState.None;
+        _step = Step.None;
+        _level = null;
 
-        LevelData completedLevel = _levelData;
-
-        _levelData = null;
-
-        string npcName = _npcName;
-
-        _npcName = null;
-
-        PostLevelCompleted?.Invoke(
-            completedLevel,
-            npcName
-        );
+        Action callback = _onFinished;
+        _onFinished = null;
+        callback?.Invoke();
     }
 
-    public event Action<LevelData, string> PostLevelCompleted;
+    // Huỷ giữa chừng (vd người chơi thoát về menu). Không gọi callback.
+    public void Abort()
+    {
+        if (!IsRunning) return;
+
+        _step = Step.None;
+        _level = null;
+        _onFinished = null;
+
+        if (dialoguePanel != null) dialoguePanel.Hide();
+        if (rewardPanel != null) rewardPanel.Hide();
+    }
 }
-*/

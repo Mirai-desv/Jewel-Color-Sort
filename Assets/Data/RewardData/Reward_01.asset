@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8380e847a4b76e46a1f6ebd262455fd, type: 3}
+  m_Name: Reward_01
+  m_EditorClassIdentifier: Assembly-CSharp::RewardData
+  itemId: Item_01
+  itemName: "T\xFAi ch\u01B0\u1EDDm"
+  icon: {fileID: -8720960939820789716, guid: ed62c1db912452e48a19e1947316cd12, type: 3}
+  description: "Ai b\u1ECB \u0111au nh\u1EE9c c\u0169ng mu\u1ED1n mua m\u1ED9t c\xE1i"
+  bonusCoins: 10

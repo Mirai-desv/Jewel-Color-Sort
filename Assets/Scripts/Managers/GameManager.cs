@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     [Header("Tham chiếu")]
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private LevelSession levelSession;
+    [SerializeField] private PostLevelManager postLevelManager;
     [SerializeField] private GameConfig config;
 
     [Header("Panels")]
     [SerializeField] private MainMenuPanel mainMenuPanel;
+    [SerializeField] private LevelSelectPanel levelSelectPanel;
     [SerializeField] private HUDPanel hudPanel;
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private WinPanel winPanel;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public event System.Action<GameState> StateChanged;
 
     private GameState _resumeState = GameState.Menu; // trạng thái quay lại khi đóng Setting
+    private bool _runPostFlow; // vừa thắng lần đầu, bấm Next là phải xem dialogue (cấm tua)
 
     private void Awake() => Instance = this;
 
@@ -61,34 +64,73 @@ public class GameManager : MonoBehaviour
 
     // ---------- Các hành động mà Button gọi ----------
 
-    /// <summary>Bắt đầu chơi từ level đã lưu.</summary>
+    // Bắt đầu chơi từ level đang mở khóa cao nhất (có thể chơi lại level cũ)
     public void StartGame()
     {
-        if (levelManager.LevelCount == 0)
+        int count = levelManager.LevelCount;
+        if(count == 0)
         {
-            Debug.LogError("[GameManager] Danh sách level trống.", this);
+            Debug.LogError("[GameManager] Danh sách level đang trống", this);
             return;
         }
 
-        int index = Mathf.Clamp(SaveManager.CurrentLevelIndex, 0, levelManager.LevelCount - 1);
+        int highest = SaveManager.HighestUnlockedLevel;
+        int index = highest >= count ? 0 : highest;
         if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
+    }
+
+    public void OpenLevelSelect()
+    {
+        if(State != GameState.Menu) return;
+        SetState(GameState.LevelSelect);
+    }
+
+    public void CloseLevelSelect()
+    {
+        if(State != GameState.LevelSelect) return;
+        SetState(GameState.Menu);
+    }
+
+    // Chơi level được chọn trong bảng Level
+    public void PlayLevel(int index)
+    {
+        if(State != GameState.LevelSelect && State != GameState.Menu) return;
+        if(index < 0 || index >= levelManager.LevelCount) return;
+        if(index > SaveManager.HighestUnlockedLevel) return; // level chưa mở
+
+        if(levelManager.LoadLevel(index)) SetState(GameState.Playing);
     }
 
     public void RestartLevel()
     {
-        if (State == GameState.Menu) return;
+        if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel) return;
         if (State == GameState.Paused && _resumeState == GameState.Menu) return;
 
         if (levelManager.ReloadCurrent()) SetState(GameState.Playing);
     }
 
+    // Nút Nẽt Level trên WinPanel. Thắng lần đầu và level có dialogue và vật phẩm thì chiếu trước, còn chơi lại level cũ thì nghỉ
     public void NextLevel()
     {
         if (State != GameState.Win) return;
 
-        // Hết danh sách thì quay lại Level 1
+        LevelData level = levelManager.CurrentLevel;
+        if(_runPostFlow && postLevelManager != null && postLevelManager.HasContent(level))
+        {
+            _runPostFlow = false;
+            SetState(GameState.PostLevel);
+            postLevelManager.StartFlow(level, GoToNextLevel);
+            return;
+        }
+        _runPostFlow = false;
+        GoToNextLevel();
+    }
+
+    private void GoToNextLevel()
+    {
         bool loaded = levelManager.HasNext ? levelManager.LoadNext() : levelManager.LoadLevel(0);
-        if (loaded) SetState(GameState.Playing);
+        if(loaded) SetState(GameState.Playing);
+        else SetState(GameState.Menu);
     }
 
     public void Undo()
@@ -102,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose) return;
+        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose || State == GameState.LevelSelect || State == GameState.PostLevel) return;
 
         _resumeState = State;
         SetState(GameState.Paused);
@@ -116,7 +158,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
-        if (levelSession != null) levelSession.ClearSession();
+        if (postLevelManager != null) postLevelManager.Abort();
         SetState(GameState.Menu);
     }
 
@@ -134,14 +176,30 @@ public class GameManager : MonoBehaviour
 
     private void OnWon()
     {
-        int reward = config != null ? config.WinReward : 0;
-        SaveManager.Coins += reward;
-        SaveManager.CurrentLevelIndex = levelManager.HasNext ? levelManager.CurrentIndex + 1 : 0;
-        SaveManager.Save();
+        int index = levelManager.CurrentIndex;
+        LevelData level = levelManager.CurrentLevel;
+
+        bool firstClear = index >= SaveManager.HighestUnlockedLevel;
+
+        ScoreResult score = ScoreCalculator.Calculate(config, level, levelSession.ElapsedTime, levelSession.MoveCount, levelSession.UndoCount);
+
+        int coins = 0;
+        if(firstClear)
+        {
+            coins = config != null ? config.WinReward : 0;
+            RewardData reward = level != null ? level.Reward : null;
+            if(reward != null)
+            {
+                coins += reward.BonusCoins;
+                SaveManager.AddItem(reward.ItemId);
+            }
+        }
+
+        _runPostFlow = firstClear;
 
         AudioManager.PlaySfx(Sfx.Win);
 
-        if (winPanel != null) winPanel.Setup(levelManager.CurrentIndex + 1, reward, levelManager.HasNext);
+        if (winPanel != null) winPanel.Setup(index + 1, coins, score, firstClear, SaveManager.TotalScore, levelManager.HasNext);
         SetState(GameState.Win);
     }
 
@@ -151,7 +209,7 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Lose);
     }
 
-    // ---------- Trạng thái ----------
+    // Trạng thái
 
     private void SetState(GameState next)
     {
@@ -159,9 +217,10 @@ public class GameManager : MonoBehaviour
 
         if (levelSession != null) levelSession.InputEnabled = next == GameState.Playing;
 
-        bool inMenu = next == GameState.Menu || (next == GameState.Paused && _resumeState == GameState.Menu);
+        bool inMenu = next == GameState.Menu || next == GameState.LevelSelect || (next == GameState.Paused && _resumeState == GameState.Menu);
         SetPanel(mainMenuPanel, inMenu);
-        SetPanel(hudPanel, !inMenu);
+        SetPanel(levelSelectPanel, next == GameState.LevelSelect);
+        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win);
         SetPanel(settingPanel, next == GameState.Paused);
         SetPanel(winPanel, next == GameState.Win);
         SetPanel(losePanel, next == GameState.Lose);

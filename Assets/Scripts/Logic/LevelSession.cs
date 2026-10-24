@@ -24,6 +24,9 @@ public class LevelSession : MonoBehaviour
     public bool InputEnabled { get; set; } = true;
 
     public bool IsBusy => flyAnimator != null && flyAnimator.IsBusy;
+    public float ElapsedTime { get; private set; }
+    public int MoveCount { get; private set; }
+    public int UndoCount { get; private set; }
 
     public bool CanUndo =>
         _undo.Count > 0 && !IsBusy && _pendingEnd == EndState.None && _ended != EndState.Win;
@@ -74,6 +77,7 @@ public class LevelSession : MonoBehaviour
 
     private void Update()
     {
+        if(InputEnabled && _ended == EndState.None && _pendingEnd == EndState.None) ElapsedTime += Time.deltaTime;
         // Báo thắng/thua khi hạt đã bay xong hết
         if (_pendingEnd == EndState.None || IsBusy) return;
 
@@ -116,6 +120,10 @@ public class LevelSession : MonoBehaviour
         _pendingEnd = EndState.None;
         _ended = EndState.None;
         _undo.Clear();
+
+        ElapsedTime = 0f;
+        MoveCount = 0;
+        UndoCount = 0;
 
         _grid.Init(_level);
         _tray.Init(_level.TraySlotCount);
@@ -181,6 +189,8 @@ public class LevelSession : MonoBehaviour
     public void Undo()
     {
         if (!CanUndo) return;
+        MoveCount = Mathf.Max(0, MoveCount - 1);
+        UndoCount++;
 
         ClearSelection();
         MoveCommand command = _undo.Pop();
@@ -488,6 +498,7 @@ public class LevelSession : MonoBehaviour
     private void CommitMove(MoveCommand command)
     {
         _undo.Push(command);
+        MoveCount++;
         AudioManager.PlaySfx(Sfx.Move);
         RaiseProgress();
         EvaluateEnd();

@@ -11,6 +11,18 @@ public class LevelData : ScriptableObject
     [Header("Khay chứa")]
     [SerializeField, Min(1)] private int traySlotCount = 3;
 
+    [Header("Sau khi qua màn")]
+    [SerializeField] private DialogueData dialogue;
+    [SerializeField] private RewardData reward;
+
+    [Header("Tính điểm")]
+    [Tooltip("Số nước đi tốt. 0 = dùng Default Par Moves trong GameConfig")]
+    [SerializeField, Min(0)] private int parMoves = 0;
+
+    public DialogueData Dialogue => dialogue;
+    public RewardData Reward => reward;
+    public int ParMoves => parMoves;
+
     public IReadOnlyList<CellData> Background => background;
     public IReadOnlyList<CellData> Beads => beads;
     public int TraySlotCount => traySlotCount;
