@@ -12,11 +12,13 @@ public class ColorPalette : ScriptableObject
     }
 
     [SerializeField] private Sprite beadSprite;
+    [SerializeField] private Sprite glossSprite;
     [SerializeField] private List<Entry> entries = new List<Entry>();
 
     private Color[] _lookup; // tra cứu nhanh theo (int)Type
 
     public Sprite BeadSprite => beadSprite;
+    public Sprite GlossSprite => glossSprite;
 
     // Trả về màu của loại; thiếu khai báo thì trả magenta để dễ nhận ra
     public Color GetColor(Type type)

@@ -8,6 +8,11 @@ public class BeadView : MonoBehaviour
     [SerializeField, Range(1f, 1.5f)] private float selectedScale = 1.12f;  // phóng nhẹ khi được chọn
     [SerializeField, Range(0f, 1f)] private float lockedDarken = 0.15f;     // hạt đã đúng chỗ tối đi 1 chút
 
+    [Header("Lớp bóng Jelly (Gloss / Shine Layer)")]
+    [SerializeField] private SpriteRenderer glossRenderer;
+    [SerializeField] private Sprite glossSprite;
+    [SerializeField, Range(0f, 1f)] private float glossOpacity = 0.75f;
+
     private SpriteRenderer _renderer;
     private Color _baseColor = Color.white;
     private float _baseScale = 1f;
@@ -26,14 +31,47 @@ public class BeadView : MonoBehaviour
         }
     }
 
+    private SpriteRenderer GlossRenderer
+    {
+        get
+        {
+            if (glossRenderer == null)
+            {
+                Transform child = transform.Find("Gloss");
+                if (child != null)
+                {
+                    glossRenderer = child.GetComponent<SpriteRenderer>();
+                }
+                else if (glossSprite != null)
+                {
+                    GameObject go = new GameObject("Gloss", typeof(SpriteRenderer));
+                    go.transform.SetParent(transform, false);
+                    glossRenderer = go.GetComponent<SpriteRenderer>();
+                }
+            }
+            return glossRenderer;
+        }
+    }
+
     // Cấu hình hạt khi lấy ra từ pool
-    public void Setup(Type type, Color color, Sprite sprite, float cellSize, int sortingOrder)
+    public void Setup(Type type, Color color, Sprite sprite, float cellSize, int sortingOrder, Sprite customGlossSprite = null)
     {
         CurrentType = type;
         _baseColor = color;
 
         Renderer.sprite = sprite;
         Renderer.sortingOrder = sortingOrder;
+
+        if (customGlossSprite != null) glossSprite = customGlossSprite;
+
+        SpriteRenderer gloss = GlossRenderer;
+        if (gloss != null)
+        {
+            if (glossSprite != null) gloss.sprite = glossSprite;
+            gloss.sortingOrder = sortingOrder + 1;
+            gloss.color = new Color(1f, 1f, 1f, glossOpacity);
+            gloss.enabled = (type != Type.None && glossSprite != null);
+        }
 
         // Tự co giãn để sprite luôn vừa 1 ô, bất kể kích thước ảnh gốc
         float spriteWidth = sprite != null ? sprite.bounds.size.x : 1f;
@@ -59,7 +97,11 @@ public class BeadView : MonoBehaviour
     }
 
     // Đẩy hạt lên trên khi đang bay (dùng cho BeadFlyAnimator)
-    public void SetSortingOrder(int order) => Renderer.sortingOrder = order;
+    public void SetSortingOrder(int order)
+    {
+        Renderer.sortingOrder = order;
+        if (GlossRenderer != null) GlossRenderer.sortingOrder = order + 1;
+    }
 
     // Gọi khi trả hạt về pool
     public void ResetState()
@@ -67,6 +109,7 @@ public class BeadView : MonoBehaviour
         CurrentType = Type.None;
         IsSelected = false;
         IsLocked = false;
+        if (GlossRenderer != null) GlossRenderer.enabled = false;
     }
 
     private void ApplyVisual()
@@ -77,5 +120,11 @@ public class BeadView : MonoBehaviour
         Renderer.color = IsLocked
             ? Color.Lerp(_baseColor, Color.black, lockedDarken)
             : _baseColor;
+
+        if (GlossRenderer != null && GlossRenderer.sprite != null && CurrentType != Type.None)
+        {
+            GlossRenderer.enabled = true;
+            GlossRenderer.color = new Color(1f, 1f, 1f, glossOpacity);
+        }
     }
 }

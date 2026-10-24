@@ -107,3 +107,6 @@ MonoBehaviour:
   fillRatio: 0.9
   selectedScale: 1.12
   lockedDarken: 0
+  glossRenderer: {fileID: 0}
+  glossSprite: {fileID: 21300000, guid: 32fc5f54e9b74aa18d8f322026abf935, type: 3}
+  glossOpacity: 0.75
