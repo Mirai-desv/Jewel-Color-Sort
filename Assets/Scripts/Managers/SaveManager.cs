@@ -1,8 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Lưu tiến độ và cài đặt bằng PlayerPrefs. Là static class nên KHÔNG cần đặt vào scene.
-/// </summary>
 public static class SaveManager
 {
     private const string LevelKey = "bead.level";
@@ -12,7 +9,7 @@ public static class SaveManager
     private const string MusicVolumeKey = "bead.musicVolume";
     private const string SfxVolumeKey = "bead.sfxVolume";
 
-    /// <summary>Level sẽ chơi khi bấm Start (0 = Level 1).</summary>
+    // Level sẽ chơi khi bấm Start (0 = Level 1)
     public static int CurrentLevelIndex
     {
         get => PlayerPrefs.GetInt(LevelKey, 0);
