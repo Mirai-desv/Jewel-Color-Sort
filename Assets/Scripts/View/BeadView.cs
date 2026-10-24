@@ -11,7 +11,7 @@ public class BeadView : MonoBehaviour
     [Header("Lớp bóng Jelly (Gloss / Shine Layer)")]
     [SerializeField] private SpriteRenderer glossRenderer;
     [SerializeField] private Sprite glossSprite;
-    [SerializeField, Range(0f, 1f)] private float glossOpacity = 0.75f;
+    [SerializeField, Range(0f, 1f)] private float glossOpacity = 0.55f;
 
     private SpriteRenderer _renderer;
     private Color _baseColor = Color.white;
