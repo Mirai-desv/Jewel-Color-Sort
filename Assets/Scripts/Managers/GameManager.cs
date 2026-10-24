@@ -51,8 +51,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (skipMenu) StartGame();
-        else SetState(GameState.Menu);
+        if (skipMenu)
+        {
+            StartGame();
+        }
+        else
+        {
+            PrepareCurrentLevelPreview();
+            SetState(GameState.Menu);
+        }
+    }
+
+    public void PrepareCurrentLevelPreview()
+    {
+        if (levelManager == null || levelManager.LevelCount == 0) return;
+        int highest = SaveManager.HighestUnlockedLevel;
+        int index = Mathf.Clamp(highest, 0, levelManager.LevelCount - 1);
+        levelManager.LoadLevel(index);
     }
 
     private void OnApplicationPause(bool paused)
@@ -67,7 +82,7 @@ public class GameManager : MonoBehaviour
     // Bắt đầu chơi từ level đang mở khóa cao nhất (có thể chơi lại level cũ)
     public void StartGame()
     {
-        int count = levelManager.LevelCount;
+        int count = levelManager != null ? levelManager.LevelCount : 0;
         if(count == 0)
         {
             Debug.LogError("[GameManager] Danh sách level đang trống", this);
@@ -76,7 +91,16 @@ public class GameManager : MonoBehaviour
 
         int highest = SaveManager.HighestUnlockedLevel;
         int index = highest >= count ? 0 : highest;
-        if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
+
+        // Nếu level hiện tại chưa nạp hoặc khác với index thì nạp
+        if (levelManager.CurrentIndex != index || levelManager.CurrentLevel == null)
+        {
+            if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
+        }
+        else
+        {
+            SetState(GameState.Playing);
+        }
     }
 
     public void OpenLevelSelect()
@@ -88,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void CloseLevelSelect()
     {
         if(State != GameState.LevelSelect) return;
+        PrepareCurrentLevelPreview();
         SetState(GameState.Menu);
     }
 
@@ -159,6 +184,14 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         if (postLevelManager != null) postLevelManager.Abort();
+        if (levelManager != null && levelManager.CurrentLevel != null)
+        {
+            levelManager.ReloadCurrent();
+        }
+        else
+        {
+            PrepareCurrentLevelPreview();
+        }
         SetState(GameState.Menu);
     }
 
