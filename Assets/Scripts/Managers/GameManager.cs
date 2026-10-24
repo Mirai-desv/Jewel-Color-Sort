@@ -74,6 +74,23 @@ public class GameManager : MonoBehaviour
         if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
     }
 
+    /// <summary>Nạp một level cụ thể và bắt đầu chơi ngay (dùng cho debug/chọn level).</summary>
+    public void LoadSpecificLevel(int index)
+    {
+        if (levelManager == null || levelManager.LevelCount == 0)
+        {
+            Debug.LogError("[GameManager] Danh sách level trống hoặc chưa gán LevelManager.", this);
+            return;
+        }
+
+        index = Mathf.Clamp(index, 0, levelManager.LevelCount - 1);
+        SaveManager.CurrentLevelIndex = index;
+        if (levelManager.LoadLevel(index))
+        {
+            SetState(GameState.Playing);
+        }
+    }
+
     public void RestartLevel()
     {
         if (State == GameState.Menu) return;

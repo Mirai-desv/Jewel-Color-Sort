@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     public int CurrentIndex { get; private set; } = -1;
     public int LevelCount => levels.Count;
     public bool HasNext => CurrentIndex + 1 < levels.Count;
+    public IReadOnlyList<LevelData> Levels => levels;
+    public LevelData GetLevel(int index) => (index >= 0 && index < levels.Count) ? levels[index] : null;
 
     private void OnEnable()
     {
