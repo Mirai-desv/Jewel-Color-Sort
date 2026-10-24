@@ -12,10 +12,25 @@ public class TrayView : MonoBehaviour
 
     private readonly List<TraySlotView> _slots = new List<TraySlotView>();
     private Canvas _canvas;
+    private bool _layoutPending;
 
     public int SlotCount => _slots.Count;
 
     public event System.Action<int> SlotClicked;
+
+    private void OnEnable()
+    {
+        if(!_layoutPending) return;
+        _layoutPending = false;
+        ApplyLayout();
+        StartCoroutine(RefreshLayoutNextFrame());
+    }
+
+    private void RequestLayoutRefresh()
+    {
+        if(isActiveAndEnabled) StartCoroutine(RefreshLayoutNextFrame());
+        else _layoutPending = true; // chạy khi khay được bật
+    }
 
     private void Awake()
     {
@@ -84,7 +99,7 @@ public class TrayView : MonoBehaviour
         _lastSafeArea = Screen.safeArea;
 
         ApplyLayout();
-        StartCoroutine(RefreshLayoutNextFrame());
+        RequestLayoutRefresh();
     }
 
     public void Clear()
