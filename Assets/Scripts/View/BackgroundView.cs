@@ -68,9 +68,9 @@ public class BackgroundView : MonoBehaviour
 
                     if (dist < 3.8f)
                     {
-                        // Lỗ cắm hạt (concave socket hole): đổ bóng nhẹ tạo chiều sâu 3D tươi sáng
-                        float shade = 1f - (dy * 0.03f);
-                        float factor = 0.88f * shade;
+                        // Lỗ cắm hạt (concave socket hole): giữ nguyên màu gốc, đổ bóng nhẹ tạo chiều sâu 3D
+                        float shade = 1f - (dy * 0.04f);
+                        float factor = 0.78f * shade;
                         r *= factor;
                         g *= factor;
                         b *= factor;
@@ -97,9 +97,9 @@ public class BackgroundView : MonoBehaviour
                     else if (dist >= 7.0f)
                     {
                         // Đường viền ngăn cách giữa các ô trên lưới
-                        r *= 0.94f;
-                        g *= 0.94f;
-                        b *= 0.94f;
+                        r *= 0.88f;
+                        g *= 0.88f;
+                        b *= 0.88f;
                     }
 
                     pixels[rowIdx + (startX + px)] = new Color(
