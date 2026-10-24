@@ -27,7 +27,7 @@ public abstract class BasePanel : MonoBehaviour
 
     public void Hide()
     {
-        if (!IsVisible) return;
+        if (!IsVisible && !gameObject.activeSelf) return;
         IsVisible = false;
 
         OnHide();
@@ -79,5 +79,10 @@ public abstract class BasePanel : MonoBehaviour
         bool on = alpha > 0.5f;
         g.blocksRaycasts = on;
         g.interactable = on;
+
+        if (!on && !IsVisible)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

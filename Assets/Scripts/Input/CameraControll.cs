@@ -52,16 +52,33 @@ public class CameraControll : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gesture == null) return;
-        gesture.Dragged += OnDragged;
-        gesture.Pinched += OnPinched;
+        if (gesture != null)
+        {
+            gesture.Dragged += OnDragged;
+            gesture.Pinched += OnPinched;
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StateChanged += OnStateChanged;
+        }
     }
 
     private void OnDisable()
     {
-        if (gesture == null) return;
-        gesture.Dragged -= OnDragged;
-        gesture.Pinched -= OnPinched;
+        if (gesture != null)
+        {
+            gesture.Dragged -= OnDragged;
+            gesture.Pinched -= OnPinched;
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StateChanged -= OnStateChanged;
+        }
+    }
+
+    private void OnStateChanged(GameState state)
+    {
+        if (_ready) FitToGrid();
     }
 
     // Đặt lại khung nhìn cho level hiện tại. LevelSession gọi mỗi khi dựng lưới
@@ -157,7 +174,10 @@ public class CameraControll : MonoBehaviour
     // Phần đỉnh màn hình bị UI chiếm (0..1), tính từ mép dưới của Top UI Rect
     private float ComputeTopReserved()
     {
-        if (topUIRect == null) return topReservedFraction;
+        if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu)
+            return 0.16f;
+
+        if (topUIRect == null || !topUIRect.gameObject.activeInHierarchy) return topReservedFraction;
 
         Canvas canvas = topUIRect.GetComponentInParent<Canvas>();
         Camera uiCamera = null;
@@ -179,6 +199,9 @@ public class CameraControll : MonoBehaviour
     // Phần đáy màn hình bị UI chiếm (0..1), tính từ mép trên của Bottom UI Rect (khay)
     private float ComputeBottomReserved()
     {
+        if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu)
+            return 0.36f;
+
         if (bottomUIRect == null)
         {
             TrayView tray = FindAnyObjectByType<TrayView>();
@@ -186,7 +209,7 @@ public class CameraControll : MonoBehaviour
                 bottomUIRect = tray.BackgroundRect;
         }
 
-        if (bottomUIRect == null) return bottomReservedFraction;
+        if (bottomUIRect == null || !bottomUIRect.gameObject.activeInHierarchy) return bottomReservedFraction;
 
         Canvas canvas = bottomUIRect.GetComponentInParent<Canvas>();
         Camera uiCamera = null;
