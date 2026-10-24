@@ -193,6 +193,9 @@ public class GameManager : MonoBehaviour
                 coins += reward.BonusCoins;
                 SaveManager.AddItem(reward.ItemId);
             }
+            SaveManager.HighestUnlockedLevel = index + 1;
+            SaveManager.Coins += coins;
+            SaveManager.Save();
         }
 
         _runPostFlow = firstClear;
