@@ -3,12 +3,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
-    [SerializeField, Range(0.8f, 1f)] private float pressedScale = 0.92f;
+    [SerializeField, Range(0.85f, 1f)] private float pressedScale = 0.95f;
 
     private Button _button;
     private Vector3 _baseScale;
+    private bool _isPressed;
 
     protected GameManager Game => GameManager.Instance;
 
@@ -16,17 +17,18 @@ public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerU
     {
         _button = GetComponent<Button>();
         _baseScale = transform.localScale;
-        _button.onClick.AddListener(HandleClick);
     }
 
-    protected virtual void OnDestroy()
+    private void OnDisable()
     {
-        if (_button != null) _button.onClick.RemoveListener(HandleClick);
+        transform.localScale = _baseScale;
+        _isPressed = false;
     }
 
-    private void OnDisable() => transform.localScale = _baseScale; // tránh kẹt scale nếu bị tắt lúc đang nhấn
-
-    public void SetInteractable(bool interactable) => _button.interactable = interactable;
+    public void SetInteractable(bool interactable)
+    {
+        if (_button != null) _button.interactable = interactable;
+    }
 
     private void HandleClick()
     {
@@ -39,8 +41,25 @@ public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerU
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (_button.interactable) transform.localScale = _baseScale * pressedScale;
+        if (_button != null && _button.interactable)
+        {
+            _isPressed = true;
+            transform.localScale = _baseScale * pressedScale;
+        }
     }
 
-    public void OnPointerUp(PointerEventData eventData) => transform.localScale = _baseScale;
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        transform.localScale = _baseScale;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        transform.localScale = _baseScale;
+        if (_isPressed && _button != null && _button.interactable)
+        {
+            _isPressed = false;
+            HandleClick();
+        }
+    }
 }
