@@ -19,6 +19,15 @@ public class WinPanel : BasePanel
     [Header("Chỉ hiện khi chơi lại level đã thắng (tuỳ chọn)")]
     [SerializeField] private GameObject replayNote;     // vd "Replay - no score"
 
+    [Header("Animation")]
+    [SerializeField] private UISequence sequence;
+
+    protected override void OnShow()
+    {
+        base.OnShow();
+        if(sequence != null) sequence.Play();
+    }
+
     // GameManager gọi trước khi hiện panel
     public void Setup(int levelNumber, int coins, ScoreResult score, bool awarded, int totalScore, bool hasNext)
     {
