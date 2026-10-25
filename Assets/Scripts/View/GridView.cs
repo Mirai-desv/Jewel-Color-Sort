@@ -56,6 +56,27 @@ public class GridView : MonoBehaviour
         }
     }
 
+    // Dựng bức tranh hoàn thiện của level ở Menu (tất cả các hạt khớp 100% màu nền mục tiêu)
+    public void BuildCompleted(LevelData level)
+    {
+        Clear();
+
+        _width = level.Width;
+        _height = level.Height;
+        _cellSize = Constants.CellSize;
+        _beads = new BeadView[_width * _height];
+
+        backgroundView.Build(level.Background, _width, _height, palette, _cellSize);
+
+        IReadOnlyList<CellData> target = level.Background;
+        for (int i = 0; i < target.Count; i++)
+        {
+            CellData c = target[i];
+            if (c.type == Type.None || !InBounds(c.x, c.y)) continue;
+            PlaceBead(ToIndex(c.x, c.y), c.type);
+        }
+    }
+
     public void Clear()
     {
         if (_beads != null)

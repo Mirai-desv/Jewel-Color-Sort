@@ -132,6 +132,7 @@ public class CameraControll : MonoBehaviour
     private void OnDragged(Vector2 deltaPixels)
     {
         if (!_ready) return;
+        if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu) return;
 
         // Đổi pixel -> đơn vị thế giới theo mức zoom hiện tại, kéo ảnh theo ngón tay
         float unitsPerPixel = (_camera.orthographicSize * 2f) / _camera.pixelHeight;
@@ -142,6 +143,8 @@ public class CameraControll : MonoBehaviour
     private void OnPinched(float factor, Vector2 screenMidpoint)
     {
         if (!_ready) return;
+        if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu) return;
+
         ZoomAt(_camera.orthographicSize / factor, screenMidpoint); // 2 ngón xa nhau (factor > 1) -> zoom in
     }
 

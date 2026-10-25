@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (levelManager == null || levelManager.LevelCount == 0) return;
         int highest = SaveManager.HighestUnlockedLevel;
         int index = Mathf.Clamp(highest, 0, levelManager.LevelCount - 1);
-        levelManager.LoadLevel(index);
+        levelManager.LoadCompletedPreview(index);
     }
 
     private void OnApplicationPause(bool paused)
@@ -92,15 +92,8 @@ public class GameManager : MonoBehaviour
         int highest = SaveManager.HighestUnlockedLevel;
         int index = highest >= count ? 0 : highest;
 
-        // Nếu level hiện tại chưa nạp hoặc khác với index thì nạp
-        if (levelManager.CurrentIndex != index || levelManager.CurrentLevel == null)
-        {
-            if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
-        }
-        else
-        {
-            SetState(GameState.Playing);
-        }
+        // Bắt đầu màn chơi thực tế (xáo trộn hạt để giải đố)
+        if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
     }
 
     public void OpenLevelSelect()
@@ -184,14 +177,7 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         if (postLevelManager != null) postLevelManager.Abort();
-        if (levelManager != null && levelManager.CurrentLevel != null)
-        {
-            levelManager.ReloadCurrent();
-        }
-        else
-        {
-            PrepareCurrentLevelPreview();
-        }
+        PrepareCurrentLevelPreview();
         SetState(GameState.Menu);
     }
 

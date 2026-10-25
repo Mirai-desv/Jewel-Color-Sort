@@ -142,6 +142,39 @@ public class LevelSession : MonoBehaviour
         EvaluateEnd();
     }
 
+    // Hiển thị trước bức tranh hạt hoàn thiện của level ở Menu (chưa vào chơi)
+    public void ShowCompletedPreview(LevelData data)
+    {
+        if (data == null)
+        {
+            Debug.LogError("[LevelSession] LevelData bị trống.", this);
+            return;
+        }
+
+        if (!CheckReferences()) return;
+
+        _level = data;
+
+        if (flyAnimator != null) flyAnimator.CancelAll();
+
+        _selection.Clear();
+        _traySelection.Clear();
+        _kind = SelectionKind.None;
+        _selectedType = Type.None;
+        _pendingEnd = EndState.None;
+        _ended = EndState.None;
+        _undo.Clear();
+
+        InputEnabled = false;
+
+        _grid.Init(_level);
+        _tray.Init(_level.TraySlotCount);
+
+        gridView.BuildCompleted(_level);
+        if (trayView != null) trayView.Clear();
+        if (cameraController != null) cameraController.FitToGrid();
+    }
+
     // Kiểm tra các tham chiếu bắt buộc, báo lỗi rõ ràng thay vì để NullReferenceException khó hiểu
     private bool CheckReferences()
     {

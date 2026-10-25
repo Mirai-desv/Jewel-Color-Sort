@@ -71,6 +71,34 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
+    // Hiển thị trước tranh hoàn thiện của level ở Menu (chưa vào chơi)
+    public bool LoadCompletedPreview(int index)
+    {
+        if (levelSession == null)
+        {
+            Debug.LogError("[LevelManager] Chưa gán Level Session.", this);
+            return false;
+        }
+
+        if (index < 0 || index >= levels.Count)
+        {
+            Log("Chỉ số level nằm ngoài danh sách.");
+            return false;
+        }
+
+        LevelData data = levels[index];
+        if (data == null)
+        {
+            Debug.LogError($"[LevelManager] Level ở vị trí {index} trong danh sách đang để trống.", this);
+            return false;
+        }
+
+        CurrentIndex = index;
+        Log($"Xem trước tranh hoàn thiện Level {index + 1}: {data.name}");
+        levelSession.ShowCompletedPreview(data);
+        return true;
+    }
+
     public bool LoadNext() => LoadLevel(CurrentIndex + 1);
 
     [ContextMenu("Reload Current Level")]
