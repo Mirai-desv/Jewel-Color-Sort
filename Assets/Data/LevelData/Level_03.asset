@@ -4563,6 +4563,3 @@ MonoBehaviour:
     x: 26
     y: 5
   traySlotCount: 50
-  dialogue: {fileID: 11400000, guid: a25ef42e2d865354b96bfe3e574da280, type: 2}
-  reward: {fileID: 11400000, guid: b2c47ec455b8b6140aff996c290927c4, type: 2}
-  parMoves: 0
