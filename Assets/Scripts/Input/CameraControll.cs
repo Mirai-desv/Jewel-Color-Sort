@@ -22,6 +22,12 @@ public class CameraControll : MonoBehaviour
     [SerializeField, Range(0f, 0.2f)] private float bottomGapFraction = 0.02f;
     [SerializeField, Range(0f, 0.3f)] private float sidePaddingFraction = 0.05f;
 
+    [Header("Menu Framing (Khoảng trống dành cho UI Menu)")]
+    [Tooltip("Tỉ lệ đỉnh màn hình dành cho Title ở Menu (0..1).")]
+    [SerializeField, Range(0f, 0.4f)] private float menuTopReservedFraction = 0.15f;
+    [Tooltip("Tỉ lệ đáy màn hình dành cho cụm nút ở Menu (0..1). Tùy chỉnh theo vị trí nút kéo thả trong Scene.")]
+    [SerializeField, Range(0f, 0.5f)] private float menuBottomReservedFraction = 0.28f;
+
     [Header("Kích thước ảnh lúc mới vào level")]
     [Tooltip("Ảnh chiếm bao nhiêu phần vùng khả dụng. Nhỏ hơn = ảnh bé hơn.")]
     [SerializeField, Range(0.3f, 1f)] private float fillRatio = 0.85f;
@@ -175,7 +181,7 @@ public class CameraControll : MonoBehaviour
     private float ComputeTopReserved()
     {
         if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu)
-            return 0.16f;
+            return menuTopReservedFraction;
 
         if (topUIRect == null || !topUIRect.gameObject.activeInHierarchy) return topReservedFraction;
 
@@ -200,7 +206,7 @@ public class CameraControll : MonoBehaviour
     private float ComputeBottomReserved()
     {
         if (GameManager.Instance != null && GameManager.Instance.State == GameState.Menu)
-            return 0.36f;
+            return menuBottomReservedFraction;
 
         if (bottomUIRect == null)
         {
