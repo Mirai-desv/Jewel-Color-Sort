@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reward_02
   m_EditorClassIdentifier: Assembly-CSharp::RewardData
   itemId: Item_02
-  itemName: "Huy hi\u1EC7u"
-  icon: {fileID: 1949870665157701408, guid: 9d59227296ec96e419ae56eccfbafa28, type: 3}
+  itemName: 
+  icon: {fileID: 2019063802672954056, guid: a7049bf00eba48e45b69e4baf772a974, type: 3}
   description: 
   bonusCoins: 10

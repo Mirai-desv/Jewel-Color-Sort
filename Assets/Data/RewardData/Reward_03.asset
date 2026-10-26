@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reward_03
   m_EditorClassIdentifier: Assembly-CSharp::RewardData
   itemId: Item_03
-  itemName: Num3
-  icon: {fileID: 0}
+  itemName: 
+  icon: {fileID: 4831952218985992755, guid: eaeba45ce79a8524aa3fab05d6bad373, type: 3}
   description: 
   bonusCoins: 10

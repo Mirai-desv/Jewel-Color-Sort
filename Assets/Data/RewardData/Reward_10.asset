@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RewardData
   itemId: 
   itemName: 
-  icon: {fileID: 0}
+  icon: {fileID: 1621234872923993059, guid: dcd9381a01faab14fba2b0d4aef07259, type: 3}
   description: 
-  bonusCoins: 0
+  bonusCoins: 10
