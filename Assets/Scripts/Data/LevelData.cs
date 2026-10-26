@@ -10,6 +10,10 @@ public class LevelData : ScriptableObject
 
     [Header("Khay chứa")]
     [SerializeField, Min(1)] private int traySlotCount = 3;
+    [SerializeField] private Sprite previewImage;
+
+    public Sprite PreviewImage => previewImage;
+    public bool HasPreviewImage => previewImage != null;
 
     [Header("Sau khi qua màn")]
     [SerializeField] private DialogueData dialogue;

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 438ab7eb72906cf48ada026d8eb23544
+guid: 7e1616c9a45001d4aaf40fc86a2497ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5153413780665070794
-    second: tai ngheqq_0
+      213: -2028833003028727214
+    second: Pressed_0
+  - first:
+      213: 2777833683154979369
+    second: Pressed_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tai ngheqq_0
+      name: Pressed_0
       rect:
         serializedVersion: 2
-        x: 129
-        y: 128
-        width: 822
-        height: 844
+        x: 99
+        y: 131
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +157,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 63b0bde68756b78b0800000000000000
-      internalID: -5153413780665070794
+      spriteID: 25a32e9022328d3e0800000000000000
+      internalID: -2028833003028727214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pressed_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 499
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a41996409dc8620800000000000000
+      internalID: 2777833683154979369
       vertices: []
       indices: 
       edges: []
@@ -174,7 +199,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tai ngheqq_0: -5153413780665070794
+      Pressed_0: -2028833003028727214
+      Pressed_1: 2777833683154979369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

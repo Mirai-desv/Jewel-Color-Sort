@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ed62c1db912452e48a19e1947316cd12
+guid: 886888fb7b2ee0a44baf77cb6b86714b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8720960939820789716
-    second: tuiss_0
+      213: 2159597096186307270
+    second: level08_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,12 +139,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tuiss_0
+      name: level08_0
       rect:
         serializedVersion: 2
-        x: 272
+        x: 129
         y: 128
-        width: 537
+        width: 822
         height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c20dce91b3ce8f680800000000000000
-      internalID: -8720960939820789716
+      spriteID: 6c26620fd1e68fd10800000000000000
+      internalID: 2159597096186307270
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tuiss_0: -8720960939820789716
+      level08_0: 2159597096186307270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

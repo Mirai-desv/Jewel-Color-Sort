@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
     public bool HasNext => CurrentIndex + 1 < levels.Count;
     
     public LevelData CurrentLevel => CurrentIndex >= 0 && CurrentIndex < levels.Count ? levels[CurrentIndex] : null;
+    public LevelData GetLevel(int index) => index >= 0 && index < levels.Count ? levels[index] : null;
 
     private void OnEnable()
     {

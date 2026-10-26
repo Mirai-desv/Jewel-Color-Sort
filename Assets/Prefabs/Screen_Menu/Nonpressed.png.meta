@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: f800d959ae58903429a7bd5073ab2e53
+guid: 6327c9a16b33dc44a8b11bfe033479bc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7584802395883704809
-    second: tea (1)_0
+      213: -7428094787914226700
+    second: Nonpressed_0
+  - first:
+      213: 5801752603853645508
+    second: Nonpressed_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tea (1)_0
+      name: Nonpressed_0
       rect:
         serializedVersion: 2
-        x: 252
-        y: 149
-        width: 700
-        height: 781
+        x: 99
+        y: 131
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +157,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e11e22d791a24960800000000000000
-      internalID: 7584802395883704809
+      spriteID: 4f32178652b1ae890800000000000000
+      internalID: -7428094787914226700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nonpressed_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 499
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c6e4631147f38050800000000000000
+      internalID: 5801752603853645508
       vertices: []
       indices: 
       edges: []
@@ -174,7 +199,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tea (1)_0: 7584802395883704809
+      Nonpressed_0: -7428094787914226700
+      Nonpressed_1: 5801752603853645508
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

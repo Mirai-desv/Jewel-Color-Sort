@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8e8252b2fee85a429c0c9ba7f69e8e4
+guid: 052d6d26726cb1144a349db418b8953b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6475641911995020393
-    second: tranh_0
+      213: 8933590204356236617
+    second: level11_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tranh_0
+      name: level11_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 27
-        width: 1026
-        height: 1026
+        x: 172
+        y: 0
+        width: 736
+        height: 1035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9643811720a1ed950800000000000000
-      internalID: 6475641911995020393
+      spriteID: 945109b65fc7afb70800000000000000
+      internalID: 8933590204356236617
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tranh_0: 6475641911995020393
+      level11_0: 8933590204356236617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 71d9c83b02d6bd74aa8b45d94b7ae927
+guid: 137b927d7a4c9a2498d243f8ff4cc521
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -779837549997848726
-    second: cay dan_0
+      213: -6244814350691307872
+    second: level06_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cay dan_0
+      name: level06_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 75
-        width: 917
-        height: 742
+        x: 171
+        y: 52
+        width: 739
+        height: 1001
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a670ed941e57d25f0800000000000000
-      internalID: -779837549997848726
+      spriteID: 0ae68ca3f66f559a0800000000000000
+      internalID: -6244814350691307872
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cay dan_0: -779837549997848726
+      level06_0: -6244814350691307872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
