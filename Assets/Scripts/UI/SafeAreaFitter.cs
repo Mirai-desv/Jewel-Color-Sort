@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 public class SafeAreaFitter : MonoBehaviour
@@ -6,6 +7,7 @@ public class SafeAreaFitter : MonoBehaviour
     private RectTransform _rect;
     private Rect _lastSafeArea;
     private Vector2Int _lastScreenSize;
+    private CanvasScaler _scaler;
 
     private void Awake()
     {
@@ -24,8 +26,23 @@ public class SafeAreaFitter : MonoBehaviour
         }
     }
 
+    private void AdjustScaler()
+    {
+        if (_scaler == null) _scaler = GetComponentInParent<CanvasScaler>();
+        if (_scaler == null || _scaler.uiScaleMode != CanvasScaler.ScaleMode.ScaleWithScreenSize) return;
+        Vector2 refRes = _scaler.referenceResolution;
+        if (refRes.x <= 0 || refRes.y <= 0) return;
+        float refAspect = refRes.x / refRes.y;
+        float screenAspect = (float)Screen.width / Screen.height;
+        // Màn hình dài/hẹp (tall phone 19.5:9, 20:9): match theo Chiều rộng để không bị bóp ngang
+        // Màn hình vuông/rộng (tablet/iPad 4:3, 3:2): match theo Chiều cao để không bị cắt trên/dưới
+        _scaler.matchWidthOrHeight = screenAspect < refAspect ? 0f : 1f;
+    }
+
     private void Apply()
     {
+        AdjustScaler();
+
         Rect safe = Screen.safeArea;
         _lastSafeArea = safe;
         _lastScreenSize = new Vector2Int(Screen.width, Screen.height);

@@ -43,10 +43,22 @@ public class RegionFinder
             int cur = _queue[head++];
             int x = cur % w;
 
-            if (x > 0) TryEnqueue(grid, cur - 1, forBeads, match, limit);
-            if (x < w - 1) TryEnqueue(grid, cur + 1, forBeads, match, limit);
-            if (cur >= w) TryEnqueue(grid, cur - w, forBeads, match, limit);
-            if (cur + w < size) TryEnqueue(grid, cur + w, forBeads, match, limit);
+            bool canLeft = x > 0;
+            bool canRight = x < w - 1;
+            bool canUp = cur >= w;
+            bool canDown = cur + w < size;
+
+            // 4 hướng trực giao (ngang, dọc)
+            if (canLeft) TryEnqueue(grid, cur - 1, forBeads, match, limit);
+            if (canRight) TryEnqueue(grid, cur + 1, forBeads, match, limit);
+            if (canUp) TryEnqueue(grid, cur - w, forBeads, match, limit);
+            if (canDown) TryEnqueue(grid, cur + w, forBeads, match, limit);
+
+            // 4 hướng đường chéo (diagonal)
+            if (canUp && canLeft) TryEnqueue(grid, cur - w - 1, forBeads, match, limit);
+            if (canUp && canRight) TryEnqueue(grid, cur - w + 1, forBeads, match, limit);
+            if (canDown && canLeft) TryEnqueue(grid, cur + w - 1, forBeads, match, limit);
+            if (canDown && canRight) TryEnqueue(grid, cur + w + 1, forBeads, match, limit);
         }
 
         for (int i = 0; i < _tail; i++) result.Add(_queue[i]);

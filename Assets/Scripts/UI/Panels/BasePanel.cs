@@ -89,10 +89,5 @@ public abstract class BasePanel : MonoBehaviour
         bool on = alpha > 0.5f;
         g.blocksRaycasts = on;
         g.interactable = on;
-
-        if (!on && gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

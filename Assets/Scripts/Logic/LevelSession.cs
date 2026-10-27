@@ -234,20 +234,18 @@ public class LevelSession : MonoBehaviour
     {
         if (_grid.IsLocked(index))
         {
-            // Bấm vào ô đã hoàn thành: nếu đang nhấc hạt thì hạ hạt xuống
-            if (_kind != SelectionKind.None)
-            {
-                ClearSelection();
-            }
+            // Bấm vào ô đã hoàn thành: không hạ hạt đang nhấc, bỏ qua
             return;
         }
 
         if (_kind == SelectionKind.Grid && _selection.Contains(index))
         {
+            // Nhấn lại vào đúng các ô đang được nhấc -> hạ hạt xuống
             ClearSelection();
             return;
         }
 
+        // Chọn màu khác (hoặc nhóm hạt khác): hạ nhóm cũ và nhấc nhóm mới
         ClearSelection();
         SelectGridRegion(index);
     }
@@ -258,8 +256,7 @@ public class LevelSession : MonoBehaviour
 
         if (_grid.GetBackground(index) != _selectedType)
         {
-            // Bấm sai màu: hạ hạt xuống và báo invalid
-            ClearSelection();
+            // Bấm sai màu nền: báo invalid nhưng giữ nguyên trạng thái nhấc hạt
             Invalid("Màu nền của khu vực này không khớp màu hạt.");
             return;
         }
@@ -278,16 +275,22 @@ public class LevelSession : MonoBehaviour
         {
             if (!_tray.IsEmpty(slot))
             {
-                // Vị trí đang ấn vào đã có hạt: hạ hạt xuống và báo invalid
-                ClearSelection();
+                // Nếu click vào ô khay có màu khác: chuyển sang chọn màu hạt đó trên khay
+                if (_tray.GetSlotType(slot) != _selectedType)
+                {
+                    ClearSelection();
+                    SelectTrayGroup(slot);
+                    return;
+                }
+
+                // Nếu click vào ô khay đã có hạt cùng màu: cảnh báo nhưng không hạ hạt
                 Invalid("Ô khay đã có hạt, không nhét thêm được.");
                 return;
             }
 
             if (_tray.CountEmpty() == 0)
             {
-                // Khay đã đầy: hạ hạt xuống và báo invalid
-                ClearSelection();
+                // Khay đã đầy: cảnh báo nhưng không hạ hạt
                 Invalid("Khay đã đầy, không còn ô trống.");
                 return;
             }
@@ -300,19 +303,30 @@ public class LevelSession : MonoBehaviour
         {
             if (_traySelection.Contains(slot))
             {
+                // Nhấn lại vào đúng ô khay đang nhấc -> hạ hạt xuống
                 ClearSelection();
                 return;
             }
 
             if (_tray.IsEmpty(slot))
             {
-                ClearSelection();
-                Invalid("Ô khay trống, không có gì để chọn.");
+                // Bấm vào ô khay trống khi đang nhấc hạt khay: không hạ hạt
                 return;
             }
+
+            // Bấm vào ô khay có màu khác: chuyển sang chọn màu đó
+            ClearSelection();
+            SelectTrayGroup(slot);
+            return;
         }
 
-        ClearSelection();
+        // Chưa nhấc hạt nào (_kind == SelectionKind.None)
+        if (_tray.IsEmpty(slot))
+        {
+            Invalid("Ô khay trống, không có gì để chọn.");
+            return;
+        }
+
         SelectTrayGroup(slot);
     }
 
@@ -410,7 +424,6 @@ public class LevelSession : MonoBehaviour
         int k = Mathf.Min(_selection.Count, _trayEmptySlots.Count);
         if (k <= 0)
         {
-            ClearSelection();
             Invalid("Khay đã đầy, không còn ô trống.");
             return;
         }
