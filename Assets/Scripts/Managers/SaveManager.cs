@@ -29,7 +29,7 @@ public static class SaveManager
     /// </summary>
     public static int HighestUnlockedLevel
     {
-        get => PlayerPrefs.HasKey(HighestKey) ? PlayerPrefs.GetInt(HighestKey, 0) : PlayerPrefs.GetInt(LevelKey, 0);
+        get => 15; // Mở khoá toàn bộ 15 level để test
         set => PlayerPrefs.SetInt(HighestKey, Mathf.Max(0, value));
     }
 

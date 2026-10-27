@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// Đoạn hội thoại kiểu visual novel: chữ chạy dần, bấm Next để hiện đủ câu rồi sang câu kế.
 /// Có thể bật/tắt nút Skip (bỏ qua cả đoạn thoại).
 /// </summary>
-public class DialoguePanel : BasePanel
+public class DialoguePanel : BasePanel, IPointerClickHandler
 {
     [Header("UI")]
     [SerializeField] private TMP_Text speakerNameText;
@@ -88,6 +89,11 @@ public class DialoguePanel : BasePanel
         }
 
         ShowCurrentLine();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnNextClicked();
     }
 
     private void OnSkipClicked()

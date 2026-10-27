@@ -109,13 +109,13 @@ public class GameManager : MonoBehaviour
         if (levelManager.ReloadCurrent()) SetState(GameState.Playing);
     }
 
-    // Nút Nẽt Level trên WinPanel. Thắng lần đầu và level có dialogue và vật phẩm thì chiếu trước, còn chơi lại level cũ thì nghỉ
+    // Nút Next Level trên WinPanel. Luôn chiếu dialogue và vật phẩm (nếu có) để tiện test game liên tục
     public void NextLevel()
     {
         if (State != GameState.Win) return;
 
         LevelData level = levelManager.CurrentLevel;
-        if(_runPostFlow && postLevelManager != null && postLevelManager.HasContent(level))
+        if(postLevelManager != null && postLevelManager.HasContent(level))
         {
             _runPostFlow = false;
             SetState(GameState.PostLevel);
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
             SaveManager.Save();
         }
 
-        _runPostFlow = firstClear;
+        _runPostFlow = true; // Luôn bật post-flow cốt truyện để test liên tục
 
         AudioManager.PlaySfx(Sfx.Win);
 
