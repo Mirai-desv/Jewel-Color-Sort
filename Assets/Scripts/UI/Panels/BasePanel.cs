@@ -21,6 +21,10 @@ public abstract class BasePanel : MonoBehaviour
         IsVisible = true;
 
         gameObject.SetActive(true);
+        CanvasGroup g = Group;
+        g.blocksRaycasts = true;
+        g.interactable = true;
+
         OnShow();
         FadeTo(1f);
     }
@@ -31,6 +35,12 @@ public abstract class BasePanel : MonoBehaviour
         IsVisible = false;
 
         OnHide();
+
+        // Ngừng nhận click ngay lập tức khi bắt đầu ẩn
+        CanvasGroup g = Group;
+        g.blocksRaycasts = false;
+        g.interactable = false;
+
         FadeTo(0f);
     }
 
@@ -79,5 +89,10 @@ public abstract class BasePanel : MonoBehaviour
         bool on = alpha > 0.5f;
         g.blocksRaycasts = on;
         g.interactable = on;
+
+        if (!on && gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

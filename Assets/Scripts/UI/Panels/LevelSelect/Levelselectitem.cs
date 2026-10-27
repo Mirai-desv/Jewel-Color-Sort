@@ -23,6 +23,12 @@ public class LevelSelectItem : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
+        if (_button != null)
+        {
+            var nav = _button.navigation;
+            nav.mode = Navigation.Mode.None;
+            _button.navigation = nav;
+        }
         _button.onClick.AddListener(HandleClick);
     }
 
@@ -52,6 +58,10 @@ public class LevelSelectItem : MonoBehaviour
 
     private void HandleClick()
     {
+        if (UnityEngine.EventSystems.EventSystem.current != null)
+        {
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+        }
         AudioManager.PlaySfx(Sfx.Click);
         Clicked?.Invoke(_index);
     }

@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenLevelSelect()
     {
-        if(State != GameState.Menu) return;
+        if(State != GameState.Menu && State != GameState.LevelSelect) return;
         SetState(GameState.LevelSelect);
     }
 

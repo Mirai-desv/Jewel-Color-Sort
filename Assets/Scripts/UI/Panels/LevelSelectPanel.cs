@@ -14,7 +14,11 @@ public class LevelSelectPanel : BasePanel
 
     private readonly List<LevelSelectItem> _items = new List<LevelSelectItem>();
 
-    protected override void OnShow() => Refresh();
+    protected override void OnShow()
+    {
+        transform.SetAsLastSibling();
+        Refresh();
+    }
 
     private void Refresh()
     {

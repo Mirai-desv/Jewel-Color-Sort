@@ -15,6 +15,12 @@ public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerU
     protected virtual void Awake()
     {
         _button = GetComponent<Button>();
+        if (_button != null)
+        {
+            var nav = _button.navigation;
+            nav.mode = Navigation.Mode.None;
+            _button.navigation = nav;
+        }
         _baseScale = transform.localScale;
         _button.onClick.AddListener(HandleClick);
     }
@@ -30,6 +36,10 @@ public abstract class BaseButton : MonoBehaviour, IPointerDownHandler, IPointerU
 
     private void HandleClick()
     {
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
         AudioManager.PlaySfx(Sfx.Click);
         OnClicked();
     }

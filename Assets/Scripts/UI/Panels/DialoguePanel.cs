@@ -217,6 +217,16 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
     protected override void OnHide()
     {
         StopTyping();
+        _dialogue = null;
+        if (portraitImage != null)
+        {
+            portraitImage.sprite = null;
+            portraitImage.enabled = false;
+        }
+        if (backgroundImage != null)
+        {
+            backgroundImage.gameObject.SetActive(false);
+        }
         base.OnHide();
     }
 }
