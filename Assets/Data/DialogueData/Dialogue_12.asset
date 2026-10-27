@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 993b7da6a71f21cc88c8025bf12351de, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Nh\u1EEFng h\u0169 m\u1EE9t d\xE2u h\xF4m nay tr\xF4ng tuy\u1EC7t qu\xE1,
       c\xF4 Tomoko. Nh\u01B0ng con th\u1EA5y \xE1nh m\u1EAFt c\xF4 c\xF3 v\u1EBB
       h\u01A1i tr\u1EA7m t\u01B0?"
   - speakerName: Tomoko
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 993b7da6a71f21cc88c8025bf12351de, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Ch\u1EAFc t\u1EA1i c\xF4 quen tay th\xF4i... D\u1EA1o n\xE0y c\xE1c con
       \u0111\xE3 l\u1EDBn v\xE0 ra \u1EDF ri\xEAng h\u1EBFt r\u1ED3i, nh\xE0 t\u1EF1
@@ -28,14 +28,14 @@ MonoBehaviour:
       c\xF4 l\u1EA1i th\u1EA5y ch\u1EA1nh l\xF2ng v\u1EDBi h\u1ED9i ch\u1EE9ng \"t\u1ED5
       chim tr\u1ED1ng\" n\xE0y qu\xE1."
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 993b7da6a71f21cc88c8025bf12351de, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Ch\xE1u hi\u1EC3u c\u1EA3m gi\xE1c c\u1EE7a c\xF4. Quen ch\u0103m lo cho
       ng\u01B0\u1EDDi kh\xE1c gi\u1EDD th\u1EA3nh th\u01A1i qu\xE1 c\u0169ng l\xE0
       m\u1ED9t th\u1EED th\xE1ch. Nh\u01B0ng c\xF4 xem, ch\xE1u chu\u1EA9n b\u1ECB
       m\xF3n n\xE0y ri\xEAng cho c\xF4 \u0111\u1EA5y."
   - speakerName: Tomoko
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 993b7da6a71f21cc88c8025bf12351de, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "\u1ED2, m\u1ED9t chi\u1EBFc k\u1EC7 g\u1ED7 \u0111\u1EC3 tr\u01B0ng b\xE0y
       m\u1EE9t th\u1EE7 c\xF4ng sao? \u0110\u1EB9p qu\xE1!"

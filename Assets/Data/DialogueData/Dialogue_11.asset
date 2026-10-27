@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4c6a81c4c4eb01d6796a302237ab8a0c, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Tr\xF4ng ch\xE1u c\xF3 v\u1EBB \u0111u\u1ED1i s\u1EE9c qu\xE1, Sora. L\u1EA1i
       m\u1ED9t tu\u1EA7n chi\u1EBFn \u0111\u1EA5u v\u1EDBi \u0111\u1ED1ng b\xE0i
       t\u1EADp nh\xF3m \xE0?"
   - speakerName: Sora
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4c6a81c4c4eb01d6796a302237ab8a0c, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Ch\xE1u m\u1EC7t qu\xE1 c\xF4 Ichira \u01A1i... L\xFAc n\xE0o ch\xE1u
       c\u0169ng ph\u1EA3i l\xE0m ng\u01B0\u1EDDi \u0111i \"d\u1ECDn d\u1EB9p\", s\u1EEDa
@@ -29,18 +29,18 @@ MonoBehaviour:
       c\xF3 ph\u1EA3i do ch\xE1u qu\xE1 kh\xF3 t\xEDnh v\xE0 k\u1EF3 qu\u1EB7c n\xEAn
       m\u1ECDi ng\u01B0\u1EDDi m\u1EDBi n\xE9 tr\xE1nh ch\xE1u kh\xF4ng?\n"
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4c6a81c4c4eb01d6796a302237ab8a0c, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Kh\xF4ng \u0111\xE2u ch\xE1u. C\u1EA7u to\xE0n l\xE0 m\u1ED9t \u0111\u1EE9c
       t\xEDnh t\u1ED1t, ch\u1EC9 l\xE0 ch\xE1u \u0111ang t\u1EF1 \xE9p m\xECnh g\xE1nh
       v\xE1c qu\xE1 nhi\u1EC1u th\xF4i. H\xE3y th\u1EA3 l\u1ECFng m\u1ED9t ch\xFAt
       nh\xE9. Ch\xE1u xem, c\xF4 t\u1EB7ng ch\xE1u m\xF3n qu\xE0 n\xE0y."
   - speakerName: Sora
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4c6a81c4c4eb01d6796a302237ab8a0c, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "B\u1ED9 x\u1EBFp h\xECnh hoa o\u1EA3i h\u01B0\u01A1ng \u1EA1?"
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4c6a81c4c4eb01d6796a302237ab8a0c, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "\u0110\xFAng th\u1EBF. C\u1EAFm hoa o\u1EA3i h\u01B0\u01A1ng hay x\u1EBFp
       ch\xFAng s\u1EBD gi\xFAp tinh th\u1EA7n ch\xE1u th\u01B0 gi\xE3n. \u0110\u1EEBng

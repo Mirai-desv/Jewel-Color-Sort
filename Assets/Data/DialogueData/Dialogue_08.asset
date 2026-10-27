@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ren
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: e670544555a71d45c140324431fa1d34, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "\xC1nh \u0111\xE8n ch\u1EDBp nh\xE1y v\xE0 ti\u1EBFng \u0111\u1ED9ng ngo\xE0i
       kia c\u1EE9 l\xE0m t\xF4i ho\u1EA3ng s\u1EE3, m\u1EA5t ng\u1EE7 su\u1ED1t \u0111\xEAm..."
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: e670544555a71d45c140324431fa1d34, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "B\xE1c \u0111eo chi\u1EBFc tai nghe ch\u1ED1ng \u1ED3n n\xE0y \u0111i
       ng\u1EE7 \u0111\u1EC3 c\xE1ch ly ho\xE0n to\xE0n nh\xE9."
   - speakerName: Ren
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: e670544555a71d45c140324431fa1d34, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Y\xEAn t\u0129nh th\u1EADt r\u1ED3i... Cu\u1ED1i c\xF9ng ta c\u0169ng
       c\xF3 th\u1EC3 ng\u1EE7 ngon sau bao n\u0103m gi\xF4ng b\xE3o."

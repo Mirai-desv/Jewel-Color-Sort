@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 48a6d4e800ab44d5e1c36d67b7f7b6b9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "L\xE2u l\u1EAFm m\u1EDBi th\u1EA5y anh Fuji gh\xE9 ti\u1EC7m. \xC2m nh\u1EA1c
       d\u1EA1o n\xE0y th\u1EBF n\xE0o r\u1ED3i anh?"
   - speakerName: Fuji
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 48a6d4e800ab44d5e1c36d67b7f7b6b9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "V\u1EABn v\u1EADy th\xF4i c\xF4 Ichira \u1EA1. T\xF4i v\u1EABn y\xEAu
       t\u1EEBng n\u1ED1t nh\u1EA1c, v\u1EABn mu\u1ED1n c\u1ED1ng hi\u1EBFn h\u1EBFt
@@ -28,7 +28,7 @@ MonoBehaviour:
       b\u01B0\u1EDBc \u0111i tr\xEAn con \u0111\u01B0\u1EDDng n\xE0y, t\xF4i th\u1EA5y
       c\xF4 \u0111\u1ED9c v\xF4 c\xF9ng."
   - speakerName: Ichira
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 48a6d4e800ab44d5e1c36d67b7f7b6b9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "Con \u0111\u01B0\u1EDDng theo \u0111u\u1ED5i \u0111am m\xEA ch\u01B0a
       bao gi\u1EDD l\xE0 d\u1EC5 d\xE0ng, nh\u1EA5t l\xE0 khi thi\u1EBFu \u0111i
@@ -36,6 +36,6 @@ MonoBehaviour:
       \u0111\u01A1n \u0111\u1ED9c \u0111\xE2u, \xE2m nh\u1EA1c c\u1EE7a anh lu\xF4n
       c\xF3 nh\u1EEFng ng\u01B0\u1EDDi s\u1EB5n s\xE0ng l\u1EAFng nghe. "
   - speakerName: Fuji
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 48a6d4e800ab44d5e1c36d67b7f7b6b9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     text: "C\xF4 n\xF3i l\xE0m t\xF4i th\u1EA5y \u1EA5m l\xF2ng h\u01A1n \u0111\u1EA5y."
