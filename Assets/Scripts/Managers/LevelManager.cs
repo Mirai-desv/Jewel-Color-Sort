@@ -67,6 +67,7 @@ public class LevelManager : MonoBehaviour
         }
 
         CurrentIndex = index; // gán trước để HUD đọc được số level khi LevelStarted bắn ra
+        SaveManager.CurrentLevelIndex = index;
         Log($"Nạp Level {index + 1}: {data.name}");
         levelSession.StartLevel(data);
         return true;

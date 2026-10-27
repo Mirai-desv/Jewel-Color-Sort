@@ -20,7 +20,7 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
 
     [Header("Skip")]
     [Tooltip("Tắt = người chơi không thể bỏ qua thoại.")]
-    [SerializeField] private bool allowSkip = true;
+    [SerializeField] private bool allowSkip = false;
     [SerializeField] private Button skipButton;
 
     [Header("Typing")]
