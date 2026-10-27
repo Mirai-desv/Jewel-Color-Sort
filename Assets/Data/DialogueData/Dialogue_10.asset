@@ -15,7 +15,7 @@ MonoBehaviour:
   lines:
   - speakerName: Sashi
     portrait: {fileID: 21300000, guid: 357bd9bea42c44324b1a3d68c6a9695f, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "L\u1EA1i th\xEAm m\u1EA5y b\xECnh lu\u1EADn ch\u1EEDi b\u1EDBi ngo\xE0i
       kia... Ch\xFAng c\u1EE9 b\xE1m ri\u1EBFt l\u1EA5y \u0111\u1EA7u t\xF4i. \u0110\xEAm
       n\xE0o t\xF4i c\u0169ng tr\u1EB1n tr\u1ECDc nh\xECn m\xE0n h\xECnh, s\u1EE3
@@ -23,7 +23,7 @@ MonoBehaviour:
       ng\u1EA1t th\u1EDF..."
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: 357bd9bea42c44324b1a3d68c6a9695f, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Sashi \xE0, th\u1EBF gi\u1EDBi \u1EA3o ngo\xE0i kia \u0111\xE3 l\u1EA5y
       \u0111i c\u1EE7a c\u1EADu qu\xE1 nhi\u1EC1u n\u0103ng l\u01B0\u1EE3ng r\u1ED3i.
       C\u1EADu h\xE3y d\xF9ng chi\u1EBFc h\u1ED9p g\u1ED7 \"Offline\" n\xE0y nh\xE9
@@ -32,7 +32,7 @@ MonoBehaviour:
       ng\u01A1i."
   - speakerName: Sashi
     portrait: {fileID: 21300000, guid: 357bd9bea42c44324b1a3d68c6a9695f, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "C\u1EA3m \u01A1n c\u1EADu... C\xF3 l\u1EBD \u0111\xE3 \u0111\u1EBFn l\xFAc
       t\xF4i g\xE1c l\u1EA1i m\xE0n h\xECnh \u0111\u1EC3 tr\u1EDF v\u1EC1 v\u1EDBi
       cu\u1ED9c s\u1ED1ng th\u1EF1c t\u1EA1i b\xECnh y\xEAn r\u1ED3i."

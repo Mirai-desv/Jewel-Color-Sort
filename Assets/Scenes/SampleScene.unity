@@ -773,7 +773,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000012278557, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_SizeDelta: {x: 2500, y: 3500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227520695
 MonoBehaviour:
@@ -793,6 +793,8 @@ MonoBehaviour:
   portraitImage: {fileID: 1071788745}
   backgroundImage: {fileID: 914770338}
   nextButton: {fileID: 1298037204}
+  activeSpeakerColor: {r: 1, g: 1, b: 1, a: 1}
+  dimmedSpeakerColor: {r: 0.52, g: 0.5, b: 0.48, a: 1}
   allowSkip: 0
   skipButton: {fileID: 82383703}
   characterDelay: 0.01
@@ -821,7 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33962262, g: 0.3187967, b: 0.3187967, a: 0.64705884}
+  m_Color: {r: 0.15, g: 0.15, b: 0.15, a: 0.65}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3572,7 +3574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &914770337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8427,6 +8429,7 @@ MonoBehaviour:
   settingPanel: {fileID: 1161766765}
   winPanel: {fileID: 1901943737}
   losePanel: {fileID: 0}
+  dialoguePanel: {fileID: 227520695}
   skipMenu: 0
 --- !u!114 &2079913242
 MonoBehaviour:

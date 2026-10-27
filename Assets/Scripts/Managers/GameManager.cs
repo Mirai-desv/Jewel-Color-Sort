@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private LosePanel losePanel;
+    [SerializeField] private DialoguePanel dialoguePanel;
 
     [Header("Test")]
     [SerializeField] private bool skipMenu = false; // bật để vào thẳng game, bỏ qua Main Menu
@@ -26,9 +27,15 @@ public class GameManager : MonoBehaviour
     public event System.Action<GameState> StateChanged;
 
     private GameState _resumeState = GameState.Menu; // trạng thái quay lại khi đóng Setting
-    private bool _runPostFlow; // vừa thắng lần đầu, bấm Next là phải xem dialogue (cấm tua)
 
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        Instance = this;
+        if (dialoguePanel == null)
+        {
+            dialoguePanel = FindAnyObjectByType<DialoguePanel>(FindObjectsInactive.Include);
+        }
+    }
 
     private void OnDestroy()
     {
@@ -76,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         int highest = SaveManager.HighestUnlockedLevel;
         int index = highest >= count ? 0 : highest;
-        if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
+        if (levelManager.LoadLevel(index)) OnLevelLoaded();
     }
 
     public void OpenLevelSelect()
@@ -98,7 +105,7 @@ public class GameManager : MonoBehaviour
         if(index < 0 || index >= levelManager.LevelCount) return;
         if(index > SaveManager.HighestUnlockedLevel) return; // level chưa mở
 
-        if(levelManager.LoadLevel(index)) SetState(GameState.Playing);
+        if(levelManager.LoadLevel(index)) OnLevelLoaded();
     }
 
     public void RestartLevel()
@@ -106,31 +113,47 @@ public class GameManager : MonoBehaviour
         if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel) return;
         if (State == GameState.Paused && _resumeState == GameState.Menu) return;
 
-        if (levelManager.ReloadCurrent()) SetState(GameState.Playing);
+        if (levelManager.ReloadCurrent()) OnLevelLoaded();
     }
 
-    // Nút Next Level trên WinPanel. Luôn chiếu dialogue và vật phẩm (nếu có) để tiện test game liên tục
+    // Nút Next Level trên WinPanel.
     public void NextLevel()
     {
         if (State != GameState.Win) return;
 
         LevelData level = levelManager.CurrentLevel;
-        if(postLevelManager != null && postLevelManager.HasContent(level))
+        if(postLevelManager != null && postLevelManager.HasReward(level))
         {
-            _runPostFlow = false;
             SetState(GameState.PostLevel);
             postLevelManager.StartFlow(level, GoToNextLevel);
             return;
         }
-        _runPostFlow = false;
         GoToNextLevel();
     }
 
     private void GoToNextLevel()
     {
         bool loaded = levelManager.HasNext ? levelManager.LoadNext() : levelManager.LoadLevel(0);
-        if(loaded) SetState(GameState.Playing);
+        if(loaded) OnLevelLoaded();
         else SetState(GameState.Menu);
+    }
+
+    private void OnLevelLoaded()
+    {
+        SetState(GameState.Playing);
+
+        LevelData level = levelManager.CurrentLevel;
+        if (dialoguePanel != null && level != null && level.Dialogue != null && level.Dialogue.HasDialogue)
+        {
+            if (levelSession != null) levelSession.InputEnabled = false;
+            dialoguePanel.Setup(level.Dialogue, () =>
+            {
+                if (levelSession != null && State == GameState.Playing)
+                {
+                    levelSession.InputEnabled = true;
+                }
+            });
+        }
     }
 
     public void Undo()
@@ -158,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        if (dialoguePanel != null) dialoguePanel.Hide();
         if (postLevelManager != null) postLevelManager.Abort();
         SetState(GameState.Menu);
     }
@@ -197,8 +221,6 @@ public class GameManager : MonoBehaviour
             SaveManager.Coins += coins;
             SaveManager.Save();
         }
-
-        _runPostFlow = true; // Luôn bật post-flow cốt truyện để test liên tục
 
         AudioManager.PlaySfx(Sfx.Win);
 

@@ -15,19 +15,19 @@ MonoBehaviour:
   lines:
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: b344aa08a73754a759c6f192a259469b, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Ch\xE0o Hana, tr\xF4ng em c\xF3 v\u1EBB n\u1EB7ng n\u1EC1 th\u1EBF? L\u1EA1i
       \u0111\xE2y ng\u1ED3i xu\u1ED1ng g\xF3c quen thu\u1ED9c \u0111i, chi\u1EBFc
       b\xE1nh ng\u1ECDt \u0111ang ch\u1EDD em x\u1EA3 stress \u0111\xE2y."
   - speakerName: Hana
     portrait: {fileID: 21300000, guid: b344aa08a73754a759c6f192a259469b, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "H\xF4m nay t\u1EE5i nh\u1ECF c\u1EE9 qu\u1EA5y kh\xF3c m\xE3i... Em th\u1EA5y
       m\xECnh b\u1EA5t t\xE0i qu\xE1, ch\u1EB3ng x\u1EE9ng \u0111\xE1ng l\xE0m gi\xE1o
       vi\xEAn c\u1EE7a ch\xFAng ch\xFAt n\xE0o c\u1EA3."
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: b344aa08a73754a759c6f192a259469b, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "\u0110\u1EEBng t\u1EF1 tr\xE1ch m\xECnh th\u1EBF, Hana. Nh\xECn chi\u1EBFc
       huy hi\u1EC7u \u0111\u1ED3 ch\u01A1i t\u1EF1 l\xE0m n\xE0y xem \u2013 l\u0169
       tr\u1EBB y\xEAu qu\xFD em nhi\u1EC1u th\u1EBF c\u01A1 m\xE0. Em \u0111\xE3

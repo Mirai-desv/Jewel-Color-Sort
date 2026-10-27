@@ -18,6 +18,12 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
     [SerializeField] private Image backgroundImage;   // tuỳ chọn
     [SerializeField] private Button nextButton;       // nên là nút phủ cả màn hình để bấm đâu cũng được
 
+    [Header("Portrait Dimming")]
+    [Tooltip("Màu của portrait khi NPC đang thoại")]
+    [SerializeField] private Color activeSpeakerColor = Color.white;
+    [Tooltip("Màu của portrait khi không phải NPC thoại (Ichira/người dẫn chuyện thoại)")]
+    [SerializeField] private Color dimmedSpeakerColor = new Color(0.52f, 0.50f, 0.48f, 1f);
+
     [Header("Skip")]
     [Tooltip("Tắt = người chơi không thể bỏ qua thoại.")]
     [SerializeField] private bool allowSkip = false;
@@ -64,6 +70,17 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
             return;
         }
 
+        if (portraitImage != null)
+        {
+            portraitImage.sprite = null;
+            portraitImage.enabled = false;
+        }
+
+        if (backgroundImage != null)
+        {
+            backgroundImage.gameObject.SetActive(false);
+        }
+
         if (skipButton != null) skipButton.gameObject.SetActive(allowSkip);
 
         Show();
@@ -103,6 +120,15 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
         Finish();
     }
 
+    private bool IsNpcSpeaking(string speakerName)
+    {
+        if (string.IsNullOrWhiteSpace(speakerName)) return false;
+        if (speakerName.Equals("Ichira", StringComparison.OrdinalIgnoreCase)) return false;
+        if (speakerName.Equals("Chủ tiệm", StringComparison.OrdinalIgnoreCase)) return false;
+        if (speakerName.Equals("Tôi", StringComparison.OrdinalIgnoreCase)) return false;
+        return true;
+    }
+
     private void ShowCurrentLine()
     {
         DialogueLine line = _dialogue.Lines[_lineIndex];
@@ -111,11 +137,26 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
 
         if (portraitImage != null)
         {
-            portraitImage.sprite = line.Portrait;
-            portraitImage.enabled = line.Portrait != null;
+            if (line.Portrait != null)
+            {
+                portraitImage.sprite = line.Portrait;
+                portraitImage.enabled = true;
+            }
+            else if (portraitImage.sprite == null)
+            {
+                portraitImage.enabled = false;
+            }
+
+            bool isNpc = IsNpcSpeaking(line.SpeakerName);
+            portraitImage.color = isNpc ? activeSpeakerColor : dimmedSpeakerColor;
         }
 
-        if (backgroundImage != null && line.Background != null) backgroundImage.sprite = line.Background;
+        if (backgroundImage != null)
+        {
+            bool hasBg = line.Background != null;
+            backgroundImage.gameObject.SetActive(hasBg);
+            if (hasBg) backgroundImage.sprite = line.Background;
+        }
 
         StopTyping();
         _typing = StartCoroutine(TypeLine(line.Text ?? string.Empty));

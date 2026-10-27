@@ -16,14 +16,14 @@ public class PostLevelManager : MonoBehaviour
 
     public bool IsRunning => _step != Step.None;
 
-    // Level này có gì để chiếu không (dialogue hoặc vật phẩm)
-    public bool HasContent(LevelData level)
+    // Level này có thưởng sau màn không
+    public bool HasReward(LevelData level)
     {
         if (level == null) return false;
-        bool hasDialogue = dialoguePanel != null && level.Dialogue != null && level.Dialogue.HasDialogue;
-        bool hasReward = rewardPanel != null && level.Reward != null;
-        return hasDialogue || hasReward;
+        return rewardPanel != null && level.Reward != null;
     }
+
+    public bool HasContent(LevelData level) => HasReward(level);
 
     public void StartFlow(LevelData level, Action onFinished)
     {
@@ -35,14 +35,6 @@ public class PostLevelManager : MonoBehaviour
 
         _level = level;
         _onFinished = onFinished;
-
-        DialogueData dialogue = level != null ? level.Dialogue : null;
-        if (dialoguePanel != null && dialogue != null && dialogue.HasDialogue)
-        {
-            _step = Step.Dialogue;
-            dialoguePanel.Setup(dialogue, StartReward);
-            return;
-        }
 
         StartReward();
     }

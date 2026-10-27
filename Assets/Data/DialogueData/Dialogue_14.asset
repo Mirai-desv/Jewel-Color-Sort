@@ -15,13 +15,13 @@ MonoBehaviour:
   lines:
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Hikari h\xF4m nay tr\xF4ng c\xF3 v\u1EBB b\u1ED3n ch\u1ED3n th\u1EBF?
       S\u1EAFp ra tr\u01B0\u1EDDng r\u1ED3i m\xE0 t\xE2m tr\u1EA1ng v\u1EABn v\u01A1
       \u1EDF \u0111\xE2u \xE0?"
   - speakerName: Hikari
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Ch\xE1u... ch\xE1u ch\u1EC9 ngh\u0129 \u0111\u1EBFn m\u1EA5y th\xE1ng
       cu\u1ED1i c\u1EA5p th\xF4i \u1EA1. Ch\xE1u... ch\xE1u \u0111ang th\xEDch \u0111\u01A1n
       ph\u01B0\u01A1ng m\u1ED9t c\u1EADu b\u1EA1n n\u1ED5i ti\u1EBFng trong \u0111\u1ED9i
@@ -31,29 +31,29 @@ MonoBehaviour:
       \u1EA5y."
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Ng\u1ED1c qu\xE1, t\xECnh c\u1EA3m ch\xE2n th\xE0nh ch\u1EB3ng bao gi\u1EDD
       c\u1EA7n ph\u1EA3i so k\xE8 x\u1EE9ng hay kh\xF4ng x\u1EE9ng c\u1EA3. Quan
       tr\u1ECDng l\xE0 ch\xE1u c\xF3 d\xE1m t\u1EF1 tin th\u1EC3 hi\u1EC7n ch\xEDnh
       m\xECnh kh\xF4ng th\xF4i."
   - speakerName: Hikari
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Nh\u01B0ng ch\xE1u th\u1EA5y m\xECnh c\u1EE9 thi\u1EBFu t\u1EF1 tin th\u1EBF
       n\xE0o \u1EA5y..."
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "Th\u1EBF th\xEC \u0111\u1EC3 c\xF4 Ichira gi\xFAp ch\xE1u m\u1ED9t tay.
       M\xF3n qu\xE0 nh\u1ECF n\xE0y d\xE0nh cho ch\xE1u"
   - speakerName: Hikari
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "\xD4i, m\u1ED9t chi\u1EBFc k\u1EB9p t\xF3c h\xECnh ch\xFA b\u01B0\u1EDBm
       nh\u1ECF xinh qu\xE1!"
   - speakerName: Ichira
     portrait: {fileID: 21300000, guid: 5487049e071ab797ec5ff570fe4092d2, type: 3}
-    background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    background: {fileID: 0}
     text: "H\xE3y \u0111eo n\xF3 nh\xE9. Mong r\u1EB1ng ch\xFA b\u01B0\u1EDBm nh\u1ECF
       n\xE0y s\u1EBD ti\u1EBFp th\xEAm cho ch\xE1u ng\u1ECDn l\u1EEDa t\u1EF1 tin
       \u0111\u1EC3 s\u1EA3i c\xE1nh b\u01B0\u1EDBc \u0111\u1EBFn g\u1EA7n h\u01A1n
