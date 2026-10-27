@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: dcd9381a01faab14fba2b0d4aef07259
+guid: 8ad07784416069847a713d2cf53aa638
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1621234872923993059
-    second: level10_0
+      213: 7518864053564035884
+    second: level07_0
+  - first:
+      213: 1415593450797384201
+    second: level07_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,23 +142,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: level10_0
+      name: level07_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 82
-        width: 1031
-        height: 894
+        x: 114
+        y: 139
+        width: 830
+        height: 830
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e33c1af688cf7610800000000000000
-      internalID: 1621234872923993059
+      spriteID: c235323250f585860800000000000000
+      internalID: 7518864053564035884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level07_1
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 863
+        width: 84
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902c52d4eb235a310800000000000000
+      internalID: 1415593450797384201
       vertices: []
       indices: 
       edges: []
@@ -164,7 +189,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 312f7ee28e8fbba4f9a7fb55795b55f9
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +199,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      level10_0: 1621234872923993059
+      level07_0: 7518864053564035884
+      level07_1: 1415593450797384201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
