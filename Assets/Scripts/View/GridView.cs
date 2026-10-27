@@ -78,7 +78,7 @@ public class GridView : MonoBehaviour
         if (_beads[index] != null) RemoveBead(index);
 
         BeadView bead = beadPool.Get(beadsRoot);
-        bead.Setup(type, palette.GetColor(type), palette.BeadSprite, _cellSize, beadSortingOrder, palette.GlossSprite);
+        bead.Setup(type, palette.GetColor(type), palette.BeadSprite, _cellSize, beadSortingOrder);
         bead.transform.position = CellToWorld(index);
 
         _beads[index] = bead;
