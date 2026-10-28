@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Jewel Color Sort.slnx",
+    "dotnet.defaultSolution": "Jewel-Color-Sort.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
