@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
     {
         if (dialoguePanel != null) dialoguePanel.Hide();
         if (postLevelManager != null) postLevelManager.Abort();
+        if (levelSession != null) levelSession.ClearSession();
         SetState(GameState.Menu);
     }
 
@@ -243,7 +244,7 @@ public class GameManager : MonoBehaviour
         if (levelSession != null) levelSession.InputEnabled = next == GameState.Playing;
 
         bool inMenu = next == GameState.Menu || next == GameState.LevelSelect || (next == GameState.Paused && _resumeState == GameState.Menu);
-        SetPanel(mainMenuPanel, inMenu);
+        SetPanel(mainMenuPanel, next == GameState.Menu || (next == GameState.Paused && _resumeState == GameState.Menu));
         SetPanel(levelSelectPanel, next == GameState.LevelSelect);
         SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win);
         SetPanel(settingPanel, next == GameState.Paused);

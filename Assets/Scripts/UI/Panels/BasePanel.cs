@@ -21,6 +21,7 @@ public abstract class BasePanel : MonoBehaviour
         IsVisible = true;
 
         gameObject.SetActive(true);
+        transform.SetAsLastSibling();
         CanvasGroup g = Group;
         g.blocksRaycasts = true;
         g.interactable = true;

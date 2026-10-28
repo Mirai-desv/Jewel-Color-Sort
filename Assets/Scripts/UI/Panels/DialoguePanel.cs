@@ -42,6 +42,25 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
     {
         base.Awake();
 
+        // Cố định vị trí DialogueBox ở vùng dưới màn hình, neo theo tâm (0.5, 0.5)
+        Transform box = transform.Find("DialogueBox");
+        if (box != null && box.TryGetComponent<RectTransform>(out var boxRect))
+        {
+            boxRect.anchorMin = new Vector2(0.5f, 0.5f);
+            boxRect.anchorMax = new Vector2(0.5f, 0.5f);
+            boxRect.pivot = new Vector2(0.5f, 0f);
+            boxRect.anchoredPosition = new Vector2(0f, -820f);
+        }
+
+        Transform skip = transform.Find("SkipButton");
+        if (skip != null && skip.TryGetComponent<RectTransform>(out var skipRect))
+        {
+            skipRect.anchorMin = new Vector2(0.5f, 0.5f);
+            skipRect.anchorMax = new Vector2(0.5f, 0.5f);
+            skipRect.pivot = new Vector2(1f, 0f);
+            skipRect.anchoredPosition = new Vector2(178f, -930f);
+        }
+
         if (nextButton != null) nextButton.onClick.AddListener(OnNextClicked);
         if (skipButton != null)
         {
@@ -84,6 +103,7 @@ public class DialoguePanel : BasePanel, IPointerClickHandler
         if (skipButton != null) skipButton.gameObject.SetActive(allowSkip);
 
         Show();
+        transform.SetAsLastSibling();
         ShowCurrentLine();
     }
 
