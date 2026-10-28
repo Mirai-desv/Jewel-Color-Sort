@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8380e847a4b76e46a1f6ebd262455fd, type: 3}
   m_Name: Reward6
   m_EditorClassIdentifier: Assembly-CSharp::RewardData
-  itemId: Item_06
-  itemName: 06
+  itemId: 
+  itemName: 
   icon: {fileID: -6244814350691307872, guid: 137b927d7a4c9a2498d243f8ff4cc521, type: 3}
   description: 
   bonusCoins: 10

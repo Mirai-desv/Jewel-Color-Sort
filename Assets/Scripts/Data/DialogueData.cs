@@ -9,12 +9,14 @@ public class DialogueLine
     [SerializeField] private Sprite portrait;
     [Tooltip("Ảnh nền (tuỳ chọn). Để trống thì giữ nguyên nền của câu trước.")]
     [SerializeField] private Sprite background;
+    [SerializeField] private bool darkenPortrait; 
 
     [TextArea(2, 6)]
     [SerializeField] private string text;
 
     public string SpeakerName => speakerName;
     public Sprite Portrait => portrait;
+    public bool DarkenPortrait => darkenPortrait;  
     public Sprite Background => background;
     public string Text => text;
 }

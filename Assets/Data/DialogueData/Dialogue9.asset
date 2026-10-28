@@ -16,12 +16,14 @@ MonoBehaviour:
   - speakerName: Ichira
     portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "Nh\u1EEFng h\u0169 m\u1EE9t d\xE2u h\xF4m nay tr\xF4ng tuy\u1EC7t qu\xE1,
       c\xF4 Tomoko. Nh\u01B0ng con th\u1EA5y \xE1nh m\u1EAFt c\xF4 c\xF3 v\u1EBB
       h\u01A1i tr\u1EA7m t\u01B0?"
   - speakerName: Tomoko
     portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 0
     text: "Ch\u1EAFc t\u1EA1i c\xF4 quen tay th\xF4i... D\u1EA1o n\xE0y c\xE1c con
       \u0111\xE3 l\u1EDBn v\xE0 ra \u1EDF ri\xEAng h\u1EBFt r\u1ED3i, nh\xE0 t\u1EF1
       nhi\xEAn tr\u1ED1ng v\u1EAFng h\u1EB3n. Nh\xECn c\u0103n b\u1EBFp im l\xECm,
@@ -30,6 +32,7 @@ MonoBehaviour:
   - speakerName: Ichira
     portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "Ch\xE1u hi\u1EC3u c\u1EA3m gi\xE1c c\u1EE7a c\xF4. Quen ch\u0103m lo cho
       ng\u01B0\u1EDDi kh\xE1c gi\u1EDD th\u1EA3nh th\u01A1i qu\xE1 c\u0169ng l\xE0
       m\u1ED9t th\u1EED th\xE1ch. Nh\u01B0ng c\xF4 xem, ch\xE1u chu\u1EA9n b\u1ECB
@@ -37,5 +40,6 @@ MonoBehaviour:
   - speakerName: Tomoko
     portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 0
     text: "\u1ED2, m\u1ED9t chi\u1EBFc k\u1EC7 g\u1ED7 \u0111\u1EC3 tr\u01B0ng b\xE0y
       m\u1EE9t th\u1EE7 c\xF4ng sao? \u0110\u1EB9p qu\xE1!"

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8380e847a4b76e46a1f6ebd262455fd, type: 3}
   m_Name: Reward5
   m_EditorClassIdentifier: Assembly-CSharp::RewardData
-  itemId: Item_02
+  itemId: 
   itemName: 
   icon: {fileID: 2019063802672954056, guid: a7049bf00eba48e45b69e4baf772a974, type: 3}
   description: 

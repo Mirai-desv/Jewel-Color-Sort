@@ -16,6 +16,7 @@ MonoBehaviour:
   - speakerName: Ichira
     portrait: {fileID: 8725075761516251011, guid: 4fad0d967c6aa254c82703eba00465e9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "Ch\xE0o ch\u1ECB, m\u1EDDi ch\u1ECB v\xE0o ti\u1EC7m. \u0110\xEAm qua
       ch\u1EAFc l\u1EA1i m\u1ED9t \u0111\xEAm kh\xF4ng ng\u1EE7 ngon v\u1EDBi em
       b\xE9 \u0111\xFAng kh\xF4ng? V\xE0o \u0111\xE2y ngh\u1EC9 ch\xE2n m\u1ED9t
@@ -23,12 +24,14 @@ MonoBehaviour:
   - speakerName: Sanny
     portrait: {fileID: 8725075761516251011, guid: 4fad0d967c6aa254c82703eba00465e9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 0
     text: "\u0110\xEAm qua b\xE9 kh\xF3c su\u1ED1t kh\xF4ng ch\u1ECBu ng\u1EE7, m\u1EAFt
       t\xF4i hoa c\u1EA3 l\xEAn... Th\xFA th\u1EADt c\xF3 l\xFAc t\xF4i th\u1EA5y
       b\u1EA5t l\u1EF1c v\xF4 c\xF9ng."
   - speakerName: Ichira
     portrait: {fileID: 8725075761516251011, guid: 4fad0d967c6aa254c82703eba00465e9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "L\xE0m m\u1EB9 ch\u01B0a bao gi\u1EDD l\xE0 \u0111i\u1EC1u d\u1EC5 d\xE0ng.
       T\xECnh y\xEAu th\u01B0\u01A1ng ki\xEAn nh\u1EABn c\u1EE7a ch\u1ECB ch\xEDnh
       l\xE0 ngu\u1ED3n dinh d\u01B0\u1EE1ng tuy\u1EC7t v\u1EDDi nh\u1EA5t cho con

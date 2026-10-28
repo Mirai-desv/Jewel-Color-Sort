@@ -3,12 +3,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-/// <summary>
-/// Đoạn hội thoại kiểu visual novel: chữ chạy dần, bấm Next để hiện đủ câu rồi sang câu kế.
-/// Có thể bật/tắt nút Skip (bỏ qua cả đoạn thoại).
-/// </summary>
-public class DialoguePanel : BasePanel
+/// Đoạn hội thoại kiểu visual novel
+public class DialoguePanel : BasePanel, IPointerClickHandler
 {
     [Header("UI")]
     [SerializeField] private TMP_Text speakerNameText;
@@ -31,9 +29,23 @@ public class DialoguePanel : BasePanel
     private bool _isTyping;
     private Action _onFinished;
 
+    public void OnPointerClick(PointerEventData eventData) => OnNextClicked();
+
+    [Header("Phủ tối nhân vật")]
+    [SerializeField] private Color darkenColor = new Color(0.35f, 0.35f, 0.35f, 1f);
+
     protected override void Awake()
     {
         base.Awake();
+
+        Graphic catcher = GetComponent<Graphic>();
+        if(catcher == null)
+        {
+            Image img = gameObject.AddComponent<Image>();
+            img.color = Color.clear;
+            catcher = img;
+        }
+        catcher.raycastTarget = true;
 
         if (nextButton != null) nextButton.onClick.AddListener(OnNextClicked);
         if (skipButton != null)
@@ -107,6 +119,7 @@ public class DialoguePanel : BasePanel
         {
             portraitImage.sprite = line.Portrait;
             portraitImage.enabled = line.Portrait != null;
+            portraitImage.color = line.DarkenPortrait ? darkenColor : Color.white;
         }
 
         if (backgroundImage != null && line.Background != null) backgroundImage.sprite = line.Background;

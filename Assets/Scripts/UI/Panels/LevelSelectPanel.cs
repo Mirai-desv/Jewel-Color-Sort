@@ -26,6 +26,7 @@ public class LevelSelectPanel : BasePanel
 
         int count = levelManager.LevelCount;
         int highest = SaveManager.HighestUnlockedLevel;
+        GameManager gm = GameManager.Instance;
 
         while (_items.Count < count)
         {
@@ -42,7 +43,7 @@ public class LevelSelectPanel : BasePanel
 
             LevelSelectItem.State state =
                 i < highest ? LevelSelectItem.State.Completed :
-                i == highest ? LevelSelectItem.State.Current :
+                (gm != null ? gm.IsLevelUnlocked(i) : i == highest) ? LevelSelectItem.State.Current :
                 LevelSelectItem.State.Locked;
 
             _items[i].Setup(i, state, SaveManager.GetLevelBestScore(i));

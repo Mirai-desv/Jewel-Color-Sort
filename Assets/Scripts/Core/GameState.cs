@@ -6,5 +6,6 @@ public enum GameState
     Win,
     Lose,
     LevelSelect,
-    PostLevel
+    PostLevel,
+    Dialogue
 }

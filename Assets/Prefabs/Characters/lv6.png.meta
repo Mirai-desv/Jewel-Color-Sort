@@ -142,12 +142,12 @@ TextureImporter:
       name: lv6_0
       rect:
         serializedVersion: 2
-        x: 365
-        y: 488
-        width: 370
-        height: 939
+        x: 259
+        y: 461
+        width: 560
+        height: 1000
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c94db94be67debf4494750127651d141
     internalID: 0
     vertices: []
     indices: 

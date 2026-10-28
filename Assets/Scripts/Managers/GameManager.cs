@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Test")]
     [SerializeField] private bool skipMenu = false; // bật để vào thẳng game, bỏ qua Main Menu
+    [SerializeField] private bool unlockAllLevels = false;
+    [SerializeField] private bool alwaysPlayDialogue = false;
 
     public GameState State { get; private set; } = GameState.Menu;
     public event System.Action<GameState> StateChanged;
@@ -62,7 +64,33 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit() => SaveManager.Save();
 
-    // ---------- Các hành động mà Button gọi ----------
+    private bool BeginLevel(int index)
+    {
+        if(!levelManager.LoadLevel(index)) return false;
+
+        SaveManager.CurrentLevelIndex = index;
+        SaveManager.Save();
+
+        LevelData level = levelManager.CurrentLevel;
+        bool playDialogue = postLevelManager != null
+            && postLevelManager.HasDialogue(level)
+            && (alwaysPlayDialogue || !SaveManager.HasSeenDialogue(index));
+
+        if(playDialogue)
+        {
+            SetState(GameState.Dialogue);
+            postLevelManager.PlayDialogue(level, () =>
+            {
+                SaveManager.MarkDialogueSeen(index);
+                SaveManager.Save();
+                SetState(GameState.Playing);
+            });
+        }
+        else SetState(GameState.Playing);
+        return true;
+    }
+
+    // Các hành động mà Button gọi
 
     // Bắt đầu chơi từ level đang mở khóa cao nhất (có thể chơi lại level cũ)
     public void StartGame()
@@ -74,9 +102,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        int highest = SaveManager.HighestUnlockedLevel;
-        int index = highest >= count ? 0 : highest;
-        if (levelManager.LoadLevel(index)) SetState(GameState.Playing);
+        int index = SaveManager.CurrentLevelIndex;
+        if(index < 0 || index >= count || !IsLevelUnlocked(index))
+        {
+            int highest = SaveManager.HighestUnlockedLevel;
+            index = highest >= count ? 0 : highest;
+        }
+        BeginLevel(index);
     }
 
     public void OpenLevelSelect()
@@ -95,18 +127,16 @@ public class GameManager : MonoBehaviour
     public void PlayLevel(int index)
     {
         if(State != GameState.LevelSelect && State != GameState.Menu) return;
-        if(index < 0 || index >= levelManager.LevelCount) return;
-        if(index > SaveManager.HighestUnlockedLevel) return; // level chưa mở
-
-        if(levelManager.LoadLevel(index)) SetState(GameState.Playing);
+        if(!IsLevelUnlocked(index)) return;
+        BeginLevel(index);
     }
 
     public void RestartLevel()
     {
-        if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel) return;
+        if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue) return;
         if (State == GameState.Paused && _resumeState == GameState.Menu) return;
 
-        if (levelManager.ReloadCurrent()) SetState(GameState.Playing);
+        BeginLevel(Mathf.Max(0, levelManager.CurrentIndex));
     }
 
     // Nút Nẽt Level trên WinPanel. Thắng lần đầu và level có dialogue và vật phẩm thì chiếu trước, còn chơi lại level cũ thì nghỉ
@@ -115,7 +145,7 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Win) return;
 
         LevelData level = levelManager.CurrentLevel;
-        if(_runPostFlow && postLevelManager != null && postLevelManager.HasContent(level))
+        if(_runPostFlow && postLevelManager != null && postLevelManager.HasReward(level))
         {
             _runPostFlow = false;
             SetState(GameState.PostLevel);
@@ -128,9 +158,8 @@ public class GameManager : MonoBehaviour
 
     private void GoToNextLevel()
     {
-        bool loaded = levelManager.HasNext ? levelManager.LoadNext() : levelManager.LoadLevel(0);
-        if(loaded) SetState(GameState.Playing);
-        else SetState(GameState.Menu);
+        int next = levelManager.HasNext ? levelManager.CurrentIndex + 1 : 0;
+        if (!BeginLevel(next)) SetState(GameState.Menu);
     }
 
     public void Undo()
@@ -144,7 +173,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose || State == GameState.LevelSelect || State == GameState.PostLevel) return;
+        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue) return;
 
         _resumeState = State;
         SetState(GameState.Paused);
@@ -172,7 +201,7 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    // ---------- Sự kiện từ LevelSession ----------
+    // Sự kiện từ LevelSession
 
     private void OnWon()
     {
@@ -193,7 +222,7 @@ public class GameManager : MonoBehaviour
                 coins += reward.BonusCoins;
                 SaveManager.AddItem(reward.ItemId);
             }
-            SaveManager.HighestUnlockedLevel = index + 1;
+            SaveManager.HighestUnlockedLevel = Mathf.Max(SaveManager.HighestUnlockedLevel, index + 1);
             SaveManager.Coins += coins;
             SaveManager.Save();
         }
@@ -223,7 +252,7 @@ public class GameManager : MonoBehaviour
         bool inMenu = next == GameState.Menu || next == GameState.LevelSelect || (next == GameState.Paused && _resumeState == GameState.Menu);
         SetPanel(mainMenuPanel, inMenu);
         SetPanel(levelSelectPanel, next == GameState.LevelSelect);
-        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win);
+        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win && next != GameState.Dialogue);
         SetPanel(settingPanel, next == GameState.Paused);
         SetPanel(winPanel, next == GameState.Win);
         SetPanel(losePanel, next == GameState.Lose);
@@ -237,5 +266,11 @@ public class GameManager : MonoBehaviour
 
         if (visible) panel.Show();
         else panel.Hide();
+    }
+
+    public bool IsLevelUnlocked(int index)
+    {
+        if(index < 0 || index >= levelManager.LevelCount) return false;
+        return unlockAllLevels || index <= SaveManager.HighestUnlockedLevel;
     }
 }

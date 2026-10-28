@@ -16,11 +16,13 @@ MonoBehaviour:
   - speakerName: Ichira
     portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "L\xE2u l\u1EAFm m\u1EDBi th\u1EA5y anh Fuji gh\xE9 ti\u1EC7m. \xC2m nh\u1EA1c
       d\u1EA1o n\xE0y th\u1EBF n\xE0o r\u1ED3i anh?"
   - speakerName: Fuji
     portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 0
     text: "V\u1EABn v\u1EADy th\xF4i c\xF4 Ichira \u1EA1. T\xF4i v\u1EABn y\xEAu
       t\u1EEBng n\u1ED1t nh\u1EA1c, v\u1EABn mu\u1ED1n c\u1ED1ng hi\u1EBFn h\u1EBFt
       m\xECnh cho ngh\u1EC7 thu\u1EADt... nh\u01B0ng ng\u1EB7t n\u1ED7i gia \u0111\xECnh
@@ -30,6 +32,7 @@ MonoBehaviour:
   - speakerName: Ichira
     portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 1
     text: "Con \u0111\u01B0\u1EDDng theo \u0111u\u1ED5i \u0111am m\xEA ch\u01B0a
       bao gi\u1EDD l\xE0 d\u1EC5 d\xE0ng, nh\u1EA5t l\xE0 khi thi\u1EBFu \u0111i
       s\u1EF1 \u1EE7ng h\u1ED9 t\u1EEB ng\u01B0\u1EDDi th\xE2n. Nh\u01B0ng anh kh\xF4ng
@@ -38,4 +41,5 @@ MonoBehaviour:
   - speakerName: Fuji
     portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
+    darkenPortrait: 0
     text: "C\xF4 n\xF3i l\xE0m t\xF4i th\u1EA5y \u1EA5m l\xF2ng h\u01A1n \u0111\u1EA5y."

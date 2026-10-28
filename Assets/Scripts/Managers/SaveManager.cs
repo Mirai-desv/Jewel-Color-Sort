@@ -16,22 +16,24 @@ public static class SaveManager
     private const string MusicVolumeKey = "bead.musicVolume";
     private const string SfxVolumeKey = "bead.sfxVolume";
 
-    /// <summary>Level sẽ chơi khi bấm Start (0 = Level 1).</summary>
+    private const string DialogueSeenPrefix = "bead.dialogueSeen.";
+
+    // Level sẽ chơi khi bấm Start
     public static int CurrentLevelIndex
     {
         get => PlayerPrefs.GetInt(LevelKey, 0);
         set => PlayerPrefs.SetInt(LevelKey, Mathf.Max(0, value));
     }
 
-    /// <summary>
-    /// Số level đã mở khoá = chỉ số level cao nhất được chơi. Level i &lt; giá trị này là đã thắng,
-    /// level == giá trị này là đang chơi, level lớn hơn là chưa mở.
-    /// </summary>
+    // Số level đã mở khoá = chỉ số level cao nhất được chơi. Level i &lt; giá trị này là đã thắng, level == giá trị này là đang chơi, level lớn hơn là chưa mở.
     public static int HighestUnlockedLevel
     {
-        get => PlayerPrefs.HasKey(HighestKey) ? PlayerPrefs.GetInt(HighestKey, 0) : PlayerPrefs.GetInt(LevelKey, 0);
+        get => PlayerPrefs.GetInt(HighestKey, 0);
         set => PlayerPrefs.SetInt(HighestKey, Mathf.Max(0, value));
     }
+
+    public static bool HasSeenDialogue(int levelIndex) => PlayerPrefs.GetInt(DialogueSeenPrefix + levelIndex, 0) == 1;
+    public static void MarkDialogueSeen(int levelIndex) => PlayerPrefs.SetInt(DialogueSeenPrefix + levelIndex, 1);
 
     public static int Coins
     {
@@ -104,6 +106,7 @@ public static class SaveManager
     {
         int highest = HighestUnlockedLevel;
         for (int i = 0; i <= highest; i++) PlayerPrefs.DeleteKey(BestPrefix + i);
+        for (int i = 0; i < 200; i++) PlayerPrefs.DeleteKey(DialogueSeenPrefix + i);
 
         PlayerPrefs.DeleteKey(LevelKey);
         PlayerPrefs.DeleteKey(HighestKey);

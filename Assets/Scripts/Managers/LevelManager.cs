@@ -81,4 +81,13 @@ public class LevelManager : MonoBehaviour
     {
         if (debugLog) Debug.Log($"[LevelManager] {message}", this);
     }
+
+/*
+    public bool IsUnlocked(int index)
+    {  
+        LevelData data = GetLevel(index);
+        if (data == null) return false;
+        return index <= SaveManager.HighestUnlockedLevel || !data.LockedByProgress;
+    }
+*/
 }
