@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public event System.Action<GameState> StateChanged;
 
     private GameState _resumeState = GameState.Menu; // trạng thái quay lại khi đóng Setting
+    private bool _isInDialogue;
 
     private void Awake()
     {
@@ -113,6 +114,8 @@ public class GameManager : MonoBehaviour
         if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel) return;
         if (State == GameState.Paused && _resumeState == GameState.Menu) return;
 
+        _isInDialogue = false;
+        if (dialoguePanel != null) dialoguePanel.Hide();
         if (levelManager.ReloadCurrent()) OnLevelLoaded();
     }
 
@@ -140,17 +143,25 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelLoaded()
     {
+        LevelData level = levelManager.CurrentLevel;
+        bool hasDialogue = dialoguePanel != null && level != null && level.Dialogue != null && level.Dialogue.HasDialogue;
+
+        _isInDialogue = hasDialogue;
         SetState(GameState.Playing);
 
-        LevelData level = levelManager.CurrentLevel;
-        if (dialoguePanel != null && level != null && level.Dialogue != null && level.Dialogue.HasDialogue)
+        if (hasDialogue)
         {
             if (levelSession != null) levelSession.InputEnabled = false;
             dialoguePanel.Setup(level.Dialogue, () =>
             {
-                if (levelSession != null && State == GameState.Playing)
+                _isInDialogue = false;
+                if (State == GameState.Playing)
                 {
-                    levelSession.InputEnabled = true;
+                    SetPanel(hudPanel, true);
+                    if (levelSession != null)
+                    {
+                        levelSession.InputEnabled = true;
+                    }
                 }
             });
         }
@@ -181,6 +192,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        _isInDialogue = false;
         if (dialoguePanel != null) dialoguePanel.Hide();
         if (postLevelManager != null) postLevelManager.Abort();
         if (levelSession != null) levelSession.ClearSession();
@@ -241,12 +253,12 @@ public class GameManager : MonoBehaviour
     {
         State = next;
 
-        if (levelSession != null) levelSession.InputEnabled = next == GameState.Playing;
+        if (levelSession != null) levelSession.InputEnabled = next == GameState.Playing && !_isInDialogue;
 
         bool inMenu = next == GameState.Menu || next == GameState.LevelSelect || (next == GameState.Paused && _resumeState == GameState.Menu);
         SetPanel(mainMenuPanel, next == GameState.Menu || (next == GameState.Paused && _resumeState == GameState.Menu));
         SetPanel(levelSelectPanel, next == GameState.LevelSelect);
-        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win);
+        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win && !_isInDialogue);
         SetPanel(settingPanel, next == GameState.Paused);
         SetPanel(winPanel, next == GameState.Win);
         SetPanel(losePanel, next == GameState.Lose);
