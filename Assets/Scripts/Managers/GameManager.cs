@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public event System.Action<GameState> StateChanged;
 
     private GameState _resumeState = GameState.Menu; // trạng thái quay lại khi đóng Setting
-    private bool _runPostFlow; // vừa thắng lần đầu, bấm Next là phải xem dialogue (cấm tua)
+    // private bool _runPostFlow; // vừa thắng lần đầu, bấm Next là phải xem dialogue (cấm tua)
 
     private void Awake() => Instance = this;
 
@@ -51,11 +51,7 @@ public class GameManager : MonoBehaviour
         levelSession.Lost -= OnLost;
     }
 
-    private void Start()
-    {
-        if (skipMenu) StartGame();
-        else SetState(GameState.Menu);
-    }
+    private void Start() => SetState(GameState.Menu);
 
     private void OnApplicationPause(bool paused)
     {
@@ -143,7 +139,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         if (State != GameState.Win) return;
-
+        /*
         LevelData level = levelManager.CurrentLevel;
         if(_runPostFlow && postLevelManager != null && postLevelManager.HasReward(level))
         {
@@ -153,6 +149,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         _runPostFlow = false;
+        */
         GoToNextLevel();
     }
 
@@ -227,7 +224,7 @@ public class GameManager : MonoBehaviour
             SaveManager.Save();
         }
 
-        _runPostFlow = firstClear;
+        // _runPostFlow = firstClear;
 
         AudioManager.PlaySfx(Sfx.Win);
 
@@ -252,7 +249,7 @@ public class GameManager : MonoBehaviour
         bool inMenu = next == GameState.Menu || next == GameState.LevelSelect || (next == GameState.Paused && _resumeState == GameState.Menu);
         SetPanel(mainMenuPanel, inMenu);
         SetPanel(levelSelectPanel, next == GameState.LevelSelect);
-        SetPanel(hudPanel, !inMenu && next != GameState.PostLevel && next != GameState.Win && next != GameState.Dialogue);
+        SetPanel(hudPanel, !inMenu /*&& next != GameState.PostLevel*/ && next != GameState.Win && next != GameState.Dialogue);
         SetPanel(settingPanel, next == GameState.Paused);
         SetPanel(winPanel, next == GameState.Win);
         SetPanel(losePanel, next == GameState.Lose);

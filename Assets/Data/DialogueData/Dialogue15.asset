@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Yoko
-    portrait: {fileID: 1739516631796900880, guid: bfcba3ed68d28b04381268f94174420a, type: 3}
+    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "L\u1EA1i v\u1EC1 nh\xE0 khi con \u0111\xE3 ng\u1EE7... C\u1EE9 b\u01B0\u01A1n
       ch\u1EA3i t\u1ED1i ng\xE0y th\u1EBF n\xE0y, kho\u1EA3ng c\xE1ch gi\u1EEFa m\u1EB9
       con t\xF4i ng\xE0y c\xE0ng xa c\xE1ch."
   - speakerName: Ichira
-    portrait: {fileID: 1739516631796900880, guid: bfcba3ed68d28b04381268f94174420a, type: 3}
+    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Ch\u1ECB Yoko \u01A1i, em t\u1EB7ng ch\u1ECB khung \u1EA3nh g\u1ED7 n\xE0y
       nh\xE9. H\xE3y \u0111\u1EB7t v\xE0o \u0111\xF3 t\u1EA5m h\xECnh k\u1EF7 ni\u1EC7m
       c\u1EE7a hai m\u1EB9 con \u0111\u1EC3 lu\xF4n nh\u1EDB v\u1EC1 nhau."
   - speakerName: Yoko
-    portrait: {fileID: 1739516631796900880, guid: bfcba3ed68d28b04381268f94174420a, type: 3}
+    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "C\u1EA3m \u01A1n em... Nh\xECn b\u1EE9c \u1EA3nh n\xE0y, ch\u1ECB s\u1EBD

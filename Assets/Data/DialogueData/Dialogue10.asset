@@ -14,24 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Steve
-    portrait: {fileID: 121287837493667656, guid: cd98c4c9489f49e4a8bb8f95352187f1, type: 3}
+    portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "...\n[Ch\u1EA7n ch\u1EEB]"
   - speakerName: Ichira
-    portrait: {fileID: 121287837493667656, guid: cd98c4c9489f49e4a8bb8f95352187f1, type: 3}
+    portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "B\xE1c \u01A1i, b\xE1c c\xF3 c\u1EA7n ch\xE1u gi\xFAp \u0111\u1EE1 g\xEC
       kh\xF4ng \u1EA1 ?"
   - speakerName: Steve
-    portrait: {fileID: 121287837493667656, guid: cd98c4c9489f49e4a8bb8f95352187f1, type: 3}
+    portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "Tay ch\xE2n d\xEDnh \u0111\u1EA7y nh\u1EDBt th\u1EBF n\xE0y, t\xF4i ng\u1EA1i
       ch\u1EB3ng d\xE1m b\u01B0\u1EDBc v\xE0o qu\xE1n \u0103n v\u1EB7t."
   - speakerName: Ichira
-    portrait: {fileID: 121287837493667656, guid: cd98c4c9489f49e4a8bb8f95352187f1, type: 3}
+    portrait: {fileID: -293584696854552385, guid: 0f66906a328853d47bbd2d8572897b31, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "B\xE1c \u01A1i b\xE1c v\xE0o tho\u1EA3i m\xE1i \u0111i b\xE1c, ch\xE1u

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ichira
-    portrait: {fileID: -1639301021274889606, guid: 7a96fbd95471a5b47a4db3a2e7a2c9b1, type: 3}
+    portrait: {fileID: -809346088405849866, guid: 87ac0e5af3e8fcb4182cfc862aedcae3, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Tr\xF4ng ch\xE1u c\xF3 v\u1EBB \u0111u\u1ED1i s\u1EE9c qu\xE1, Sora. L\u1EA1i
       m\u1ED9t tu\u1EA7n chi\u1EBFn \u0111\u1EA5u v\u1EDBi \u0111\u1ED1ng b\xE0i
       t\u1EADp nh\xF3m \xE0?"
   - speakerName: Sora
-    portrait: {fileID: -1639301021274889606, guid: 7a96fbd95471a5b47a4db3a2e7a2c9b1, type: 3}
+    portrait: {fileID: -809346088405849866, guid: 87ac0e5af3e8fcb4182cfc862aedcae3, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "Ch\xE1u m\u1EC7t qu\xE1 c\xF4 Ichira \u01A1i... L\xFAc n\xE0o ch\xE1u
@@ -31,7 +31,7 @@ MonoBehaviour:
       c\xF3 ph\u1EA3i do ch\xE1u qu\xE1 kh\xF3 t\xEDnh v\xE0 k\u1EF3 qu\u1EB7c n\xEAn
       m\u1ECDi ng\u01B0\u1EDDi m\u1EDBi n\xE9 tr\xE1nh ch\xE1u kh\xF4ng?\n"
   - speakerName: Ichira
-    portrait: {fileID: -1639301021274889606, guid: 7a96fbd95471a5b47a4db3a2e7a2c9b1, type: 3}
+    portrait: {fileID: -809346088405849866, guid: 87ac0e5af3e8fcb4182cfc862aedcae3, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Kh\xF4ng \u0111\xE2u ch\xE1u. C\u1EA7u to\xE0n l\xE0 m\u1ED9t \u0111\u1EE9c
@@ -39,7 +39,7 @@ MonoBehaviour:
       v\xE1c qu\xE1 nhi\u1EC1u th\xF4i. H\xE3y th\u1EA3 l\u1ECFng m\u1ED9t ch\xFAt
       nh\xE9. Ch\xE1u xem, c\xF4 t\u1EB7ng ch\xE1u m\xF3n qu\xE0 n\xE0y."
   - speakerName: Sora
-    portrait: {fileID: -1639301021274889606, guid: 7a96fbd95471a5b47a4db3a2e7a2c9b1, type: 3}
+    portrait: {fileID: -809346088405849866, guid: 87ac0e5af3e8fcb4182cfc862aedcae3, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "B\u1ED9 x\u1EBFp h\xECnh hoa o\u1EA3i h\u01B0\u01A1ng \u1EA1?"

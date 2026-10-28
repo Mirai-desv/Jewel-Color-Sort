@@ -3656,7 +3656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1034172076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4259,7 +4259,7 @@ MonoBehaviour:
   musicToggle: {fileID: 0}
   sfxToggle: {fileID: 0}
   musicSlider: {fileID: 1413939145}
-  sfxSlider: {fileID: 0}
+  sfxSlider: {fileID: 1892729838}
 --- !u!225 &1161766766
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4847,16 +4847,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356158727}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00006246567}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1901943736}
+  m_Father: {fileID: 1862160435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1356158729
@@ -4873,7 +4873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4883,15 +4883,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5330ff798a570a9428faa6b4ccb3abc1, type: 2}
-  m_sharedMaterial: {fileID: -3133525913035524331, guid: 5330ff798a570a9428faa6b4ccb3abc1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 85865dc44588b02438ac83f05e69abbe, type: 2}
+  m_sharedMaterial: {fileID: -3937440264025325090, guid: 85865dc44588b02438ac83f05e69abbe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286019474
-  m_fontColor: {r: 0.5707547, g: 0.46575737, b: 0.46575737, a: 1}
+    rgba: 4285098372
+  m_fontColor: {r: 0.5188679, g: 0.41117835, b: 0.41117835, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4908,8 +4908,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 150
+  m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5338,10 +5338,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
-  music: {fileID: 8300000, guid: f66896c8865845e4a61e6b081b2ae202, type: 3}
-  click: {fileID: 0}
-  select: {fileID: 0}
-  move: {fileID: 0}
+  music: {fileID: 8300000, guid: a9683a51a5c26b74cb7bd363da3ab189, type: 3}
+  click: {fileID: 8300000, guid: 39f6600e4cb34499adfe2fa37e70f6b7, type: 3}
+  select: {fileID: 8300000, guid: 4992faad990848408b1e0f37816ba31c, type: 3}
+  move: {fileID: 8300000, guid: 9eb38d9b9aff4bef919957a7e0542e4a, type: 3}
   invalid: {fileID: 0}
   win: {fileID: 8300000, guid: 7607ca869b2241dea3a45f28c2eeade7, type: 3}
   lose: {fileID: 0}
@@ -6484,7 +6484,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1356158728}
   m_Father: {fileID: 1901943736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6744,7 +6745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1901943736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6761,7 +6762,6 @@ RectTransform:
   - {fileID: 1156295134}
   - {fileID: 1084502817}
   - {fileID: 1862160435}
-  - {fileID: 1356158728}
   - {fileID: 2056335934}
   - {fileID: 1482083618}
   m_Father: {fileID: 420240783}
@@ -7400,7 +7400,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 148e6fd4557e44a0baf741da64de6e14, type: 2}
   - {fileID: 11400000, guid: 158e6fd4557e44a0baf741da64de6e15, type: 2}
   autoLoadOnStart: 1
-  autoAdvanceOnWin: 1
+  autoAdvanceOnWin: 0
   debugLog: 1
 --- !u!114 &2079913241
 MonoBehaviour:
@@ -7424,9 +7424,9 @@ MonoBehaviour:
   settingPanel: {fileID: 1161766765}
   winPanel: {fileID: 1901943737}
   losePanel: {fileID: 0}
-  skipMenu: 1
-  unlockAllLevels: 0
-  alwaysPlayDialogue: 0
+  skipMenu: 0
+  unlockAllLevels: 1
+  alwaysPlayDialogue: 1
 --- !u!114 &2079913242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7603,7 +7603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PostLevelManager
   dialoguePanel: {fileID: 227520695}
-  rewardPanel: {fileID: 65315714}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

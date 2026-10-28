@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ren
-    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
+    portrait: {fileID: 6600273264204521602, guid: a67657768e887bc4587f1928eaa3af8f, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "\xC1nh \u0111\xE8n ch\u1EDBp nh\xE1y v\xE0 ti\u1EBFng \u0111\u1ED9ng ngo\xE0i
       kia c\u1EE9 l\xE0m t\xF4i ho\u1EA3ng s\u1EE3, m\u1EA5t ng\u1EE7 su\u1ED1t \u0111\xEAm..."
   - speakerName: Ichira
-    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
+    portrait: {fileID: 6600273264204521602, guid: a67657768e887bc4587f1928eaa3af8f, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "B\xE1c \u0111eo chi\u1EBFc tai nghe ch\u1ED1ng \u1ED3n n\xE0y \u0111i
       ng\u1EE7 \u0111\u1EC3 c\xE1ch ly ho\xE0n to\xE0n nh\xE9."
   - speakerName: Ren
-    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
+    portrait: {fileID: 6600273264204521602, guid: a67657768e887bc4587f1928eaa3af8f, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "Y\xEAn t\u0129nh th\u1EADt r\u1ED3i... Cu\u1ED1i c\xF9ng ta c\u0169ng

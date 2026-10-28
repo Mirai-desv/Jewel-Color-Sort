@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ken
-    portrait: {fileID: 7753776679026917969, guid: 477d84f120d133b4280d022736c7a64b, type: 3}
+    portrait: {fileID: 8725075761516251011, guid: 4fad0d967c6aa254c82703eba00465e9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "Ch\xE1u v\u1EEBa ho\xE0n th\xE0nh b\xE0i thi th\u1EED, nh\u01B0ng \u0111i\u1EC3m
       v\u0103n kh\xF4ng nh\u01B0 \xFD mu\u1ED1n... \xC1p l\u1EF1c t\u1EEB k\u1EF3
       thi v\xE0o c\u1EA5p 3 ng\u1ED9t ng\u1EA1t qu\xE1 c\xF4 \u01A1i."
   - speakerName: Ichira
-    portrait: {fileID: 7753776679026917969, guid: 477d84f120d133b4280d022736c7a64b, type: 3}
+    portrait: {fileID: 8725075761516251011, guid: 4fad0d967c6aa254c82703eba00465e9, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "C\u1ED1 l\xEAn n\xE0o, ch\u1EB7ng \u0111\u01B0\u1EDDng d\xE0i m\u1EDBi

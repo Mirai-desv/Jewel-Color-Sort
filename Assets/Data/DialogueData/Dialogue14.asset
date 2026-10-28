@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Gianne
-    portrait: {fileID: -7559677338119088038, guid: 7bdf77731c880c9449926f04e1fb55b3, type: 3}
+    portrait: {fileID: 7076127835533508524, guid: d5c57415c6ce5924284bc13e89b93461, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "C\u1EA3 ng\xE0y ng\u1EEDi to\xE0n m\xF9i h\xF3a ch\u1EA5t t\u1EA9y r\u1EEDa
@@ -23,7 +23,7 @@ MonoBehaviour:
       th\u1EA5y t\xFD v\u1ECB gi\xE1c n\xE0o n\u1EEFa. Nh\xECn \u0111\u1ED3 \u0103n
       m\xE0 ch\u1EC9 th\u1EA5y ch\xE1n ng\xE1n..."
   - speakerName: Ichira
-    portrait: {fileID: -7559677338119088038, guid: 7bdf77731c880c9449926f04e1fb55b3, type: 3}
+    portrait: {fileID: 7076127835533508524, guid: d5c57415c6ce5924284bc13e89b93461, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Th\u1EA3o n\xE0o tr\xF4ng ch\u1ECB m\u1EC7t m\u1ECFi th\u1EBF. \u0110\u1EC3

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Ichira
-    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
+    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Nh\u1EEFng h\u0169 m\u1EE9t d\xE2u h\xF4m nay tr\xF4ng tuy\u1EC7t qu\xE1,
       c\xF4 Tomoko. Nh\u01B0ng con th\u1EA5y \xE1nh m\u1EAFt c\xF4 c\xF3 v\u1EBB
       h\u01A1i tr\u1EA7m t\u01B0?"
   - speakerName: Tomoko
-    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
+    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "Ch\u1EAFc t\u1EA1i c\xF4 quen tay th\xF4i... D\u1EA1o n\xE0y c\xE1c con
@@ -30,7 +30,7 @@ MonoBehaviour:
       c\xF4 l\u1EA1i th\u1EA5y ch\u1EA1nh l\xF2ng v\u1EDBi h\u1ED9i ch\u1EE9ng \"t\u1ED5
       chim tr\u1ED1ng\" n\xE0y qu\xE1."
   - speakerName: Ichira
-    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
+    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 1
     text: "Ch\xE1u hi\u1EC3u c\u1EA3m gi\xE1c c\u1EE7a c\xF4. Quen ch\u0103m lo cho
@@ -38,7 +38,7 @@ MonoBehaviour:
       m\u1ED9t th\u1EED th\xE1ch. Nh\u01B0ng c\xF4 xem, ch\xE1u chu\u1EA9n b\u1ECB
       m\xF3n n\xE0y ri\xEAng cho c\xF4 \u0111\u1EA5y."
   - speakerName: Tomoko
-    portrait: {fileID: -6168858844692475365, guid: ac34a9923a4571347b83eb2b34d3a149, type: 3}
+    portrait: {fileID: 1937918660762498224, guid: e9dbfadcb2882bc4c881ce754098a226, type: 3}
     background: {fileID: -4364034832326165938, guid: 390cda826d8a8984bb5117d1945f3bf2, type: 3}
     darkenPortrait: 0
     text: "\u1ED2, m\u1ED9t chi\u1EBFc k\u1EC7 g\u1ED7 \u0111\u1EC3 tr\u01B0ng b\xE0y
