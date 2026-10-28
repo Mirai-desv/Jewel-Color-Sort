@@ -34,10 +34,12 @@ public class WinPanel : BasePanel
         //if (winImage != null) winImage.sprite = titleSprite;
         //if (nextButtonLabel != null) nextButtonLabel.SetText(hasNext ? "Next Level" : "Play Again");
 
-        if (rewardRoot != null) rewardRoot.SetActive(awarded);
-        if (scoreRoot != null) scoreRoot.SetActive(awarded);
-        if (replayNote != null) replayNote.SetActive(!awarded);
+        if (rewardRoot != null) rewardRoot.SetActive(false);
+        if (scoreRoot != null) scoreRoot.SetActive(true);
+        if (replayNote != null) replayNote.SetActive(false);
 
+        if (scoreText != null) scoreText.SetText("{0}", score.Total);
+        /*
         if (!awarded) return;
 
         if (rewardText != null) rewardText.SetText("+{0}", coins);
@@ -53,5 +55,6 @@ public class WinPanel : BasePanel
                 "Moves " + score.Moves + "  +" + score.MoveBonus + "\n" +
                 "Undo x" + score.Undos + "  -" + score.UndoPenalty);
         }
+        */
     }
 }
