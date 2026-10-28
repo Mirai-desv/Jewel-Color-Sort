@@ -30,6 +30,7 @@ public class LevelSelectPanel : BasePanel
 
         int count = levelManager.LevelCount;
         int highest = SaveManager.HighestUnlockedLevel;
+        bool unlockAll = SaveManager.UnlockAllLevels;
 
         while (_items.Count < count)
         {
@@ -44,10 +45,20 @@ public class LevelSelectPanel : BasePanel
             _items[i].gameObject.SetActive(used);
             if (!used) continue;
 
-            LevelSelectItem.State state =
-                i < highest ? LevelSelectItem.State.Completed :
-                i == highest ? LevelSelectItem.State.Current :
-                LevelSelectItem.State.Locked;
+            LevelSelectItem.State state;
+            if (unlockAll)
+            {
+                // Mở full level để playtest: level đã có điểm thì hiện Completed, còn lại đều mở (Current) để bấm được ngay
+                bool completed = SaveManager.GetLevelBestScore(i) > 0;
+                state = completed ? LevelSelectItem.State.Completed : LevelSelectItem.State.Current;
+            }
+            else
+            {
+                state =
+                    i < highest ? LevelSelectItem.State.Completed :
+                    i == highest ? LevelSelectItem.State.Current :
+                    LevelSelectItem.State.Locked;
+            }
 
             _items[i].Setup(i, state, SaveManager.GetLevelBestScore(i));
         }

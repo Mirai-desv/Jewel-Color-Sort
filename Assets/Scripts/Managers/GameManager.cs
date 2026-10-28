@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         if(State != GameState.LevelSelect && State != GameState.Menu) return;
         if(index < 0 || index >= levelManager.LevelCount) return;
-        if(index > SaveManager.HighestUnlockedLevel) return; // level chưa mở
+        if(!SaveManager.UnlockAllLevels && index > SaveManager.HighestUnlockedLevel) return; // level chưa mở
 
         if(levelManager.LoadLevel(index)) OnLevelLoaded();
     }
@@ -215,7 +215,8 @@ public class GameManager : MonoBehaviour
         int index = levelManager.CurrentIndex;
         LevelData level = levelManager.CurrentLevel;
 
-        bool firstClear = index >= SaveManager.HighestUnlockedLevel;
+        int prevBest = SaveManager.GetLevelBestScore(index);
+        bool firstClear = prevBest == 0 || index >= SaveManager.HighestUnlockedLevel;
 
         ScoreResult score = ScoreCalculator.Calculate(config, level, levelSession.ElapsedTime, levelSession.MoveCount, levelSession.UndoCount);
 
@@ -233,6 +234,9 @@ public class GameManager : MonoBehaviour
             SaveManager.Coins += coins;
             SaveManager.Save();
         }
+
+        SaveManager.SetLevelBestScore(index, score.Total);
+        SaveManager.TotalScore += score.Total;
 
         // Cập nhật level tiếp theo cho sảnh chính khi thắng
         if (levelManager != null && levelManager.HasNext)

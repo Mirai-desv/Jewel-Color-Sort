@@ -16,6 +16,9 @@ public static class SaveManager
     private const string MusicVolumeKey = "bead.musicVolume";
     private const string SfxVolumeKey = "bead.sfxVolume";
 
+    /// <summary>Bật để mở toàn bộ level cho playtest.</summary>
+    public static bool UnlockAllLevels = true;
+
     /// <summary>Level sẽ chơi khi bấm Start (0 = Level 1).</summary>
     public static int CurrentLevelIndex
     {
@@ -33,7 +36,11 @@ public static class SaveManager
     /// </summary>
     public static int HighestUnlockedLevel
     {
-        get => Mathf.Max(PlayerPrefs.GetInt(HighestKey, 0), PlayerPrefs.GetInt(LevelKey, 0));
+        get
+        {
+            if (UnlockAllLevels) return 100;
+            return Mathf.Max(PlayerPrefs.GetInt(HighestKey, 0), PlayerPrefs.GetInt(LevelKey, 0));
+        }
         set
         {
             int current = PlayerPrefs.GetInt(HighestKey, 0);
@@ -55,14 +62,22 @@ public static class SaveManager
     public static int TotalScore
     {
         get => PlayerPrefs.GetInt(ScoreKey, 0);
-        set => PlayerPrefs.SetInt(ScoreKey, Mathf.Max(0, value));
+        set
+        {
+            PlayerPrefs.SetInt(ScoreKey, Mathf.Max(0, value));
+            PlayerPrefs.Save();
+        }
     }
 
     public static int GetLevelBestScore(int levelIndex) => PlayerPrefs.GetInt(BestPrefix + levelIndex, 0);
 
     public static void SetLevelBestScore(int levelIndex, int score)
     {
-        if (score > GetLevelBestScore(levelIndex)) PlayerPrefs.SetInt(BestPrefix + levelIndex, score);
+        if (score > GetLevelBestScore(levelIndex))
+        {
+            PlayerPrefs.SetInt(BestPrefix + levelIndex, score);
+            PlayerPrefs.Save();
+        }
     }
 
     // ---------- Kho vật phẩm (lưu dạng "id1,id2,...") ----------
