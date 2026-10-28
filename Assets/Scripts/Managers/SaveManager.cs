@@ -20,7 +20,11 @@ public static class SaveManager
     public static int CurrentLevelIndex
     {
         get => PlayerPrefs.GetInt(LevelKey, 0);
-        set => PlayerPrefs.SetInt(LevelKey, Mathf.Max(0, value));
+        set
+        {
+            PlayerPrefs.SetInt(LevelKey, Mathf.Max(0, value));
+            PlayerPrefs.Save();
+        }
     }
 
     /// <summary>
@@ -29,8 +33,16 @@ public static class SaveManager
     /// </summary>
     public static int HighestUnlockedLevel
     {
-        get => 15; // Mở khoá toàn bộ 15 level để test
-        set => PlayerPrefs.SetInt(HighestKey, Mathf.Max(0, value));
+        get => Mathf.Max(PlayerPrefs.GetInt(HighestKey, 0), PlayerPrefs.GetInt(LevelKey, 0));
+        set
+        {
+            int current = PlayerPrefs.GetInt(HighestKey, 0);
+            if (value > current)
+            {
+                PlayerPrefs.SetInt(HighestKey, value);
+                PlayerPrefs.Save();
+            }
+        }
     }
 
     public static int Coins

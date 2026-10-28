@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     // ---------- Các hành động mà Button gọi ----------
 
-    // Bắt đầu chơi từ level đang mở khóa cao nhất (có thể chơi lại level cũ)
+    // Bắt đầu chơi level đang hiển thị ở sảnh chính (SaveManager.CurrentLevelIndex)
     public void StartGame()
     {
         int count = levelManager.LevelCount;
@@ -82,8 +82,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        int highest = SaveManager.HighestUnlockedLevel;
-        int index = highest >= count ? 0 : highest;
+        int index = Mathf.Clamp(SaveManager.CurrentLevelIndex, 0, count - 1);
         if (levelManager.LoadLevel(index)) OnLevelLoaded();
     }
 
@@ -234,6 +233,16 @@ public class GameManager : MonoBehaviour
             SaveManager.Coins += coins;
             SaveManager.Save();
         }
+
+        // Cập nhật level tiếp theo cho sảnh chính khi thắng
+        if (levelManager != null && levelManager.HasNext)
+        {
+            if (SaveManager.CurrentLevelIndex <= index)
+            {
+                SaveManager.CurrentLevelIndex = index + 1;
+            }
+        }
+        SaveManager.Save();
 
         AudioManager.PlaySfx(Sfx.Win);
 

@@ -13,10 +13,11 @@ public class MainMenuPanel : BasePanel
 
     protected override void OnShow()
     {
-        int index = SaveManager.CurrentLevelIndex;
+        int count = levelManager != null ? levelManager.LevelCount : 0;
+        int index = count > 0 ? Mathf.Clamp(SaveManager.CurrentLevelIndex, 0, count - 1) : 0;
         LevelData data = levelManager != null ? levelManager.GetLevel(index) : null;
 
-        if (levelText != null) levelText.SetText("Level {0}", SaveManager.CurrentLevelIndex + 1);
+        if (levelText != null) levelText.SetText("Level {0}", index + 1);
 
         if(levelPreviewImage != null)
         {
