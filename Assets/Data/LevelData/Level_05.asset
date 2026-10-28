@@ -2680,6 +2680,6 @@ MonoBehaviour:
     y: 0
   traySlotCount: 50
   previewImage: {fileID: 2019063802672954056, guid: a7049bf00eba48e45b69e4baf772a974, type: 3}
-  dialogue: {fileID: 11400000, guid: fe32e259d7f8ddd47849f8787d87a12c, type: 2}
-  reward: {fileID: 11400000, guid: 475c41486bdb5864e903fb36c2a2aba3, type: 2}
+  dialogue: {fileID: 11400000, guid: b4da45d0427c1ba49a26ccb2a4fc6c10, type: 2}
+  reward: {fileID: 11400000, guid: 79284d6e8bda887489cbb2af00b8f17d, type: 2}
   parMoves: 10

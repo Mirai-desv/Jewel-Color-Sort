@@ -3946,6 +3946,6 @@ MonoBehaviour:
     y: 0
   traySlotCount: 50
   previewImage: {fileID: 7518864053564035884, guid: 8ad07784416069847a713d2cf53aa638, type: 3}
-  dialogue: {fileID: 11400000, guid: 350b6a1d3019c5e4cb3f1b68932001f4, type: 2}
-  reward: {fileID: 11400000, guid: ff984d5b02544e54382b5c3326f18b57, type: 2}
+  dialogue: {fileID: 11400000, guid: bbc147725ddb8b04987a1939f6e620a6, type: 2}
+  reward: {fileID: 11400000, guid: 8f6839756b9909f4ba64e0299f8834ef, type: 2}
   parMoves: 0
