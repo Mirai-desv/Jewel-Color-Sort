@@ -65,7 +65,7 @@ public class HUDPanel : BasePanel
         _shownSeconds = -1;
 
         if (levelText != null && levelManager != null)
-            levelText.SetText("Lv {0}", levelManager.CurrentIndex + 1);
+            levelText.SetText("Level {0}", levelManager.CurrentIndex + 1);
     }
 
     private void OnProgressChanged(float progress)
