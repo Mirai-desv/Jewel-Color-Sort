@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
 /// Điều khiển tutorial theo từng bước (state machine).
 /// - Biết tutorial của level hiện tại qua LevelData.Tutorial.
 /// - Chỉ cho phép đúng những cú chạm mà bước hiện tại yêu cầu (LevelSession.CellClickFilter / SlotClickFilter).
 /// - Qua bước dựa trên KẾT QUẢ trong LevelSession (đã nhấc được hạt, đã đi xong 1 nước), không dựa vào "có click".
 /// - Mỗi khung hình tính lại vùng sáng và vị trí bàn tay từ layout thật, nên không lệch khi đổi độ phân giải.
 /// Không đặt chung GameObject với TutorialOverlay.
-/// </summary>
+/// 
 public class TutorialManager : MonoBehaviour
 {
     [Header("Tham chiếu")]
@@ -141,6 +140,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case GameState.Paused:
+            case GameState.Preview: // xem ảnh level giữa chừng cũng coi như tạm dừng tutorial
                 if (_running)
                 {
                     _paused = true;

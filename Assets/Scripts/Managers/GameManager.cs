@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelSelectPanel levelSelectPanel;
     [SerializeField] private HUDPanel hudPanel;
     [SerializeField] private SettingPanel settingPanel;
+    [SerializeField] private LevelPreviewPanel previewPanel;
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private LosePanel losePanel;
 
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue) return;
+        if (State == GameState.Menu || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue || State == GameState.Preview) return;
         if (State == GameState.Paused && _resumeState == GameState.Menu) return;
 
         BeginLevel(Mathf.Max(0, levelManager.CurrentIndex));
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue) return;
+        if (State == GameState.Paused || State == GameState.Win || State == GameState.Lose || State == GameState.LevelSelect || State == GameState.PostLevel || State == GameState.Dialogue || State == GameState.Preview) return;
 
         _resumeState = State;
         SetState(GameState.Paused);
@@ -180,6 +181,27 @@ public class GameManager : MonoBehaviour
     {
         if (State != GameState.Paused) return;
         SetState(_resumeState);
+    }
+
+    // Mở popup xem ảnh đầy đủ của level. Chỉ mở khi đang chơi; game tạm dừng (input tắt, đồng hồ đứng) tới khi đóng
+    public void OpenPreview()
+    {
+        if (State != GameState.Playing) return;
+
+        LevelData level = levelManager.CurrentLevel;
+        if (level == null || !level.HasPreviewImage)
+        {
+            Debug.LogWarning("[GameManager] Level hiện tại chưa gán Preview Image nên không mở được popup.", this);
+            return;
+        }
+
+        SetState(GameState.Preview);
+    }
+
+    public void ClosePreview()
+    {
+        if (State != GameState.Preview) return;
+        SetState(GameState.Playing);
     }
 
     public void GoToMenu()
@@ -251,6 +273,7 @@ public class GameManager : MonoBehaviour
         SetPanel(levelSelectPanel, next == GameState.LevelSelect);
         SetPanel(hudPanel, !inMenu /*&& next != GameState.PostLevel*/ && next != GameState.Win && next != GameState.Dialogue);
         SetPanel(settingPanel, next == GameState.Paused);
+        SetPanel(previewPanel, next == GameState.Preview);
         SetPanel(winPanel, next == GameState.Win);
         SetPanel(losePanel, next == GameState.Lose);
 
