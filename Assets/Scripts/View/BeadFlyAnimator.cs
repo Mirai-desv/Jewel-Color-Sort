@@ -53,6 +53,8 @@ public class BeadFlyAnimator : MonoBehaviour
     {
         if (bead == null) return;
 
+        bead.StopLift();
+
         Transform t = bead.transform;
         var flight = new Flight
         {

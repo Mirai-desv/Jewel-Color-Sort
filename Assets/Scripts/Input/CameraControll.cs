@@ -34,6 +34,9 @@ public class CameraControll : MonoBehaviour
     [Tooltip("Mỗi nấc lăn chuột zoom thêm bấy nhiêu % (chỉ để test trong Editor).")]
     [SerializeField, Range(0.02f, 0.5f)] private float scrollZoomStep = 0.1f;
 
+    // Tutorial bật để khoá kéo/zoom (vùng sáng và bàn tay tính theo camera, camera dịch là lệch)
+    public bool InputLocked { get; set; }
+
     private Camera _camera;
     private Bounds _bounds;
     private bool _ready;
@@ -92,7 +95,7 @@ public class CameraControll : MonoBehaviour
 
     private void Update()
     {
-        if (!_ready) return;
+        if (!_ready || InputLocked) return;
 
         // Lăn chuột (chỉ để test trong Editor): zoom quanh vị trí con trỏ
         Mouse mouse = Mouse.current;
@@ -108,7 +111,7 @@ public class CameraControll : MonoBehaviour
     // Thao tác
     private void OnDragged(Vector2 deltaPixels)
     {
-        if (!_ready) return;
+        if (!_ready || InputLocked) return;
 
         // Đổi pixel -> đơn vị thế giới theo mức zoom hiện tại, kéo ảnh theo ngón tay
         float unitsPerPixel = (_camera.orthographicSize * 2f) / _camera.pixelHeight;
@@ -118,7 +121,7 @@ public class CameraControll : MonoBehaviour
 
     private void OnPinched(float factor, Vector2 screenMidpoint)
     {
-        if (!_ready) return;
+        if (!_ready || InputLocked) return;
         ZoomAt(_camera.orthographicSize / factor, screenMidpoint); // 2 ngón xa nhau (factor > 1) -> zoom in
     }
 

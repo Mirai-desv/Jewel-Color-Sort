@@ -5251,3 +5251,4 @@ MonoBehaviour:
   dialogue: {fileID: 11400000, guid: fc6c4e98f0a21b64aa4c2e8f2fb5ec67, type: 2}
   reward: {fileID: 11400000, guid: b68314cb3ecc18e46918e95b16ee727e, type: 2}
   parMoves: 50
+  tutorial: {fileID: 11400000, guid: f9b90a44c88b4c2469b0067575b3acb9, type: 2}

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292bf8a2084d5e646bf7d023f47b9864, type: 3}
+  m_Name: Tutorial 1
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialData
+  steps:
+  - message: "Ch\u1EA1m v\xE0o c\u1EE5m h\u1EA1t \u0111\u1ECF n\xE0y \u0111\u1EC3
+      nh\u1EA5c l\xEAn"
+    target: 0
+    advanceOn: 0
+    regionMin: {x: 7, y: 11}
+    regionMax: {x: 18, y: 20}
+    handCell: {x: 12, y: 16}
+    handTraySlot: 0
+  - message: "Gi\u1EDD ch\u1EA1m v\xE0o khay \u0111\u1EC3 c\u1EA5t ch\xFAng v\xE0o"
+    target: 1
+    advanceOn: 1
+    regionMin: {x: 0, y: 0}
+    regionMax: {x: 0, y: 0}
+    handCell: {x: 0, y: 0}
+    handTraySlot: 0
+  - message: "Ch\u1EA1m v\xE0o c\u1EE5m h\u1EA1t tr\u1EAFng"
+    target: 0
+    advanceOn: 0
+    regionMin: {x: 4, y: 28}
+    regionMax: {x: 19, y: 35}
+    handCell: {x: 12, y: 31}
+    handTraySlot: 0
+  - message: "Ch\u1EA1m v\xE0o v\xF9ng tr\u1ED1ng \u0111\u1EC3 th\u1EA3 h\u1EA1t
+      tr\u1EAFng v\xE0o"
+    target: 0
+    advanceOn: 1
+    regionMin: {x: 7, y: 11}
+    regionMax: {x: 18, y: 20}
+    handCell: {x: 12, y: 16}
+    handTraySlot: 0
+  - message: "Ch\u1EA1m h\u1EA1t \u0111\u1ECF trong khay \u0111\u1EC3 nh\u1EA5c l\u1EA1i"
+    target: 1
+    advanceOn: 0
+    regionMin: {x: 0, y: 0}
+    regionMax: {x: 0, y: 0}
+    handCell: {x: 0, y: 0}
+    handTraySlot: 0
+  - message: "Th\u1EA3 h\u1EA1t \u0111\u1ECF v\xE0o ch\u1ED7 tr\u1ED1ng ph\xEDa tr\xEAn"
+    target: 0
+    advanceOn: 1
+    regionMin: {x: 4, y: 28}
+    regionMax: {x: 19, y: 35}
+    handCell: {x: 12, y: 31}
+    handTraySlot: 0

@@ -23,8 +23,12 @@ public class LevelData : ScriptableObject
     [Tooltip("Số nước đi tốt. 0 = dùng Default Par Moves trong GameConfig")]
     [SerializeField, Min(0)] private int parMoves = 0;
 
+    [Header("Hướng dẫn (tuỳ chọn)")]
+    [SerializeField] private TutorialData tutorial;
+
     public DialogueData Dialogue => dialogue;
     public RewardData Reward => reward;
+    public TutorialData Tutorial => tutorial;
     public int ParMoves => parMoves;
 
     public IReadOnlyList<CellData> Background => background;

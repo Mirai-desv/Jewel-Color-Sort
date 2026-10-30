@@ -20,6 +20,17 @@ public class LevelSession : MonoBehaviour
     public event System.Action LevelStarted;
     public event System.Action<float> ProgressChanged; // 0..1
 
+    // Dành cho Tutorial
+    public event System.Action SelectionMade;  // vừa nhấc 1 nhóm hạt (lưới hoặc khay)
+    public event System.Action MoveCommitted;  // vừa thực hiện xong 1 nước đi (hạt có thể còn đang bay)
+
+    // Cổng chặn click: trả về false thì click bị bỏ qua hoàn toàn. Để null = không chặn
+    public System.Func<int, int, bool> CellClickFilter;
+    public System.Func<int, bool> SlotClickFilter;
+
+    public bool HasGridSelection => _kind == SelectionKind.Grid;
+    public bool HasTraySelection => _kind == SelectionKind.Tray;
+
     // GameManager bật/tắt: chỉ nhận thao tác khi đang ở trạng thái Playing
     public bool InputEnabled { get; set; } = true;
 
@@ -217,11 +228,30 @@ public class LevelSession : MonoBehaviour
         EvaluateEnd();
     }
 
+    // Truy vấn trạng thái (Tutorial dùng để quyết định cú chạm nào hợp lệ)
+
+    public bool IsUnlockedBeadAt(int x, int y)
+    {
+        if (!gridView.InBounds(x, y)) return false;
+        int index = gridView.ToIndex(x, y);
+        return _grid.IsInside(index) && _grid.HasBead(index) && !_grid.IsLocked(index);
+    }
+
+    public bool IsEmptyCellAt(int x, int y)
+    {
+        if (!gridView.InBounds(x, y)) return false;
+        int index = gridView.ToIndex(x, y);
+        return _grid.IsInside(index) && _grid.IsEmpty(index);
+    }
+
+    public bool IsTraySlotFilled(int slot) => _tray.IsValid(slot) && !_tray.IsEmpty(slot);
+
     // Xử lý click trên lưới
 
     private void OnCellClicked(int x, int y)
     {
         if (!CanAcceptInput) return;
+        if (CellClickFilter != null && !CellClickFilter(x, y)) return;
 
         int index = gridView.ToIndex(x, y);
         if (!_grid.IsInside(index)) return;
@@ -273,6 +303,7 @@ public class LevelSession : MonoBehaviour
     private void OnSlotClicked(int slot)
     {
         if (!CanAcceptInput || !_tray.IsValid(slot)) return;
+        if (SlotClickFilter != null && !SlotClickFilter(slot)) return;
 
         if (_kind == SelectionKind.Grid)
         {
@@ -327,6 +358,7 @@ public class LevelSession : MonoBehaviour
         _finder.FindBeadRegion(_grid, index, 0, _selection);
         gridView.SetSelected(_selection, true);
         AudioManager.PlaySfx(Sfx.Select);
+        SelectionMade?.Invoke();
     }
 
     // Chọn tất cả ô khay đang cùng màu với ô vừa click (không cần kề nhau)
@@ -343,6 +375,7 @@ public class LevelSession : MonoBehaviour
 
         for (int i = 0; i < _traySelection.Count; i++) trayView.SetSelected(_traySelection[i], true);
         AudioManager.PlaySfx(Sfx.Select);
+        SelectionMade?.Invoke();
     }
 
     private void ClearSelection()
@@ -502,6 +535,7 @@ public class LevelSession : MonoBehaviour
         AudioManager.PlaySfx(Sfx.Move);
         RaiseProgress();
         EvaluateEnd();
+        MoveCommitted?.Invoke();
     }
 
     // Di chuyển 1 hạt: cập nhật MODEL trước, rồi VIEW + animation

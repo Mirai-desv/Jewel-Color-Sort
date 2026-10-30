@@ -1528,7 +1528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &424593679
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1769,7 +1769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483926340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2670,7 +2670,7 @@ RectTransform:
   m_Father: {fileID: 258574204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2962,7 +2962,7 @@ RectTransform:
   m_Father: {fileID: 1229851539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3326,7 +3326,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: -724.9284, y: 0}
+  m_SizeDelta: {x: -724.9284, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &996256717
 MonoBehaviour:
@@ -4082,7 +4082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1161766764
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4211,7 +4211,7 @@ RectTransform:
   m_Father: {fileID: 160287295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4521,7 +4521,7 @@ RectTransform:
   m_Father: {fileID: 356013951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7261,7 +7261,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 138e6fd4557e44a0baf741da64de6e13, type: 2}
   - {fileID: 11400000, guid: 148e6fd4557e44a0baf741da64de6e14, type: 2}
   - {fileID: 11400000, guid: 158e6fd4557e44a0baf741da64de6e15, type: 2}
-  autoLoadOnStart: 1
+  autoLoadOnStart: 0
   autoAdvanceOnWin: 0
   debugLog: 1
 --- !u!114 &2079913241

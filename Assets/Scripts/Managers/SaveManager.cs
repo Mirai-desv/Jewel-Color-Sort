@@ -17,6 +17,7 @@ public static class SaveManager
     private const string SfxVolumeKey = "bead.sfxVolume";
 
     private const string DialogueSeenPrefix = "bead.dialogueSeen.";
+    private const string TutorialDonePrefix = "bead.tutorialDone.";
 
     // Level sẽ chơi khi bấm Start
     public static int CurrentLevelIndex
@@ -34,6 +35,9 @@ public static class SaveManager
 
     public static bool HasSeenDialogue(int levelIndex) => PlayerPrefs.GetInt(DialogueSeenPrefix + levelIndex, 0) == 1;
     public static void MarkDialogueSeen(int levelIndex) => PlayerPrefs.SetInt(DialogueSeenPrefix + levelIndex, 1);
+
+    public static bool HasDoneTutorial(int levelIndex) => PlayerPrefs.GetInt(TutorialDonePrefix + levelIndex, 0) == 1;
+    public static void MarkTutorialDone(int levelIndex) => PlayerPrefs.SetInt(TutorialDonePrefix + levelIndex, 1);
 
     public static int Coins
     {
@@ -106,7 +110,11 @@ public static class SaveManager
     {
         int highest = HighestUnlockedLevel;
         for (int i = 0; i <= highest; i++) PlayerPrefs.DeleteKey(BestPrefix + i);
-        for (int i = 0; i < 200; i++) PlayerPrefs.DeleteKey(DialogueSeenPrefix + i);
+        for (int i = 0; i < 200; i++)
+        {
+            PlayerPrefs.DeleteKey(DialogueSeenPrefix + i);
+            PlayerPrefs.DeleteKey(TutorialDonePrefix + i);
+        }
 
         PlayerPrefs.DeleteKey(LevelKey);
         PlayerPrefs.DeleteKey(HighestKey);
