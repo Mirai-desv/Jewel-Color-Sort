@@ -163,12 +163,25 @@ public class WebGLBuilder : EditorWindow
 
         string[] scenes = new string[] { "Assets/Scenes/SampleScene.unity" };
 
+        // Dọn dẹp cache player cũ để tránh lỗi script class layout mismatch giữa Editor và Player
+        try
+        {
+            string playerCache = Path.Combine(GetProjectRoot(), "Library", "PlayerDataCache");
+            string buildPlayerData = Path.Combine(GetProjectRoot(), "Library", "BuildPlayerData");
+            if (Directory.Exists(playerCache)) Directory.Delete(playerCache, true);
+            if (Directory.Exists(buildPlayerData)) Directory.Delete(buildPlayerData, true);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning("[WebGLBuilder] Could not clean player data cache: " + ex.Message);
+        }
+
         BuildPlayerOptions options = new BuildPlayerOptions
         {
             scenes = scenes,
             locationPathName = buildFolder,
             target = BuildTarget.WebGL,
-            options = BuildOptions.None
+            options = BuildOptions.CleanBuildCache
         };
 
         Debug.Log("[WebGLBuilder] Bắt đầu build WebGL vào: " + buildFolder);
