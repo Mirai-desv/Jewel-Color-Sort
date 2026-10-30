@@ -64,10 +64,13 @@ public class TutorialOverlay : MonoBehaviour
     public void Show()
     {
         EnsureBuilt();
-        gameObject.SetActive(true);
+        GetComponent<Canvas>().enabled = true;
     }
 
-    public void Hide() => gameObject.SetActive(false);
+    public void Hide()
+    {
+        if(_built) GetComponent<Canvas>().enabled = false;
+    }
 
     public void SetSkipVisible(bool visible)
     {

@@ -173,25 +173,12 @@ public class LevelSession : MonoBehaviour
             Debug.LogError("[LevelSession] Camera Controller đang trỏ vào PREFAB trong Project, không phải Main Camera trong scene. Hãy kéo Main Camera từ Hierarchy vào ô này.", this);
             ok = false;
         }
-
-        GestureDetector detector = FindFirstObjectByType<GestureDetector>(FindObjectsInactive.Include);
-
-        Debug.Log(detector == null
-            ? "[Debug] Không tìm thấy GestureDetector."
-            : $"[Debug] Tìm thấy GestureDetector trên: {detector.gameObject.name}",this);
-
-        if (detector == null)
-        {
-            Debug.LogError("[LevelSession] Scene chưa có GestureDetector.",this);
-            ok = false;
-        }
-        /*
+        
         if (FindFirstObjectByType<GestureDetector>() == null)
         {
             Debug.LogError("[LevelSession] Scene chưa có GestureDetector nên sẽ không nhận được click. Hãy thêm component GestureDetector vào object Session.", this);
             ok = false;
         }
-        */
         return ok;
     }
 

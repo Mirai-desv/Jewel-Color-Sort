@@ -105,5 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeadView
   fillRatio: 0.9
-  selectedScale: 1.12
+  selectedLift: 0.3
+  liftDuration: 0.12
   lockedDarken: 0

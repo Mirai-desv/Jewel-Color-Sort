@@ -59,15 +59,12 @@ public class TutorialManager : MonoBehaviour
             levelSession.SelectionMade += OnSelectionMade;
             levelSession.MoveCommitted += OnMoveCommitted;
 
+            if (levelSession.HasStartedLevel)
+            {
+                OnLevelStarted();
+            }
+
             Debug.Log("[Debug] Đã đăng ký sự kiện LevelSession.");
-        }
-        else
-        {
-            Debug.LogError("[Debug] TutorialManager chưa được gán LevelSession!");
-        }
-        if (levelSession.HasStartedLevel)
-        {
-            OnLevelStarted();
         }
         if (gameManager != null) gameManager.StateChanged += OnStateChanged;
         if (overlay != null) overlay.SkipClicked += OnSkip;
@@ -116,13 +113,15 @@ public class TutorialManager : MonoBehaviour
         int index = levelManager.CurrentIndex;
         LevelData level = levelManager.CurrentLevel;
         TutorialData data = level != null ? level.Tutorial : null;
-        if (data == null || data.Steps.Count == 0) return;
+        if (data == null || data.Steps.Count == 0 || data.Steps == null) return;
         if (!forceTutorial && SaveManager.HasDoneTutorial(index)) return;
 
         _data = data;
         _levelIndex = index;
         _pending = true;
         Log($"Level {index + 1} có tutorial ({data.Steps.Count} bước), chờ vào trạng thái Playing.");
+
+        if(gameManager != null && gameManager.State == GameState.Playing) Begin();
     }
 
     private void OnStateChanged(GameState state)
