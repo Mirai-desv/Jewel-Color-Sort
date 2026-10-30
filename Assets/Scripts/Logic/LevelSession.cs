@@ -31,6 +31,8 @@ public class LevelSession : MonoBehaviour
     public bool HasGridSelection => _kind == SelectionKind.Grid;
     public bool HasTraySelection => _kind == SelectionKind.Tray;
 
+    public bool HasStartedLevel { get; private set; }
+
     // GameManager bật/tắt: chỉ nhận thao tác khi đang ở trạng thái Playing
     public bool InputEnabled { get; set; } = true;
 
@@ -148,7 +150,11 @@ public class LevelSession : MonoBehaviour
             if (_grid.IsInside(i) && _grid.IsLocked(i)) gridView.SetLocked(i, true);
         }
 
+        Debug.Log("[Debug] Sắp phát sự kiện LevelStarted.");
+        Debug.Log($"[Debug] Phát LevelStarted từ Session ID={GetInstanceID()}", this);
+        HasStartedLevel = true;
         LevelStarted?.Invoke();
+        Debug.Log("[Debug] Đã phát sự kiện LevelStarted.");
         RaiseProgress();
         EvaluateEnd();
     }
@@ -168,11 +174,24 @@ public class LevelSession : MonoBehaviour
             ok = false;
         }
 
+        GestureDetector detector = FindFirstObjectByType<GestureDetector>(FindObjectsInactive.Include);
+
+        Debug.Log(detector == null
+            ? "[Debug] Không tìm thấy GestureDetector."
+            : $"[Debug] Tìm thấy GestureDetector trên: {detector.gameObject.name}",this);
+
+        if (detector == null)
+        {
+            Debug.LogError("[LevelSession] Scene chưa có GestureDetector.",this);
+            ok = false;
+        }
+        /*
         if (FindFirstObjectByType<GestureDetector>() == null)
         {
             Debug.LogError("[LevelSession] Scene chưa có GestureDetector nên sẽ không nhận được click. Hãy thêm component GestureDetector vào object Session.", this);
             ok = false;
         }
+        */
         return ok;
     }
 
@@ -184,6 +203,7 @@ public class LevelSession : MonoBehaviour
 
     public void ClearSession()
     {
+        HasStartedLevel = false;
         if (flyAnimator != null) flyAnimator.CancelAll();
         _selection.Clear();
         _traySelection.Clear();

@@ -50,11 +50,24 @@ public class TutorialManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log($"[Debug] TutorialManager đăng ký Session ID=" + $"{(levelSession != null ? levelSession.GetInstanceID() : -1)}", this);
+        Debug.Log($"[Debug] TutorialManager OnEnable, " + $"levelSession = {levelSession}");
+
         if (levelSession != null)
         {
             levelSession.LevelStarted += OnLevelStarted;
             levelSession.SelectionMade += OnSelectionMade;
             levelSession.MoveCommitted += OnMoveCommitted;
+
+            Debug.Log("[Debug] Đã đăng ký sự kiện LevelSession.");
+        }
+        else
+        {
+            Debug.LogError("[Debug] TutorialManager chưa được gán LevelSession!");
+        }
+        if (levelSession.HasStartedLevel)
+        {
+            OnLevelStarted();
         }
         if (gameManager != null) gameManager.StateChanged += OnStateChanged;
         if (overlay != null) overlay.SkipClicked += OnSkip;
@@ -96,6 +109,7 @@ public class TutorialManager : MonoBehaviour
     // Level vừa được nạp (có thể còn phải xem dialogue). Chỉ đánh dấu "chờ", chưa chạy ngay
     private void OnLevelStarted()
     {
+        Debug.Log("[Debug] TutorialManager nhận OnLevelStarted.");
         Abort();
         if (disableTutorial || levelManager == null) return;
 
@@ -119,7 +133,7 @@ public class TutorialManager : MonoBehaviour
                 if (_running)
                 {
                     _paused = false; // quay lại từ Setting
-                    overlay.Show();
+                    if(overlay != null) overlay.Show();
                 }
                 else if (_pending)
                 {
@@ -131,7 +145,7 @@ public class TutorialManager : MonoBehaviour
                 if (_running)
                 {
                     _paused = true;
-                    overlay.Hide();
+                    if(overlay != null) overlay.Hide();
                 }
                 break;
 

@@ -7180,6 +7180,7 @@ GameObject:
   - component: {fileID: 2079913247}
   - component: {fileID: 2079913246}
   - component: {fileID: 2079913245}
+  - component: {fileID: 2079913249}
   m_Layer: 0
   m_Name: Session
   m_TagString: Untagged
@@ -7347,7 +7348,7 @@ MonoBehaviour:
   lockWhileRunning: []
   forceTutorial: 0
   disableTutorial: 0
-  debugLog: 0
+  debugLog: 1
 --- !u!114 &2079913245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7371,7 +7372,7 @@ MonoBehaviour:
   boxSprite: {fileID: 0}
   boxColor: {r: 1, g: 0.97, b: 0.9, a: 1}
   textColor: {r: 0.25, g: 0.15, b: 0.1, a: 1}
-  font: {fileID: 0}
+  font: {fileID: 11400000, guid: 85865dc44588b02438ac83f05e69abbe, type: 2}
   boxWidthFraction: 0.82
   boxHeight: 230
   boxMargin: 0.2
@@ -7440,6 +7441,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2079913249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079913236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b14784bdd20a444aeba4a1441ac874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GestureDetector
 --- !u!1 &3061550673886012607
 GameObject:
   m_ObjectHideFlags: 0
