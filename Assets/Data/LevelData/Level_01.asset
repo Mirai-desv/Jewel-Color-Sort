@@ -1558,10 +1558,10 @@ MonoBehaviour:
   - type: 12
     x: 8
     y: 20
-  - type: 39
+  - type: 12
     x: 9
     y: 20
-  - type: 39
+  - type: 12
     x: 10
     y: 20
   - type: 12
@@ -1576,10 +1576,10 @@ MonoBehaviour:
   - type: 12
     x: 14
     y: 20
-  - type: 39
+  - type: 12
     x: 15
     y: 20
-  - type: 39
+  - type: 12
     x: 16
     y: 20
   - type: 12
@@ -4790,10 +4790,10 @@ MonoBehaviour:
   - type: 12
     x: 9
     y: 28
-  - type: 39
+  - type: 12
     x: 10
     y: 28
-  - type: 39
+  - type: 12
     x: 11
     y: 28
   - type: 39
@@ -4802,10 +4802,10 @@ MonoBehaviour:
   - type: 39
     x: 13
     y: 28
-  - type: 39
+  - type: 12
     x: 14
     y: 28
-  - type: 39
+  - type: 12
     x: 15
     y: 28
   - type: 12
