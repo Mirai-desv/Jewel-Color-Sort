@@ -5759,6 +5759,13 @@ MonoBehaviour:
   palette: {fileID: 11400000, guid: 17d01146c670b4f47a072a233a32a20c, type: 2}
   trayBackground: {fileID: 0}
   backgroundSprite: {fileID: 0}
+  fixedSlotSize: 65
+  slotsPerRow: 12
+  spacingRatio: 0.25
+  paddingX: 35
+  topPadding: 50
+  bottomPadding: 40
+  bottomMargin: 20
 --- !u!1 &1441668875
 GameObject:
   m_ObjectHideFlags: 0

@@ -169,3 +169,5 @@ MonoBehaviour:
   countText: {fileID: 0}
   selectedMarker: {fileID: 0}
   lockIcon: {fileID: 0}
+  selectedScale: 1.3
+  selectedLift: 10

@@ -10,6 +10,15 @@ public class TrayView : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image trayBackground;
     [SerializeField] private Sprite backgroundSprite;
 
+    [Header("Kích thước khay")]
+    [SerializeField, Min(8f)] private float fixedSlotSize = 70f;   // kích thước mỗi ô (cố định)
+    [SerializeField, Min(1)] private int slotsPerRow = 6;          // số ô mỗi hàng
+    [SerializeField, Range(0f, 0.6f)] private float spacingRatio = 0.25f; // khoảng cách giữa ô = tỉ lệ * kích thước ô
+    [SerializeField] private float paddingX = 35f;
+    [SerializeField] private float topPadding = 50f;
+    [SerializeField] private float bottomPadding = 40f;
+    [SerializeField] private float bottomMargin = 20f;   // khoảng cách từ đáy safe area
+
     private readonly List<TraySlotView> _slots = new List<TraySlotView>();
     private Canvas _canvas;
     private bool _layoutPending;
@@ -202,49 +211,12 @@ public class TrayView : MonoBehaviour
         bool isLandscape = safeWidth > safeHeight;
         int count = _slots.Count;
 
-        // 1. Xác định số cột tối ưu dựa trên số lượng ô
-        int cols;
-        if (count <= 7)
-            cols = count;
-        else if (count <= 14)
-            cols = Mathf.CeilToInt(count / 2f);
-        else if (count <= 26)
-            cols = Mathf.CeilToInt(count / 3f);
-        else
-            cols = isLandscape ? Mathf.CeilToInt(count / 3f) : Mathf.CeilToInt(count / 4f);
-
-        cols = Mathf.Clamp(cols, 1, count);
-        int rows = Mathf.CeilToInt((float)count / cols);
-
-        // 2. Tính bề rộng khả dụng cho khay (thụt vào một chút để có lề 2 bên)
-        float maxTrayWidth = isLandscape
-            ? Mathf.Min(safeWidth * 0.72f, 1100f)
-            : Mathf.Min(safeWidth * 0.94f, 1080f);
-
-        float paddingX = 35f;
-        float topPadding = 50f;
-        float bottomPadding = 40f;
-        float bottomMargin = 20f;
-
-        float availableSlotsWidth = maxTrayWidth - paddingX * 2f;
-        float spacingRatio = 0.25f;
-
-        // Bề rộng mỗi ô
-        float slotSize = availableSlotsWidth / (cols + (cols - 1) * spacingRatio);
-        slotSize = Mathf.Clamp(slotSize, 36f, 90f);
+        // Ô cố định, mỗi hàng đúng slotsPerRow ô (hàng cuối có thể ít hơn), khay tự co giãn theo số ô
+        float slotSize = fixedSlotSize;
         float spacing = Mathf.Round(slotSize * spacingRatio);
 
-        // 3. Giới hạn chiều cao khay không chiếm quá nhiều màn hình (tối đa ~24% dọc, 30% ngang)
-        float maxTrayHeight = safeHeight * (isLandscape ? 0.30f : 0.24f);
-        float maxSlotsHeight = maxTrayHeight - topPadding - bottomPadding;
-        float neededSlotsHeight = rows * slotSize + (rows - 1) * spacing;
-
-        if (neededSlotsHeight > maxSlotsHeight && neededSlotsHeight > 0f)
-        {
-            float scaleH = maxSlotsHeight / neededSlotsHeight;
-            slotSize = Mathf.Max(32f, slotSize * scaleH);
-            spacing = Mathf.Round(slotSize * spacingRatio);
-        }
+        int cols = Mathf.Clamp(slotsPerRow, 1, count);
+        int rows = Mathf.CeilToInt((float)count / cols);
 
         float gridWidth = cols * slotSize + (cols - 1) * spacing;
         float gridHeight = rows * slotSize + (rows - 1) * spacing;
