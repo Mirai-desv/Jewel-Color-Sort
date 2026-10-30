@@ -14,6 +14,1122 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   background:
   - type: 38
+    x: 8
+    y: 0
+  - type: 38
+    x: 9
+    y: 0
+  - type: 38
+    x: 10
+    y: 0
+  - type: 38
+    x: 11
+    y: 0
+  - type: 38
+    x: 7
+    y: 1
+  - type: 38
+    x: 8
+    y: 1
+  - type: 71
+    x: 9
+    y: 1
+  - type: 71
+    x: 10
+    y: 1
+  - type: 38
+    x: 11
+    y: 1
+  - type: 38
+    x: 12
+    y: 1
+  - type: 38
+    x: 5
+    y: 2
+  - type: 38
+    x: 6
+    y: 2
+  - type: 38
+    x: 7
+    y: 2
+  - type: 71
+    x: 8
+    y: 2
+  - type: 71
+    x: 9
+    y: 2
+  - type: 71
+    x: 10
+    y: 2
+  - type: 38
+    x: 11
+    y: 2
+  - type: 38
+    x: 12
+    y: 2
+  - type: 38
+    x: 13
+    y: 2
+  - type: 38
+    x: 14
+    y: 2
+  - type: 38
+    x: 4
+    y: 3
+  - type: 38
+    x: 5
+    y: 3
+  - type: 38
+    x: 6
+    y: 3
+  - type: 71
+    x: 7
+    y: 3
+  - type: 71
+    x: 8
+    y: 3
+  - type: 71
+    x: 9
+    y: 3
+  - type: 71
+    x: 10
+    y: 3
+  - type: 38
+    x: 11
+    y: 3
+  - type: 71
+    x: 12
+    y: 3
+  - type: 38
+    x: 13
+    y: 3
+  - type: 38
+    x: 14
+    y: 3
+  - type: 38
+    x: 15
+    y: 3
+  - type: 38
+    x: 3
+    y: 4
+  - type: 38
+    x: 4
+    y: 4
+  - type: 71
+    x: 5
+    y: 4
+  - type: 71
+    x: 6
+    y: 4
+  - type: 71
+    x: 7
+    y: 4
+  - type: 47
+    x: 8
+    y: 4
+  - type: 71
+    x: 9
+    y: 4
+  - type: 47
+    x: 10
+    y: 4
+  - type: 38
+    x: 11
+    y: 4
+  - type: 71
+    x: 12
+    y: 4
+  - type: 71
+    x: 13
+    y: 4
+  - type: 71
+    x: 14
+    y: 4
+  - type: 38
+    x: 15
+    y: 4
+  - type: 38
+    x: 16
+    y: 4
+  - type: 38
+    x: 2
+    y: 5
+  - type: 38
+    x: 3
+    y: 5
+  - type: 71
+    x: 4
+    y: 5
+  - type: 71
+    x: 5
+    y: 5
+  - type: 71
+    x: 6
+    y: 5
+  - type: 47
+    x: 7
+    y: 5
+  - type: 38
+    x: 8
+    y: 5
+  - type: 71
+    x: 9
+    y: 5
+  - type: 47
+    x: 10
+    y: 5
+  - type: 38
+    x: 11
+    y: 5
+  - type: 47
+    x: 12
+    y: 5
+  - type: 71
+    x: 13
+    y: 5
+  - type: 71
+    x: 14
+    y: 5
+  - type: 71
+    x: 15
+    y: 5
+  - type: 38
+    x: 16
+    y: 5
+  - type: 38
+    x: 17
+    y: 5
+  - type: 38
+    x: 1
+    y: 6
+  - type: 38
+    x: 2
+    y: 6
+  - type: 71
+    x: 3
+    y: 6
+  - type: 71
+    x: 4
+    y: 6
+  - type: 71
+    x: 5
+    y: 6
+  - type: 47
+    x: 6
+    y: 6
+  - type: 47
+    x: 7
+    y: 6
+  - type: 38
+    x: 8
+    y: 6
+  - type: 71
+    x: 9
+    y: 6
+  - type: 47
+    x: 10
+    y: 6
+  - type: 38
+    x: 11
+    y: 6
+  - type: 47
+    x: 12
+    y: 6
+  - type: 47
+    x: 13
+    y: 6
+  - type: 71
+    x: 14
+    y: 6
+  - type: 71
+    x: 15
+    y: 6
+  - type: 71
+    x: 16
+    y: 6
+  - type: 38
+    x: 17
+    y: 6
+  - type: 38
+    x: 18
+    y: 6
+  - type: 38
+    x: 1
+    y: 7
+  - type: 71
+    x: 2
+    y: 7
+  - type: 71
+    x: 3
+    y: 7
+  - type: 71
+    x: 4
+    y: 7
+  - type: 47
+    x: 5
+    y: 7
+  - type: 47
+    x: 6
+    y: 7
+  - type: 38
+    x: 7
+    y: 7
+  - type: 71
+    x: 9
+    y: 7
+  - type: 47
+    x: 10
+    y: 7
+  - type: 38
+    x: 11
+    y: 7
+  - type: 38
+    x: 12
+    y: 7
+  - type: 47
+    x: 13
+    y: 7
+  - type: 47
+    x: 14
+    y: 7
+  - type: 71
+    x: 15
+    y: 7
+  - type: 71
+    x: 16
+    y: 7
+  - type: 71
+    x: 17
+    y: 7
+  - type: 38
+    x: 18
+    y: 7
+  - type: 38
+    x: 0
+    y: 8
+  - type: 38
+    x: 1
+    y: 8
+  - type: 71
+    x: 2
+    y: 8
+  - type: 71
+    x: 3
+    y: 8
+  - type: 47
+    x: 4
+    y: 8
+  - type: 47
+    x: 5
+    y: 8
+  - type: 47
+    x: 6
+    y: 8
+  - type: 38
+    x: 7
+    y: 8
+  - type: 71
+    x: 9
+    y: 8
+  - type: 47
+    x: 10
+    y: 8
+  - type: 38
+    x: 11
+    y: 8
+  - type: 38
+    x: 12
+    y: 8
+  - type: 47
+    x: 13
+    y: 8
+  - type: 47
+    x: 14
+    y: 8
+  - type: 47
+    x: 15
+    y: 8
+  - type: 71
+    x: 16
+    y: 8
+  - type: 71
+    x: 17
+    y: 8
+  - type: 38
+    x: 18
+    y: 8
+  - type: 38
+    x: 19
+    y: 8
+  - type: 38
+    x: 0
+    y: 9
+  - type: 71
+    x: 1
+    y: 9
+  - type: 71
+    x: 2
+    y: 9
+  - type: 71
+    x: 3
+    y: 9
+  - type: 47
+    x: 4
+    y: 9
+  - type: 47
+    x: 5
+    y: 9
+  - type: 38
+    x: 6
+    y: 9
+  - type: 71
+    x: 9
+    y: 9
+  - type: 47
+    x: 10
+    y: 9
+  - type: 38
+    x: 11
+    y: 9
+  - type: 38
+    x: 13
+    y: 9
+  - type: 47
+    x: 14
+    y: 9
+  - type: 47
+    x: 15
+    y: 9
+  - type: 47
+    x: 16
+    y: 9
+  - type: 71
+    x: 17
+    y: 9
+  - type: 71
+    x: 18
+    y: 9
+  - type: 38
+    x: 19
+    y: 9
+  - type: 38
+    x: 0
+    y: 10
+  - type: 71
+    x: 1
+    y: 10
+  - type: 71
+    x: 2
+    y: 10
+  - type: 47
+    x: 3
+    y: 10
+  - type: 47
+    x: 4
+    y: 10
+  - type: 38
+    x: 5
+    y: 10
+  - type: 71
+    x: 9
+    y: 10
+  - type: 47
+    x: 10
+    y: 10
+  - type: 38
+    x: 11
+    y: 10
+  - type: 38
+    x: 14
+    y: 10
+  - type: 47
+    x: 15
+    y: 10
+  - type: 47
+    x: 16
+    y: 10
+  - type: 71
+    x: 17
+    y: 10
+  - type: 71
+    x: 18
+    y: 10
+  - type: 38
+    x: 19
+    y: 10
+  - type: 38
+    x: 0
+    y: 11
+  - type: 71
+    x: 1
+    y: 11
+  - type: 47
+    x: 2
+    y: 11
+  - type: 47
+    x: 3
+    y: 11
+  - type: 38
+    x: 4
+    y: 11
+  - type: 38
+    x: 7
+    y: 11
+  - type: 38
+    x: 8
+    y: 11
+  - type: 38
+    x: 9
+    y: 11
+  - type: 71
+    x: 10
+    y: 11
+  - type: 38
+    x: 11
+    y: 11
+  - type: 38
+    x: 12
+    y: 11
+  - type: 38
+    x: 15
+    y: 11
+  - type: 38
+    x: 16
+    y: 11
+  - type: 47
+    x: 17
+    y: 11
+  - type: 71
+    x: 18
+    y: 11
+  - type: 38
+    x: 19
+    y: 11
+  - type: 38
+    x: 0
+    y: 12
+  - type: 47
+    x: 1
+    y: 12
+  - type: 47
+    x: 2
+    y: 12
+  - type: 47
+    x: 3
+    y: 12
+  - type: 38
+    x: 4
+    y: 12
+  - type: 38
+    x: 6
+    y: 12
+  - type: 43
+    x: 7
+    y: 12
+  - type: 43
+    x: 8
+    y: 12
+  - type: 43
+    x: 9
+    y: 12
+  - type: 43
+    x: 10
+    y: 12
+  - type: 43
+    x: 11
+    y: 12
+  - type: 43
+    x: 12
+    y: 12
+  - type: 38
+    x: 13
+    y: 12
+  - type: 38
+    x: 15
+    y: 12
+  - type: 38
+    x: 16
+    y: 12
+  - type: 47
+    x: 17
+    y: 12
+  - type: 47
+    x: 18
+    y: 12
+  - type: 38
+    x: 19
+    y: 12
+  - type: 38
+    x: 0
+    y: 13
+  - type: 47
+    x: 1
+    y: 13
+  - type: 38
+    x: 2
+    y: 13
+  - type: 38
+    x: 3
+    y: 13
+  - type: 38
+    x: 6
+    y: 13
+  - type: 43
+    x: 7
+    y: 13
+  - type: 43
+    x: 8
+    y: 13
+  - type: 43
+    x: 9
+    y: 13
+  - type: 43
+    x: 10
+    y: 13
+  - type: 43
+    x: 11
+    y: 13
+  - type: 43
+    x: 12
+    y: 13
+  - type: 38
+    x: 13
+    y: 13
+  - type: 38
+    x: 17
+    y: 13
+  - type: 47
+    x: 18
+    y: 13
+  - type: 38
+    x: 19
+    y: 13
+  - type: 38
+    x: 0
+    y: 14
+  - type: 38
+    x: 1
+    y: 14
+  - type: 38
+    x: 5
+    y: 14
+  - type: 43
+    x: 6
+    y: 14
+  - type: 43
+    x: 7
+    y: 14
+  - type: 43
+    x: 8
+    y: 14
+  - type: 43
+    x: 9
+    y: 14
+  - type: 43
+    x: 10
+    y: 14
+  - type: 43
+    x: 11
+    y: 14
+  - type: 43
+    x: 12
+    y: 14
+  - type: 43
+    x: 13
+    y: 14
+  - type: 38
+    x: 14
+    y: 14
+  - type: 38
+    x: 18
+    y: 14
+  - type: 38
+    x: 19
+    y: 14
+  - type: 38
+    x: 4
+    y: 15
+  - type: 43
+    x: 5
+    y: 15
+  - type: 43
+    x: 6
+    y: 15
+  - type: 43
+    x: 7
+    y: 15
+  - type: 43
+    x: 8
+    y: 15
+  - type: 45
+    x: 9
+    y: 15
+  - type: 43
+    x: 10
+    y: 15
+  - type: 45
+    x: 11
+    y: 15
+  - type: 43
+    x: 12
+    y: 15
+  - type: 43
+    x: 13
+    y: 15
+  - type: 43
+    x: 14
+    y: 15
+  - type: 38
+    x: 15
+    y: 15
+  - type: 38
+    x: 3
+    y: 16
+  - type: 43
+    x: 4
+    y: 16
+  - type: 43
+    x: 5
+    y: 16
+  - type: 44
+    x: 6
+    y: 16
+  - type: 44
+    x: 7
+    y: 16
+  - type: 43
+    x: 8
+    y: 16
+  - type: 45
+    x: 9
+    y: 16
+  - type: 43
+    x: 10
+    y: 16
+  - type: 45
+    x: 11
+    y: 16
+  - type: 44
+    x: 12
+    y: 16
+  - type: 44
+    x: 13
+    y: 16
+  - type: 43
+    x: 14
+    y: 16
+  - type: 43
+    x: 15
+    y: 16
+  - type: 38
+    x: 16
+    y: 16
+  - type: 38
+    x: 3
+    y: 17
+  - type: 43
+    x: 4
+    y: 17
+  - type: 44
+    x: 5
+    y: 17
+  - type: 44
+    x: 6
+    y: 17
+  - type: 44
+    x: 7
+    y: 17
+  - type: 44
+    x: 8
+    y: 17
+  - type: 45
+    x: 9
+    y: 17
+  - type: 43
+    x: 10
+    y: 17
+  - type: 45
+    x: 11
+    y: 17
+  - type: 44
+    x: 12
+    y: 17
+  - type: 44
+    x: 13
+    y: 17
+  - type: 44
+    x: 14
+    y: 17
+  - type: 43
+    x: 15
+    y: 17
+  - type: 38
+    x: 16
+    y: 17
+  - type: 38
+    x: 3
+    y: 18
+  - type: 44
+    x: 4
+    y: 18
+  - type: 44
+    x: 5
+    y: 18
+  - type: 44
+    x: 6
+    y: 18
+  - type: 44
+    x: 7
+    y: 18
+  - type: 44
+    x: 8
+    y: 18
+  - type: 45
+    x: 9
+    y: 18
+  - type: 43
+    x: 10
+    y: 18
+  - type: 45
+    x: 11
+    y: 18
+  - type: 44
+    x: 12
+    y: 18
+  - type: 44
+    x: 13
+    y: 18
+  - type: 44
+    x: 14
+    y: 18
+  - type: 43
+    x: 15
+    y: 18
+  - type: 38
+    x: 16
+    y: 18
+  - type: 38
+    x: 3
+    y: 19
+  - type: 44
+    x: 4
+    y: 19
+  - type: 44
+    x: 5
+    y: 19
+  - type: 44
+    x: 6
+    y: 19
+  - type: 44
+    x: 7
+    y: 19
+  - type: 44
+    x: 8
+    y: 19
+  - type: 45
+    x: 9
+    y: 19
+  - type: 43
+    x: 10
+    y: 19
+  - type: 45
+    x: 11
+    y: 19
+  - type: 44
+    x: 12
+    y: 19
+  - type: 44
+    x: 13
+    y: 19
+  - type: 44
+    x: 14
+    y: 19
+  - type: 44
+    x: 15
+    y: 19
+  - type: 38
+    x: 16
+    y: 19
+  - type: 38
+    x: 3
+    y: 20
+  - type: 44
+    x: 4
+    y: 20
+  - type: 44
+    x: 5
+    y: 20
+  - type: 44
+    x: 6
+    y: 20
+  - type: 44
+    x: 7
+    y: 20
+  - type: 45
+    x: 8
+    y: 20
+  - type: 45
+    x: 9
+    y: 20
+  - type: 43
+    x: 10
+    y: 20
+  - type: 45
+    x: 11
+    y: 20
+  - type: 44
+    x: 12
+    y: 20
+  - type: 44
+    x: 13
+    y: 20
+  - type: 44
+    x: 14
+    y: 20
+  - type: 44
+    x: 15
+    y: 20
+  - type: 38
+    x: 16
+    y: 20
+  - type: 38
+    x: 3
+    y: 21
+  - type: 44
+    x: 4
+    y: 21
+  - type: 44
+    x: 5
+    y: 21
+  - type: 44
+    x: 6
+    y: 21
+  - type: 45
+    x: 7
+    y: 21
+  - type: 45
+    x: 8
+    y: 21
+  - type: 45
+    x: 9
+    y: 21
+  - type: 38
+    x: 10
+    y: 21
+  - type: 45
+    x: 11
+    y: 21
+  - type: 45
+    x: 12
+    y: 21
+  - type: 44
+    x: 13
+    y: 21
+  - type: 44
+    x: 14
+    y: 21
+  - type: 44
+    x: 15
+    y: 21
+  - type: 38
+    x: 16
+    y: 21
+  - type: 38
+    x: 3
+    y: 22
+  - type: 44
+    x: 4
+    y: 22
+  - type: 44
+    x: 5
+    y: 22
+  - type: 45
+    x: 6
+    y: 22
+  - type: 45
+    x: 7
+    y: 22
+  - type: 45
+    x: 8
+    y: 22
+  - type: 38
+    x: 9
+    y: 22
+  - type: 43
+    x: 10
+    y: 22
+  - type: 38
+    x: 11
+    y: 22
+  - type: 45
+    x: 12
+    y: 22
+  - type: 45
+    x: 13
+    y: 22
+  - type: 44
+    x: 14
+    y: 22
+  - type: 44
+    x: 15
+    y: 22
+  - type: 38
+    x: 16
+    y: 22
+  - type: 38
+    x: 3
+    y: 23
+  - type: 44
+    x: 4
+    y: 23
+  - type: 45
+    x: 5
+    y: 23
+  - type: 45
+    x: 6
+    y: 23
+  - type: 45
+    x: 7
+    y: 23
+  - type: 38
+    x: 8
+    y: 23
+  - type: 43
+    x: 9
+    y: 23
+  - type: 43
+    x: 10
+    y: 23
+  - type: 43
+    x: 11
+    y: 23
+  - type: 38
+    x: 12
+    y: 23
+  - type: 45
+    x: 13
+    y: 23
+  - type: 45
+    x: 14
+    y: 23
+  - type: 44
+    x: 15
+    y: 23
+  - type: 38
+    x: 16
+    y: 23
+  - type: 38
+    x: 3
+    y: 24
+  - type: 44
+    x: 4
+    y: 24
+  - type: 45
+    x: 5
+    y: 24
+  - type: 45
+    x: 6
+    y: 24
+  - type: 38
+    x: 7
+    y: 24
+  - type: 43
+    x: 8
+    y: 24
+  - type: 43
+    x: 9
+    y: 24
+  - type: 43
+    x: 10
+    y: 24
+  - type: 43
+    x: 11
+    y: 24
+  - type: 38
+    x: 12
+    y: 24
+  - type: 45
+    x: 13
+    y: 24
+  - type: 45
+    x: 14
+    y: 24
+  - type: 44
+    x: 15
+    y: 24
+  - type: 38
+    x: 16
+    y: 24
+  - type: 38
+    x: 3
+    y: 25
+  - type: 44
+    x: 4
+    y: 25
+  - type: 45
+    x: 5
+    y: 25
+  - type: 38
+    x: 6
+    y: 25
+  - type: 43
+    x: 7
+    y: 25
+  - type: 43
+    x: 8
+    y: 25
+  - type: 43
+    x: 9
+    y: 25
+  - type: 43
+    x: 10
+    y: 25
+  - type: 43
+    x: 11
+    y: 25
+  - type: 38
+    x: 12
+    y: 25
+  - type: 38
+    x: 13
+    y: 25
+  - type: 45
+    x: 14
+    y: 25
+  - type: 44
+    x: 15
+    y: 25
+  - type: 38
+    x: 16
+    y: 25
+  - type: 38
+    x: 4
+    y: 26
+  - type: 38
+    x: 5
+    y: 26
+  - type: 38
+    x: 8
+    y: 26
+  - type: 43
+    x: 9
+    y: 26
+  - type: 43
+    x: 10
+    y: 26
+  - type: 43
+    x: 11
+    y: 26
+  - type: 38
+    x: 12
+    y: 26
+  - type: 38
+    x: 14
+    y: 26
+  - type: 38
+    x: 15
+    y: 26
+  - type: 38
     x: 9
     y: 27
   - type: 38
@@ -22,1082 +1138,1124 @@ MonoBehaviour:
   - type: 38
     x: 11
     y: 27
-  - type: 38
-    x: 4
-    y: 26
-  - type: 38
-    x: 5
-    y: 26
-  - type: 38
-    x: 8
-    y: 26
-  - type: 38
-    x: 9
-    y: 26
-  - type: 38
-    x: 10
-    y: 26
-  - type: 38
-    x: 11
-    y: 26
-  - type: 38
-    x: 12
-    y: 26
-  - type: 38
-    x: 14
-    y: 26
-  - type: 38
-    x: 15
-    y: 26
-  - type: 38
-    x: 3
-    y: 25
-  - type: 38
-    x: 4
-    y: 25
-  - type: 38
-    x: 5
-    y: 25
-  - type: 38
-    x: 6
-    y: 25
-  - type: 38
-    x: 7
-    y: 25
-  - type: 38
-    x: 8
-    y: 25
-  - type: 38
-    x: 9
-    y: 25
-  - type: 38
-    x: 10
-    y: 25
-  - type: 38
-    x: 11
-    y: 25
-  - type: 38
-    x: 12
-    y: 25
-  - type: 38
-    x: 13
-    y: 25
-  - type: 38
-    x: 14
-    y: 25
-  - type: 38
-    x: 15
-    y: 25
-  - type: 38
-    x: 16
-    y: 25
-  - type: 38
-    x: 3
-    y: 24
-  - type: 44
-    x: 4
-    y: 24
-  - type: 45
-    x: 5
-    y: 24
-  - type: 45
-    x: 6
-    y: 24
-  - type: 38
-    x: 7
-    y: 24
-  - type: 38
-    x: 8
-    y: 24
-  - type: 38
-    x: 9
-    y: 24
-  - type: 38
-    x: 10
-    y: 24
-  - type: 38
-    x: 11
-    y: 24
-  - type: 38
-    x: 12
-    y: 24
-  - type: 45
-    x: 13
-    y: 24
-  - type: 45
-    x: 14
-    y: 24
-  - type: 44
-    x: 15
-    y: 24
-  - type: 38
-    x: 16
-    y: 24
-  - type: 38
-    x: 3
-    y: 23
-  - type: 44
-    x: 4
-    y: 23
-  - type: 45
-    x: 5
-    y: 23
-  - type: 45
-    x: 6
-    y: 23
-  - type: 45
-    x: 7
-    y: 23
-  - type: 38
-    x: 8
-    y: 23
-  - type: 38
-    x: 9
-    y: 23
-  - type: 38
-    x: 10
-    y: 23
-  - type: 38
-    x: 11
-    y: 23
-  - type: 38
-    x: 12
-    y: 23
-  - type: 45
-    x: 13
-    y: 23
-  - type: 45
-    x: 14
-    y: 23
-  - type: 44
-    x: 15
-    y: 23
-  - type: 38
-    x: 16
-    y: 23
-  - type: 38
-    x: 3
-    y: 22
-  - type: 44
-    x: 4
-    y: 22
-  - type: 44
-    x: 5
-    y: 22
-  - type: 45
-    x: 6
-    y: 22
-  - type: 45
-    x: 7
-    y: 22
-  - type: 45
-    x: 8
-    y: 22
-  - type: 38
-    x: 9
-    y: 22
-  - type: 38
-    x: 10
-    y: 22
-  - type: 38
-    x: 11
-    y: 22
-  - type: 38
-    x: 12
-    y: 22
-  - type: 45
-    x: 13
-    y: 22
-  - type: 44
-    x: 14
-    y: 22
-  - type: 44
-    x: 15
-    y: 22
-  - type: 38
-    x: 16
-    y: 22
-  - type: 38
-    x: 3
-    y: 21
-  - type: 44
-    x: 4
-    y: 21
-  - type: 44
-    x: 5
-    y: 21
-  - type: 44
-    x: 6
-    y: 21
-  - type: 45
-    x: 7
-    y: 21
-  - type: 45
-    x: 8
-    y: 21
-  - type: 45
-    x: 9
-    y: 21
-  - type: 38
-    x: 10
-    y: 21
-  - type: 45
-    x: 11
-    y: 21
-  - type: 45
-    x: 12
-    y: 21
-  - type: 45
-    x: 13
-    y: 21
-  - type: 44
-    x: 14
-    y: 21
-  - type: 44
-    x: 15
-    y: 21
-  - type: 38
-    x: 16
-    y: 21
-  - type: 38
-    x: 3
-    y: 20
-  - type: 44
-    x: 4
-    y: 20
-  - type: 44
-    x: 5
-    y: 20
-  - type: 44
-    x: 6
-    y: 20
-  - type: 44
-    x: 7
-    y: 20
-  - type: 45
-    x: 8
-    y: 20
-  - type: 45
-    x: 9
-    y: 20
-  - type: 43
-    x: 10
-    y: 20
-  - type: 45
-    x: 11
-    y: 20
-  - type: 44
-    x: 12
-    y: 20
-  - type: 44
-    x: 13
-    y: 20
-  - type: 44
-    x: 14
-    y: 20
-  - type: 44
-    x: 15
-    y: 20
-  - type: 38
-    x: 16
-    y: 20
-  - type: 38
-    x: 3
-    y: 19
-  - type: 44
-    x: 4
-    y: 19
-  - type: 44
-    x: 5
-    y: 19
-  - type: 44
-    x: 6
-    y: 19
-  - type: 44
-    x: 7
-    y: 19
-  - type: 44
-    x: 8
-    y: 19
-  - type: 45
-    x: 9
-    y: 19
-  - type: 43
-    x: 10
-    y: 19
-  - type: 45
-    x: 11
-    y: 19
-  - type: 44
-    x: 12
-    y: 19
-  - type: 44
-    x: 13
-    y: 19
-  - type: 44
-    x: 14
-    y: 19
-  - type: 44
-    x: 15
-    y: 19
-  - type: 38
-    x: 16
-    y: 19
-  - type: 38
-    x: 3
-    y: 18
-  - type: 44
-    x: 4
-    y: 18
-  - type: 44
-    x: 5
-    y: 18
-  - type: 44
-    x: 6
-    y: 18
-  - type: 44
-    x: 7
-    y: 18
-  - type: 44
-    x: 8
-    y: 18
-  - type: 45
-    x: 9
-    y: 18
-  - type: 43
-    x: 10
-    y: 18
-  - type: 45
-    x: 11
-    y: 18
-  - type: 44
-    x: 12
-    y: 18
-  - type: 44
-    x: 13
-    y: 18
-  - type: 44
-    x: 14
-    y: 18
-  - type: 44
-    x: 15
-    y: 18
-  - type: 38
-    x: 16
-    y: 18
-  - type: 38
-    x: 3
-    y: 17
-  - type: 38
-    x: 4
-    y: 17
-  - type: 44
-    x: 5
-    y: 17
-  - type: 44
-    x: 6
-    y: 17
-  - type: 44
-    x: 7
-    y: 17
-  - type: 44
-    x: 8
-    y: 17
-  - type: 45
-    x: 9
-    y: 17
-  - type: 43
-    x: 10
-    y: 17
-  - type: 45
-    x: 11
-    y: 17
-  - type: 44
-    x: 12
-    y: 17
-  - type: 44
-    x: 13
-    y: 17
-  - type: 44
-    x: 14
-    y: 17
-  - type: 44
-    x: 15
-    y: 17
-  - type: 38
-    x: 16
-    y: 17
-  - type: 38
-    x: 3
-    y: 16
-  - type: 38
-    x: 4
-    y: 16
-  - type: 38
-    x: 5
-    y: 16
-  - type: 44
-    x: 6
-    y: 16
-  - type: 44
-    x: 7
-    y: 16
-  - type: 43
-    x: 8
-    y: 16
-  - type: 45
-    x: 9
-    y: 16
-  - type: 43
-    x: 10
-    y: 16
-  - type: 45
-    x: 11
-    y: 16
-  - type: 44
-    x: 12
-    y: 16
-  - type: 44
-    x: 13
-    y: 16
-  - type: 44
-    x: 14
-    y: 16
-  - type: 38
-    x: 15
-    y: 16
-  - type: 38
-    x: 16
-    y: 16
-  - type: 38
-    x: 4
-    y: 15
-  - type: 38
-    x: 5
-    y: 15
-  - type: 43
-    x: 6
-    y: 15
-  - type: 43
-    x: 7
-    y: 15
-  - type: 43
-    x: 8
-    y: 15
-  - type: 45
-    x: 9
-    y: 15
-  - type: 43
-    x: 10
-    y: 15
-  - type: 45
-    x: 11
-    y: 15
-  - type: 43
-    x: 12
-    y: 15
-  - type: 43
-    x: 13
-    y: 15
-  - type: 38
-    x: 14
-    y: 15
-  - type: 38
-    x: 15
-    y: 15
-  - type: 38
-    x: 0
-    y: 14
-  - type: 38
-    x: 1
-    y: 14
-  - type: 38
-    x: 5
-    y: 14
-  - type: 38
-    x: 6
-    y: 14
-  - type: 43
-    x: 7
-    y: 14
-  - type: 43
-    x: 8
-    y: 14
-  - type: 43
-    x: 9
-    y: 14
-  - type: 43
-    x: 10
-    y: 14
-  - type: 43
-    x: 11
-    y: 14
-  - type: 43
-    x: 12
-    y: 14
-  - type: 38
-    x: 13
-    y: 14
-  - type: 38
-    x: 14
-    y: 14
-  - type: 38
-    x: 18
-    y: 14
-  - type: 38
-    x: 19
-    y: 14
-  - type: 38
-    x: 0
-    y: 13
-  - type: 38
-    x: 1
-    y: 13
-  - type: 47
-    x: 2
-    y: 13
-  - type: 47
-    x: 3
-    y: 13
-  - type: 38
-    x: 6
-    y: 13
-  - type: 38
-    x: 7
-    y: 13
-  - type: 43
-    x: 8
-    y: 13
-  - type: 43
-    x: 9
-    y: 13
-  - type: 71
-    x: 10
-    y: 13
-  - type: 43
-    x: 11
-    y: 13
-  - type: 38
-    x: 12
-    y: 13
-  - type: 38
-    x: 13
-    y: 13
-  - type: 38
-    x: 17
-    y: 13
-  - type: 38
-    x: 18
-    y: 13
-  - type: 38
-    x: 19
-    y: 13
-  - type: 38
-    x: 0
-    y: 12
-  - type: 71
-    x: 1
-    y: 12
-  - type: 47
-    x: 2
-    y: 12
-  - type: 47
-    x: 3
-    y: 12
-  - type: 47
-    x: 4
-    y: 12
-  - type: 38
-    x: 7
-    y: 12
-  - type: 38
-    x: 8
-    y: 12
-  - type: 38
-    x: 9
-    y: 12
-  - type: 71
-    x: 10
-    y: 12
-  - type: 38
-    x: 11
-    y: 12
-  - type: 38
-    x: 12
-    y: 12
-  - type: 38
-    x: 15
-    y: 12
-  - type: 38
-    x: 16
-    y: 12
-  - type: 38
-    x: 17
-    y: 12
-  - type: 71
-    x: 18
-    y: 12
-  - type: 38
-    x: 19
-    y: 12
-  - type: 38
-    x: 0
-    y: 11
-  - type: 71
-    x: 1
-    y: 11
-  - type: 71
-    x: 2
-    y: 11
-  - type: 47
-    x: 3
-    y: 11
-  - type: 47
-    x: 4
-    y: 11
-  - type: 47
-    x: 5
-    y: 11
-  - type: 71
-    x: 9
-    y: 11
-  - type: 71
-    x: 10
-    y: 11
-  - type: 38
-    x: 11
-    y: 11
-  - type: 38
-    x: 14
-    y: 11
-  - type: 38
-    x: 15
-    y: 11
-  - type: 47
-    x: 16
-    y: 11
-  - type: 71
-    x: 17
-    y: 11
-  - type: 71
-    x: 18
-    y: 11
-  - type: 38
-    x: 19
-    y: 11
-  - type: 38
-    x: 0
-    y: 10
-  - type: 71
-    x: 1
-    y: 10
-  - type: 71
-    x: 2
-    y: 10
-  - type: 71
-    x: 3
-    y: 10
-  - type: 47
-    x: 4
-    y: 10
-  - type: 47
-    x: 5
-    y: 10
-  - type: 47
-    x: 6
-    y: 10
-  - type: 71
-    x: 9
-    y: 10
-  - type: 71
-    x: 10
-    y: 10
-  - type: 38
-    x: 11
-    y: 10
-  - type: 38
-    x: 13
-    y: 10
-  - type: 38
-    x: 14
-    y: 10
-  - type: 47
-    x: 15
-    y: 10
-  - type: 47
-    x: 16
-    y: 10
-  - type: 71
-    x: 17
-    y: 10
-  - type: 71
-    x: 18
-    y: 10
-  - type: 38
-    x: 19
-    y: 10
-  - type: 38
-    x: 0
-    y: 9
-  - type: 38
-    x: 1
-    y: 9
-  - type: 71
-    x: 2
-    y: 9
-  - type: 71
-    x: 3
-    y: 9
-  - type: 47
-    x: 4
-    y: 9
-  - type: 47
-    x: 5
-    y: 9
-  - type: 47
-    x: 6
-    y: 9
-  - type: 47
-    x: 7
-    y: 9
-  - type: 71
-    x: 9
-    y: 9
-  - type: 71
-    x: 10
-    y: 9
-  - type: 38
-    x: 11
-    y: 9
-  - type: 38
-    x: 12
-    y: 9
-  - type: 38
-    x: 13
-    y: 9
-  - type: 47
-    x: 14
-    y: 9
-  - type: 47
-    x: 15
-    y: 9
-  - type: 71
-    x: 16
-    y: 9
-  - type: 71
-    x: 17
-    y: 9
-  - type: 38
-    x: 18
-    y: 9
-  - type: 38
-    x: 19
-    y: 9
-  - type: 38
-    x: 1
-    y: 8
-  - type: 71
-    x: 2
-    y: 8
-  - type: 71
-    x: 3
-    y: 8
-  - type: 71
-    x: 4
-    y: 8
-  - type: 47
-    x: 5
-    y: 8
-  - type: 47
-    x: 6
-    y: 8
-  - type: 47
-    x: 7
-    y: 8
-  - type: 71
-    x: 9
-    y: 8
-  - type: 71
-    x: 10
-    y: 8
-  - type: 38
-    x: 11
-    y: 8
-  - type: 38
-    x: 12
-    y: 8
-  - type: 47
-    x: 13
-    y: 8
-  - type: 47
-    x: 14
-    y: 8
-  - type: 71
-    x: 15
-    y: 8
-  - type: 71
-    x: 16
-    y: 8
-  - type: 71
-    x: 17
-    y: 8
-  - type: 38
-    x: 18
-    y: 8
-  - type: 38
-    x: 1
-    y: 7
-  - type: 38
-    x: 2
-    y: 7
-  - type: 71
-    x: 3
-    y: 7
-  - type: 71
-    x: 4
-    y: 7
-  - type: 71
-    x: 5
-    y: 7
-  - type: 47
-    x: 6
-    y: 7
-  - type: 47
-    x: 7
-    y: 7
-  - type: 47
-    x: 8
-    y: 7
-  - type: 71
-    x: 9
-    y: 7
-  - type: 71
-    x: 10
-    y: 7
-  - type: 38
-    x: 11
-    y: 7
-  - type: 47
-    x: 12
-    y: 7
-  - type: 47
-    x: 13
-    y: 7
-  - type: 71
-    x: 14
-    y: 7
-  - type: 71
-    x: 15
-    y: 7
-  - type: 71
-    x: 16
-    y: 7
-  - type: 38
-    x: 17
-    y: 7
-  - type: 38
-    x: 18
-    y: 7
-  - type: 38
-    x: 2
-    y: 6
-  - type: 38
-    x: 3
-    y: 6
-  - type: 71
-    x: 4
-    y: 6
-  - type: 71
-    x: 5
-    y: 6
-  - type: 71
-    x: 6
-    y: 6
-  - type: 47
-    x: 7
-    y: 6
-  - type: 47
-    x: 8
-    y: 6
-  - type: 71
-    x: 9
-    y: 6
-  - type: 71
-    x: 10
-    y: 6
-  - type: 38
-    x: 11
-    y: 6
-  - type: 47
-    x: 12
-    y: 6
-  - type: 71
-    x: 13
-    y: 6
-  - type: 71
-    x: 14
-    y: 6
-  - type: 71
-    x: 15
-    y: 6
-  - type: 38
-    x: 16
-    y: 6
-  - type: 38
-    x: 17
-    y: 6
-  - type: 38
-    x: 3
-    y: 5
-  - type: 38
-    x: 4
-    y: 5
-  - type: 71
-    x: 5
-    y: 5
-  - type: 71
-    x: 6
-    y: 5
-  - type: 71
-    x: 7
-    y: 5
-  - type: 47
-    x: 8
-    y: 5
-  - type: 71
-    x: 9
-    y: 5
-  - type: 71
-    x: 10
-    y: 5
-  - type: 38
-    x: 11
-    y: 5
-  - type: 71
-    x: 12
-    y: 5
-  - type: 71
-    x: 13
-    y: 5
-  - type: 71
-    x: 14
-    y: 5
-  - type: 38
-    x: 15
-    y: 5
-  - type: 38
-    x: 16
-    y: 5
-  - type: 38
-    x: 4
-    y: 4
-  - type: 38
-    x: 5
-    y: 4
-  - type: 38
-    x: 6
-    y: 4
-  - type: 71
-    x: 7
-    y: 4
-  - type: 71
-    x: 8
-    y: 4
-  - type: 71
-    x: 9
-    y: 4
-  - type: 71
-    x: 10
-    y: 4
-  - type: 38
-    x: 11
-    y: 4
-  - type: 71
-    x: 12
-    y: 4
-  - type: 38
-    x: 13
-    y: 4
-  - type: 38
-    x: 14
-    y: 4
-  - type: 38
-    x: 15
-    y: 4
-  - type: 38
-    x: 5
-    y: 3
-  - type: 38
-    x: 6
-    y: 3
-  - type: 38
-    x: 7
-    y: 3
-  - type: 71
-    x: 8
-    y: 3
-  - type: 71
-    x: 9
-    y: 3
-  - type: 71
-    x: 10
-    y: 3
-  - type: 38
-    x: 11
-    y: 3
-  - type: 38
-    x: 12
-    y: 3
-  - type: 38
-    x: 13
-    y: 3
-  - type: 38
-    x: 14
-    y: 3
-  - type: 38
-    x: 7
-    y: 2
-  - type: 38
-    x: 8
-    y: 2
-  - type: 71
-    x: 9
-    y: 2
-  - type: 71
-    x: 10
-    y: 2
-  - type: 38
-    x: 11
-    y: 2
-  - type: 38
-    x: 12
-    y: 2
-  - type: 38
-    x: 8
-    y: 1
-  - type: 38
-    x: 9
-    y: 1
-  - type: 38
-    x: 10
-    y: 1
-  - type: 38
-    x: 11
-    y: 1
-  - type: 38
-    x: 8
-    y: 0
-  - type: 38
-    x: 9
-    y: 0
-  - type: 38
-    x: 10
-    y: 0
-  - type: 38
-    x: 11
-    y: 0
   beads:
   - type: 38
+    x: 8
+    y: 0
+  - type: 38
+    x: 9
+    y: 0
+  - type: 38
+    x: 10
+    y: 0
+  - type: 38
+    x: 11
+    y: 0
+  - type: 38
+    x: 7
+    y: 1
+  - type: 38
+    x: 8
+    y: 1
+  - type: 71
+    x: 9
+    y: 1
+  - type: 71
+    x: 10
+    y: 1
+  - type: 38
+    x: 11
+    y: 1
+  - type: 38
+    x: 12
+    y: 1
+  - type: 38
+    x: 5
+    y: 2
+  - type: 38
+    x: 6
+    y: 2
+  - type: 38
+    x: 7
+    y: 2
+  - type: 71
+    x: 8
+    y: 2
+  - type: 71
+    x: 9
+    y: 2
+  - type: 71
+    x: 10
+    y: 2
+  - type: 38
+    x: 11
+    y: 2
+  - type: 38
+    x: 12
+    y: 2
+  - type: 38
+    x: 13
+    y: 2
+  - type: 38
+    x: 14
+    y: 2
+  - type: 38
+    x: 4
+    y: 3
+  - type: 38
+    x: 5
+    y: 3
+  - type: 38
+    x: 6
+    y: 3
+  - type: 71
+    x: 7
+    y: 3
+  - type: 71
+    x: 8
+    y: 3
+  - type: 71
+    x: 9
+    y: 3
+  - type: 71
+    x: 10
+    y: 3
+  - type: 38
+    x: 11
+    y: 3
+  - type: 71
+    x: 12
+    y: 3
+  - type: 38
+    x: 13
+    y: 3
+  - type: 38
+    x: 14
+    y: 3
+  - type: 38
+    x: 15
+    y: 3
+  - type: 38
+    x: 3
+    y: 4
+  - type: 38
+    x: 4
+    y: 4
+  - type: 71
+    x: 5
+    y: 4
+  - type: 71
+    x: 6
+    y: 4
+  - type: 71
+    x: 7
+    y: 4
+  - type: 47
+    x: 8
+    y: 4
+  - type: 71
+    x: 9
+    y: 4
+  - type: 47
+    x: 10
+    y: 4
+  - type: 38
+    x: 11
+    y: 4
+  - type: 71
+    x: 12
+    y: 4
+  - type: 71
+    x: 13
+    y: 4
+  - type: 71
+    x: 14
+    y: 4
+  - type: 38
+    x: 15
+    y: 4
+  - type: 38
+    x: 16
+    y: 4
+  - type: 38
+    x: 2
+    y: 5
+  - type: 38
+    x: 3
+    y: 5
+  - type: 71
+    x: 4
+    y: 5
+  - type: 71
+    x: 5
+    y: 5
+  - type: 71
+    x: 6
+    y: 5
+  - type: 44
+    x: 7
+    y: 5
+  - type: 38
+    x: 8
+    y: 5
+  - type: 71
+    x: 9
+    y: 5
+  - type: 47
+    x: 10
+    y: 5
+  - type: 38
+    x: 11
+    y: 5
+  - type: 47
+    x: 12
+    y: 5
+  - type: 71
+    x: 13
+    y: 5
+  - type: 71
+    x: 14
+    y: 5
+  - type: 71
+    x: 15
+    y: 5
+  - type: 38
+    x: 16
+    y: 5
+  - type: 38
+    x: 17
+    y: 5
+  - type: 38
+    x: 1
+    y: 6
+  - type: 38
+    x: 2
+    y: 6
+  - type: 71
+    x: 3
+    y: 6
+  - type: 71
+    x: 4
+    y: 6
+  - type: 71
+    x: 5
+    y: 6
+  - type: 44
+    x: 6
+    y: 6
+  - type: 44
+    x: 7
+    y: 6
+  - type: 38
+    x: 8
+    y: 6
+  - type: 71
+    x: 9
+    y: 6
+  - type: 47
+    x: 10
+    y: 6
+  - type: 38
+    x: 11
+    y: 6
+  - type: 47
+    x: 12
+    y: 6
+  - type: 47
+    x: 13
+    y: 6
+  - type: 71
+    x: 14
+    y: 6
+  - type: 71
+    x: 15
+    y: 6
+  - type: 71
+    x: 16
+    y: 6
+  - type: 38
+    x: 17
+    y: 6
+  - type: 38
+    x: 18
+    y: 6
+  - type: 38
+    x: 1
+    y: 7
+  - type: 71
+    x: 2
+    y: 7
+  - type: 71
+    x: 3
+    y: 7
+  - type: 71
+    x: 4
+    y: 7
+  - type: 44
+    x: 5
+    y: 7
+  - type: 44
+    x: 6
+    y: 7
+  - type: 38
+    x: 7
+    y: 7
+  - type: 71
+    x: 9
+    y: 7
+  - type: 47
+    x: 10
+    y: 7
+  - type: 38
+    x: 11
+    y: 7
+  - type: 38
+    x: 12
+    y: 7
+  - type: 47
+    x: 13
+    y: 7
+  - type: 47
+    x: 14
+    y: 7
+  - type: 71
+    x: 15
+    y: 7
+  - type: 71
+    x: 16
+    y: 7
+  - type: 71
+    x: 17
+    y: 7
+  - type: 38
+    x: 18
+    y: 7
+  - type: 38
+    x: 0
+    y: 8
+  - type: 38
+    x: 1
+    y: 8
+  - type: 71
+    x: 2
+    y: 8
+  - type: 71
+    x: 3
+    y: 8
+  - type: 44
+    x: 4
+    y: 8
+  - type: 44
+    x: 5
+    y: 8
+  - type: 44
+    x: 6
+    y: 8
+  - type: 38
+    x: 7
+    y: 8
+  - type: 71
+    x: 9
+    y: 8
+  - type: 47
+    x: 10
+    y: 8
+  - type: 38
+    x: 11
+    y: 8
+  - type: 38
+    x: 12
+    y: 8
+  - type: 47
+    x: 13
+    y: 8
+  - type: 47
+    x: 14
+    y: 8
+  - type: 47
+    x: 15
+    y: 8
+  - type: 71
+    x: 16
+    y: 8
+  - type: 71
+    x: 17
+    y: 8
+  - type: 38
+    x: 18
+    y: 8
+  - type: 38
+    x: 19
+    y: 8
+  - type: 38
+    x: 0
+    y: 9
+  - type: 71
+    x: 1
+    y: 9
+  - type: 71
+    x: 2
+    y: 9
+  - type: 71
+    x: 3
+    y: 9
+  - type: 44
+    x: 4
+    y: 9
+  - type: 44
+    x: 5
+    y: 9
+  - type: 38
+    x: 6
+    y: 9
+  - type: 71
+    x: 9
+    y: 9
+  - type: 47
+    x: 10
+    y: 9
+  - type: 38
+    x: 11
+    y: 9
+  - type: 38
+    x: 13
+    y: 9
+  - type: 47
+    x: 14
+    y: 9
+  - type: 47
+    x: 15
+    y: 9
+  - type: 47
+    x: 16
+    y: 9
+  - type: 71
+    x: 17
+    y: 9
+  - type: 71
+    x: 18
+    y: 9
+  - type: 38
+    x: 19
+    y: 9
+  - type: 38
+    x: 0
+    y: 10
+  - type: 71
+    x: 1
+    y: 10
+  - type: 71
+    x: 2
+    y: 10
+  - type: 44
+    x: 3
+    y: 10
+  - type: 44
+    x: 4
+    y: 10
+  - type: 38
+    x: 5
+    y: 10
+  - type: 71
+    x: 9
+    y: 10
+  - type: 47
+    x: 10
+    y: 10
+  - type: 38
+    x: 11
+    y: 10
+  - type: 38
+    x: 14
+    y: 10
+  - type: 47
+    x: 15
+    y: 10
+  - type: 47
+    x: 16
+    y: 10
+  - type: 71
+    x: 17
+    y: 10
+  - type: 71
+    x: 18
+    y: 10
+  - type: 38
+    x: 19
+    y: 10
+  - type: 38
+    x: 0
+    y: 11
+  - type: 71
+    x: 1
+    y: 11
+  - type: 44
+    x: 2
+    y: 11
+  - type: 44
+    x: 3
+    y: 11
+  - type: 38
+    x: 4
+    y: 11
+  - type: 38
+    x: 7
+    y: 11
+  - type: 38
+    x: 8
+    y: 11
+  - type: 38
+    x: 9
+    y: 11
+  - type: 71
+    x: 10
+    y: 11
+  - type: 38
+    x: 11
+    y: 11
+  - type: 38
+    x: 12
+    y: 11
+  - type: 38
+    x: 15
+    y: 11
+  - type: 38
+    x: 16
+    y: 11
+  - type: 47
+    x: 17
+    y: 11
+  - type: 71
+    x: 18
+    y: 11
+  - type: 38
+    x: 19
+    y: 11
+  - type: 38
+    x: 0
+    y: 12
+  - type: 44
+    x: 1
+    y: 12
+  - type: 44
+    x: 2
+    y: 12
+  - type: 44
+    x: 3
+    y: 12
+  - type: 38
+    x: 4
+    y: 12
+  - type: 38
+    x: 6
+    y: 12
+  - type: 43
+    x: 7
+    y: 12
+  - type: 43
+    x: 8
+    y: 12
+  - type: 43
+    x: 9
+    y: 12
+  - type: 43
+    x: 10
+    y: 12
+  - type: 43
+    x: 11
+    y: 12
+  - type: 43
+    x: 12
+    y: 12
+  - type: 38
+    x: 13
+    y: 12
+  - type: 38
+    x: 15
+    y: 12
+  - type: 38
+    x: 16
+    y: 12
+  - type: 47
+    x: 17
+    y: 12
+  - type: 47
+    x: 18
+    y: 12
+  - type: 38
+    x: 19
+    y: 12
+  - type: 38
+    x: 0
+    y: 13
+  - type: 44
+    x: 1
+    y: 13
+  - type: 38
+    x: 2
+    y: 13
+  - type: 38
+    x: 3
+    y: 13
+  - type: 38
+    x: 6
+    y: 13
+  - type: 43
+    x: 7
+    y: 13
+  - type: 43
+    x: 8
+    y: 13
+  - type: 43
+    x: 9
+    y: 13
+  - type: 43
+    x: 10
+    y: 13
+  - type: 43
+    x: 11
+    y: 13
+  - type: 43
+    x: 12
+    y: 13
+  - type: 38
+    x: 13
+    y: 13
+  - type: 38
+    x: 17
+    y: 13
+  - type: 47
+    x: 18
+    y: 13
+  - type: 38
+    x: 19
+    y: 13
+  - type: 38
+    x: 0
+    y: 14
+  - type: 38
+    x: 1
+    y: 14
+  - type: 38
+    x: 5
+    y: 14
+  - type: 43
+    x: 6
+    y: 14
+  - type: 43
+    x: 7
+    y: 14
+  - type: 43
+    x: 8
+    y: 14
+  - type: 43
+    x: 9
+    y: 14
+  - type: 43
+    x: 10
+    y: 14
+  - type: 43
+    x: 11
+    y: 14
+  - type: 43
+    x: 12
+    y: 14
+  - type: 43
+    x: 13
+    y: 14
+  - type: 38
+    x: 14
+    y: 14
+  - type: 38
+    x: 18
+    y: 14
+  - type: 38
+    x: 19
+    y: 14
+  - type: 38
+    x: 4
+    y: 15
+  - type: 43
+    x: 5
+    y: 15
+  - type: 43
+    x: 6
+    y: 15
+  - type: 43
+    x: 7
+    y: 15
+  - type: 43
+    x: 8
+    y: 15
+  - type: 45
+    x: 9
+    y: 15
+  - type: 43
+    x: 10
+    y: 15
+  - type: 45
+    x: 11
+    y: 15
+  - type: 43
+    x: 12
+    y: 15
+  - type: 43
+    x: 13
+    y: 15
+  - type: 43
+    x: 14
+    y: 15
+  - type: 38
+    x: 15
+    y: 15
+  - type: 38
+    x: 3
+    y: 16
+  - type: 43
+    x: 4
+    y: 16
+  - type: 43
+    x: 5
+    y: 16
+  - type: 47
+    x: 6
+    y: 16
+  - type: 44
+    x: 7
+    y: 16
+  - type: 43
+    x: 8
+    y: 16
+  - type: 45
+    x: 9
+    y: 16
+  - type: 43
+    x: 10
+    y: 16
+  - type: 45
+    x: 11
+    y: 16
+  - type: 44
+    x: 12
+    y: 16
+  - type: 44
+    x: 13
+    y: 16
+  - type: 43
+    x: 14
+    y: 16
+  - type: 43
+    x: 15
+    y: 16
+  - type: 38
+    x: 16
+    y: 16
+  - type: 38
+    x: 3
+    y: 17
+  - type: 43
+    x: 4
+    y: 17
+  - type: 47
+    x: 5
+    y: 17
+  - type: 47
+    x: 6
+    y: 17
+  - type: 47
+    x: 7
+    y: 17
+  - type: 44
+    x: 8
+    y: 17
+  - type: 45
+    x: 9
+    y: 17
+  - type: 43
+    x: 10
+    y: 17
+  - type: 45
+    x: 11
+    y: 17
+  - type: 44
+    x: 12
+    y: 17
+  - type: 44
+    x: 13
+    y: 17
+  - type: 44
+    x: 14
+    y: 17
+  - type: 43
+    x: 15
+    y: 17
+  - type: 38
+    x: 16
+    y: 17
+  - type: 38
+    x: 3
+    y: 18
+  - type: 47
+    x: 4
+    y: 18
+  - type: 47
+    x: 5
+    y: 18
+  - type: 47
+    x: 6
+    y: 18
+  - type: 47
+    x: 7
+    y: 18
+  - type: 47
+    x: 8
+    y: 18
+  - type: 45
+    x: 9
+    y: 18
+  - type: 43
+    x: 10
+    y: 18
+  - type: 45
+    x: 11
+    y: 18
+  - type: 44
+    x: 12
+    y: 18
+  - type: 44
+    x: 13
+    y: 18
+  - type: 44
+    x: 14
+    y: 18
+  - type: 43
+    x: 15
+    y: 18
+  - type: 38
+    x: 16
+    y: 18
+  - type: 38
+    x: 3
+    y: 19
+  - type: 47
+    x: 4
+    y: 19
+  - type: 47
+    x: 5
+    y: 19
+  - type: 47
+    x: 6
+    y: 19
+  - type: 47
+    x: 7
+    y: 19
+  - type: 44
+    x: 8
+    y: 19
+  - type: 45
+    x: 9
+    y: 19
+  - type: 43
+    x: 10
+    y: 19
+  - type: 45
+    x: 11
+    y: 19
+  - type: 44
+    x: 12
+    y: 19
+  - type: 44
+    x: 13
+    y: 19
+  - type: 44
+    x: 14
+    y: 19
+  - type: 44
+    x: 15
+    y: 19
+  - type: 38
+    x: 16
+    y: 19
+  - type: 38
+    x: 3
+    y: 20
+  - type: 47
+    x: 4
+    y: 20
+  - type: 47
+    x: 5
+    y: 20
+  - type: 47
+    x: 6
+    y: 20
+  - type: 44
+    x: 7
+    y: 20
+  - type: 45
+    x: 8
+    y: 20
+  - type: 45
+    x: 9
+    y: 20
+  - type: 43
+    x: 10
+    y: 20
+  - type: 45
+    x: 11
+    y: 20
+  - type: 44
+    x: 12
+    y: 20
+  - type: 44
+    x: 13
+    y: 20
+  - type: 44
+    x: 14
+    y: 20
+  - type: 44
+    x: 15
+    y: 20
+  - type: 38
+    x: 16
+    y: 20
+  - type: 38
+    x: 3
+    y: 21
+  - type: 47
+    x: 4
+    y: 21
+  - type: 47
+    x: 5
+    y: 21
+  - type: 44
+    x: 6
+    y: 21
+  - type: 45
+    x: 7
+    y: 21
+  - type: 45
+    x: 8
+    y: 21
+  - type: 45
+    x: 9
+    y: 21
+  - type: 38
+    x: 10
+    y: 21
+  - type: 45
+    x: 11
+    y: 21
+  - type: 45
+    x: 12
+    y: 21
+  - type: 44
+    x: 13
+    y: 21
+  - type: 44
+    x: 14
+    y: 21
+  - type: 44
+    x: 15
+    y: 21
+  - type: 38
+    x: 16
+    y: 21
+  - type: 38
+    x: 3
+    y: 22
+  - type: 44
+    x: 4
+    y: 22
+  - type: 44
+    x: 5
+    y: 22
+  - type: 45
+    x: 6
+    y: 22
+  - type: 45
+    x: 7
+    y: 22
+  - type: 45
+    x: 8
+    y: 22
+  - type: 38
+    x: 9
+    y: 22
+  - type: 43
+    x: 10
+    y: 22
+  - type: 38
+    x: 11
+    y: 22
+  - type: 45
+    x: 12
+    y: 22
+  - type: 45
+    x: 13
+    y: 22
+  - type: 44
+    x: 14
+    y: 22
+  - type: 44
+    x: 15
+    y: 22
+  - type: 38
+    x: 16
+    y: 22
+  - type: 38
+    x: 3
+    y: 23
+  - type: 44
+    x: 4
+    y: 23
+  - type: 45
+    x: 5
+    y: 23
+  - type: 45
+    x: 6
+    y: 23
+  - type: 45
+    x: 7
+    y: 23
+  - type: 38
+    x: 8
+    y: 23
+  - type: 43
+    x: 9
+    y: 23
+  - type: 43
+    x: 10
+    y: 23
+  - type: 43
+    x: 11
+    y: 23
+  - type: 38
+    x: 12
+    y: 23
+  - type: 45
+    x: 13
+    y: 23
+  - type: 45
+    x: 14
+    y: 23
+  - type: 44
+    x: 15
+    y: 23
+  - type: 38
+    x: 16
+    y: 23
+  - type: 38
+    x: 3
+    y: 24
+  - type: 44
+    x: 4
+    y: 24
+  - type: 45
+    x: 5
+    y: 24
+  - type: 45
+    x: 6
+    y: 24
+  - type: 38
+    x: 7
+    y: 24
+  - type: 43
+    x: 8
+    y: 24
+  - type: 43
+    x: 9
+    y: 24
+  - type: 43
+    x: 10
+    y: 24
+  - type: 43
+    x: 11
+    y: 24
+  - type: 38
+    x: 12
+    y: 24
+  - type: 45
+    x: 13
+    y: 24
+  - type: 45
+    x: 14
+    y: 24
+  - type: 44
+    x: 15
+    y: 24
+  - type: 38
+    x: 16
+    y: 24
+  - type: 38
+    x: 3
+    y: 25
+  - type: 44
+    x: 4
+    y: 25
+  - type: 45
+    x: 5
+    y: 25
+  - type: 38
+    x: 6
+    y: 25
+  - type: 43
+    x: 7
+    y: 25
+  - type: 43
+    x: 8
+    y: 25
+  - type: 43
+    x: 9
+    y: 25
+  - type: 43
+    x: 10
+    y: 25
+  - type: 43
+    x: 11
+    y: 25
+  - type: 38
+    x: 12
+    y: 25
+  - type: 38
+    x: 13
+    y: 25
+  - type: 45
+    x: 14
+    y: 25
+  - type: 44
+    x: 15
+    y: 25
+  - type: 38
+    x: 16
+    y: 25
+  - type: 38
+    x: 4
+    y: 26
+  - type: 38
+    x: 5
+    y: 26
+  - type: 38
+    x: 8
+    y: 26
+  - type: 43
+    x: 9
+    y: 26
+  - type: 43
+    x: 10
+    y: 26
+  - type: 43
+    x: 11
+    y: 26
+  - type: 38
+    x: 12
+    y: 26
+  - type: 38
+    x: 14
+    y: 26
+  - type: 38
+    x: 15
+    y: 26
+  - type: 38
     x: 9
     y: 27
   - type: 38
@@ -1106,1080 +2264,6 @@ MonoBehaviour:
   - type: 38
     x: 11
     y: 27
-  - type: 38
-    x: 4
-    y: 26
-  - type: 38
-    x: 5
-    y: 26
-  - type: 38
-    x: 8
-    y: 26
-  - type: 38
-    x: 9
-    y: 26
-  - type: 38
-    x: 10
-    y: 26
-  - type: 38
-    x: 11
-    y: 26
-  - type: 38
-    x: 12
-    y: 26
-  - type: 38
-    x: 14
-    y: 26
-  - type: 38
-    x: 15
-    y: 26
-  - type: 38
-    x: 3
-    y: 25
-  - type: 38
-    x: 4
-    y: 25
-  - type: 38
-    x: 5
-    y: 25
-  - type: 38
-    x: 6
-    y: 25
-  - type: 38
-    x: 7
-    y: 25
-  - type: 38
-    x: 8
-    y: 25
-  - type: 38
-    x: 9
-    y: 25
-  - type: 38
-    x: 10
-    y: 25
-  - type: 38
-    x: 11
-    y: 25
-  - type: 38
-    x: 12
-    y: 25
-  - type: 38
-    x: 13
-    y: 25
-  - type: 38
-    x: 14
-    y: 25
-  - type: 38
-    x: 15
-    y: 25
-  - type: 38
-    x: 16
-    y: 25
-  - type: 38
-    x: 3
-    y: 24
-  - type: 44
-    x: 4
-    y: 24
-  - type: 45
-    x: 5
-    y: 24
-  - type: 45
-    x: 6
-    y: 24
-  - type: 38
-    x: 7
-    y: 24
-  - type: 38
-    x: 8
-    y: 24
-  - type: 38
-    x: 9
-    y: 24
-  - type: 38
-    x: 10
-    y: 24
-  - type: 38
-    x: 11
-    y: 24
-  - type: 38
-    x: 12
-    y: 24
-  - type: 45
-    x: 13
-    y: 24
-  - type: 45
-    x: 14
-    y: 24
-  - type: 44
-    x: 15
-    y: 24
-  - type: 38
-    x: 16
-    y: 24
-  - type: 38
-    x: 3
-    y: 23
-  - type: 44
-    x: 4
-    y: 23
-  - type: 45
-    x: 5
-    y: 23
-  - type: 45
-    x: 6
-    y: 23
-  - type: 45
-    x: 7
-    y: 23
-  - type: 38
-    x: 8
-    y: 23
-  - type: 38
-    x: 9
-    y: 23
-  - type: 38
-    x: 10
-    y: 23
-  - type: 38
-    x: 11
-    y: 23
-  - type: 38
-    x: 12
-    y: 23
-  - type: 45
-    x: 13
-    y: 23
-  - type: 45
-    x: 14
-    y: 23
-  - type: 44
-    x: 15
-    y: 23
-  - type: 38
-    x: 16
-    y: 23
-  - type: 38
-    x: 3
-    y: 22
-  - type: 44
-    x: 4
-    y: 22
-  - type: 44
-    x: 5
-    y: 22
-  - type: 45
-    x: 6
-    y: 22
-  - type: 45
-    x: 7
-    y: 22
-  - type: 45
-    x: 8
-    y: 22
-  - type: 38
-    x: 9
-    y: 22
-  - type: 38
-    x: 10
-    y: 22
-  - type: 38
-    x: 11
-    y: 22
-  - type: 38
-    x: 12
-    y: 22
-  - type: 45
-    x: 13
-    y: 22
-  - type: 44
-    x: 14
-    y: 22
-  - type: 44
-    x: 15
-    y: 22
-  - type: 38
-    x: 16
-    y: 22
-  - type: 38
-    x: 3
-    y: 21
-  - type: 44
-    x: 4
-    y: 21
-  - type: 44
-    x: 5
-    y: 21
-  - type: 44
-    x: 6
-    y: 21
-  - type: 45
-    x: 7
-    y: 21
-  - type: 45
-    x: 8
-    y: 21
-  - type: 45
-    x: 9
-    y: 21
-  - type: 38
-    x: 10
-    y: 21
-  - type: 45
-    x: 11
-    y: 21
-  - type: 45
-    x: 12
-    y: 21
-  - type: 45
-    x: 13
-    y: 21
-  - type: 44
-    x: 14
-    y: 21
-  - type: 44
-    x: 15
-    y: 21
-  - type: 38
-    x: 16
-    y: 21
-  - type: 38
-    x: 3
-    y: 20
-  - type: 44
-    x: 4
-    y: 20
-  - type: 44
-    x: 5
-    y: 20
-  - type: 44
-    x: 6
-    y: 20
-  - type: 44
-    x: 7
-    y: 20
-  - type: 45
-    x: 8
-    y: 20
-  - type: 45
-    x: 9
-    y: 20
-  - type: 71
-    x: 10
-    y: 20
-  - type: 45
-    x: 11
-    y: 20
-  - type: 44
-    x: 12
-    y: 20
-  - type: 44
-    x: 13
-    y: 20
-  - type: 44
-    x: 14
-    y: 20
-  - type: 44
-    x: 15
-    y: 20
-  - type: 38
-    x: 16
-    y: 20
-  - type: 38
-    x: 3
-    y: 19
-  - type: 44
-    x: 4
-    y: 19
-  - type: 44
-    x: 5
-    y: 19
-  - type: 44
-    x: 6
-    y: 19
-  - type: 44
-    x: 7
-    y: 19
-  - type: 44
-    x: 8
-    y: 19
-  - type: 45
-    x: 9
-    y: 19
-  - type: 71
-    x: 10
-    y: 19
-  - type: 45
-    x: 11
-    y: 19
-  - type: 44
-    x: 12
-    y: 19
-  - type: 44
-    x: 13
-    y: 19
-  - type: 44
-    x: 14
-    y: 19
-  - type: 44
-    x: 15
-    y: 19
-  - type: 38
-    x: 16
-    y: 19
-  - type: 38
-    x: 3
-    y: 18
-  - type: 44
-    x: 4
-    y: 18
-  - type: 44
-    x: 5
-    y: 18
-  - type: 44
-    x: 6
-    y: 18
-  - type: 44
-    x: 7
-    y: 18
-  - type: 44
-    x: 8
-    y: 18
-  - type: 45
-    x: 9
-    y: 18
-  - type: 71
-    x: 10
-    y: 18
-  - type: 45
-    x: 11
-    y: 18
-  - type: 44
-    x: 12
-    y: 18
-  - type: 44
-    x: 13
-    y: 18
-  - type: 44
-    x: 14
-    y: 18
-  - type: 44
-    x: 15
-    y: 18
-  - type: 38
-    x: 16
-    y: 18
-  - type: 38
-    x: 3
-    y: 17
-  - type: 38
-    x: 4
-    y: 17
-  - type: 44
-    x: 5
-    y: 17
-  - type: 44
-    x: 6
-    y: 17
-  - type: 44
-    x: 7
-    y: 17
-  - type: 44
-    x: 8
-    y: 17
-  - type: 45
-    x: 9
-    y: 17
-  - type: 71
-    x: 10
-    y: 17
-  - type: 45
-    x: 11
-    y: 17
-  - type: 44
-    x: 12
-    y: 17
-  - type: 44
-    x: 13
-    y: 17
-  - type: 44
-    x: 14
-    y: 17
-  - type: 44
-    x: 15
-    y: 17
-  - type: 38
-    x: 16
-    y: 17
-  - type: 38
-    x: 3
-    y: 16
-  - type: 38
-    x: 4
-    y: 16
-  - type: 38
-    x: 5
-    y: 16
-  - type: 44
-    x: 6
-    y: 16
-  - type: 44
-    x: 7
-    y: 16
-  - type: 71
-    x: 8
-    y: 16
-  - type: 45
-    x: 9
-    y: 16
-  - type: 71
-    x: 10
-    y: 16
-  - type: 45
-    x: 11
-    y: 16
-  - type: 44
-    x: 12
-    y: 16
-  - type: 44
-    x: 13
-    y: 16
-  - type: 44
-    x: 14
-    y: 16
-  - type: 38
-    x: 15
-    y: 16
-  - type: 38
-    x: 16
-    y: 16
-  - type: 38
-    x: 4
-    y: 15
-  - type: 38
-    x: 5
-    y: 15
-  - type: 71
-    x: 6
-    y: 15
-  - type: 71
-    x: 7
-    y: 15
-  - type: 71
-    x: 8
-    y: 15
-  - type: 45
-    x: 9
-    y: 15
-  - type: 71
-    x: 10
-    y: 15
-  - type: 45
-    x: 11
-    y: 15
-  - type: 71
-    x: 12
-    y: 15
-  - type: 71
-    x: 13
-    y: 15
-  - type: 38
-    x: 14
-    y: 15
-  - type: 38
-    x: 15
-    y: 15
-  - type: 38
-    x: 0
-    y: 14
-  - type: 38
-    x: 1
-    y: 14
-  - type: 38
-    x: 5
-    y: 14
-  - type: 38
-    x: 6
-    y: 14
-  - type: 71
-    x: 7
-    y: 14
-  - type: 71
-    x: 8
-    y: 14
-  - type: 71
-    x: 9
-    y: 14
-  - type: 71
-    x: 10
-    y: 14
-  - type: 71
-    x: 11
-    y: 14
-  - type: 71
-    x: 12
-    y: 14
-  - type: 38
-    x: 13
-    y: 14
-  - type: 38
-    x: 14
-    y: 14
-  - type: 38
-    x: 18
-    y: 14
-  - type: 38
-    x: 19
-    y: 14
-  - type: 38
-    x: 0
-    y: 13
-  - type: 38
-    x: 1
-    y: 13
-  - type: 47
-    x: 2
-    y: 13
-  - type: 47
-    x: 3
-    y: 13
-  - type: 38
-    x: 6
-    y: 13
-  - type: 38
-    x: 7
-    y: 13
-  - type: 71
-    x: 8
-    y: 13
-  - type: 71
-    x: 9
-    y: 13
-  - type: 71
-    x: 10
-    y: 13
-  - type: 71
-    x: 11
-    y: 13
-  - type: 38
-    x: 12
-    y: 13
-  - type: 38
-    x: 13
-    y: 13
-  - type: 38
-    x: 17
-    y: 13
-  - type: 38
-    x: 18
-    y: 13
-  - type: 38
-    x: 19
-    y: 13
-  - type: 38
-    x: 0
-    y: 12
-  - type: 71
-    x: 1
-    y: 12
-  - type: 47
-    x: 2
-    y: 12
-  - type: 47
-    x: 3
-    y: 12
-  - type: 47
-    x: 4
-    y: 12
-  - type: 38
-    x: 7
-    y: 12
-  - type: 38
-    x: 8
-    y: 12
-  - type: 38
-    x: 9
-    y: 12
-  - type: 71
-    x: 10
-    y: 12
-  - type: 38
-    x: 11
-    y: 12
-  - type: 38
-    x: 12
-    y: 12
-  - type: 38
-    x: 15
-    y: 12
-  - type: 38
-    x: 16
-    y: 12
-  - type: 38
-    x: 17
-    y: 12
-  - type: 71
-    x: 18
-    y: 12
-  - type: 38
-    x: 19
-    y: 12
-  - type: 38
-    x: 0
-    y: 11
-  - type: 71
-    x: 1
-    y: 11
-  - type: 71
-    x: 2
-    y: 11
-  - type: 47
-    x: 3
-    y: 11
-  - type: 47
-    x: 4
-    y: 11
-  - type: 47
-    x: 5
-    y: 11
-  - type: 71
-    x: 9
-    y: 11
-  - type: 71
-    x: 10
-    y: 11
-  - type: 38
-    x: 11
-    y: 11
-  - type: 38
-    x: 14
-    y: 11
-  - type: 38
-    x: 15
-    y: 11
-  - type: 47
-    x: 16
-    y: 11
-  - type: 71
-    x: 17
-    y: 11
-  - type: 71
-    x: 18
-    y: 11
-  - type: 38
-    x: 19
-    y: 11
-  - type: 38
-    x: 0
-    y: 10
-  - type: 71
-    x: 1
-    y: 10
-  - type: 71
-    x: 2
-    y: 10
-  - type: 71
-    x: 3
-    y: 10
-  - type: 47
-    x: 4
-    y: 10
-  - type: 47
-    x: 5
-    y: 10
-  - type: 47
-    x: 6
-    y: 10
-  - type: 71
-    x: 9
-    y: 10
-  - type: 71
-    x: 10
-    y: 10
-  - type: 38
-    x: 11
-    y: 10
-  - type: 38
-    x: 13
-    y: 10
-  - type: 38
-    x: 14
-    y: 10
-  - type: 47
-    x: 15
-    y: 10
-  - type: 47
-    x: 16
-    y: 10
-  - type: 71
-    x: 17
-    y: 10
-  - type: 71
-    x: 18
-    y: 10
-  - type: 38
-    x: 19
-    y: 10
-  - type: 38
-    x: 0
-    y: 9
-  - type: 38
-    x: 1
-    y: 9
-  - type: 71
-    x: 2
-    y: 9
-  - type: 71
-    x: 3
-    y: 9
-  - type: 47
-    x: 4
-    y: 9
-  - type: 47
-    x: 5
-    y: 9
-  - type: 47
-    x: 6
-    y: 9
-  - type: 47
-    x: 7
-    y: 9
-  - type: 71
-    x: 9
-    y: 9
-  - type: 71
-    x: 10
-    y: 9
-  - type: 38
-    x: 11
-    y: 9
-  - type: 38
-    x: 12
-    y: 9
-  - type: 38
-    x: 13
-    y: 9
-  - type: 47
-    x: 14
-    y: 9
-  - type: 47
-    x: 15
-    y: 9
-  - type: 71
-    x: 16
-    y: 9
-  - type: 71
-    x: 17
-    y: 9
-  - type: 38
-    x: 18
-    y: 9
-  - type: 38
-    x: 19
-    y: 9
-  - type: 38
-    x: 1
-    y: 8
-  - type: 71
-    x: 2
-    y: 8
-  - type: 71
-    x: 3
-    y: 8
-  - type: 71
-    x: 4
-    y: 8
-  - type: 47
-    x: 5
-    y: 8
-  - type: 47
-    x: 6
-    y: 8
-  - type: 47
-    x: 7
-    y: 8
-  - type: 43
-    x: 9
-    y: 8
-  - type: 43
-    x: 10
-    y: 8
-  - type: 38
-    x: 11
-    y: 8
-  - type: 38
-    x: 12
-    y: 8
-  - type: 47
-    x: 13
-    y: 8
-  - type: 47
-    x: 14
-    y: 8
-  - type: 71
-    x: 15
-    y: 8
-  - type: 71
-    x: 16
-    y: 8
-  - type: 71
-    x: 17
-    y: 8
-  - type: 38
-    x: 18
-    y: 8
-  - type: 38
-    x: 1
-    y: 7
-  - type: 38
-    x: 2
-    y: 7
-  - type: 71
-    x: 3
-    y: 7
-  - type: 71
-    x: 4
-    y: 7
-  - type: 71
-    x: 5
-    y: 7
-  - type: 47
-    x: 6
-    y: 7
-  - type: 47
-    x: 7
-    y: 7
-  - type: 47
-    x: 8
-    y: 7
-  - type: 43
-    x: 9
-    y: 7
-  - type: 43
-    x: 10
-    y: 7
-  - type: 38
-    x: 11
-    y: 7
-  - type: 47
-    x: 12
-    y: 7
-  - type: 47
-    x: 13
-    y: 7
-  - type: 71
-    x: 14
-    y: 7
-  - type: 71
-    x: 15
-    y: 7
-  - type: 71
-    x: 16
-    y: 7
-  - type: 38
-    x: 17
-    y: 7
-  - type: 38
-    x: 18
-    y: 7
-  - type: 38
-    x: 2
-    y: 6
-  - type: 38
-    x: 3
-    y: 6
-  - type: 71
-    x: 4
-    y: 6
-  - type: 71
-    x: 5
-    y: 6
-  - type: 43
-    x: 6
-    y: 6
-  - type: 47
-    x: 7
-    y: 6
-  - type: 47
-    x: 8
-    y: 6
-  - type: 43
-    x: 9
-    y: 6
-  - type: 43
-    x: 10
-    y: 6
-  - type: 38
-    x: 11
-    y: 6
-  - type: 47
-    x: 12
-    y: 6
-  - type: 71
-    x: 13
-    y: 6
-  - type: 71
-    x: 14
-    y: 6
-  - type: 71
-    x: 15
-    y: 6
-  - type: 38
-    x: 16
-    y: 6
-  - type: 38
-    x: 17
-    y: 6
-  - type: 38
-    x: 3
-    y: 5
-  - type: 38
-    x: 4
-    y: 5
-  - type: 43
-    x: 5
-    y: 5
-  - type: 43
-    x: 6
-    y: 5
-  - type: 43
-    x: 7
-    y: 5
-  - type: 47
-    x: 8
-    y: 5
-  - type: 43
-    x: 9
-    y: 5
-  - type: 43
-    x: 10
-    y: 5
-  - type: 38
-    x: 11
-    y: 5
-  - type: 71
-    x: 12
-    y: 5
-  - type: 71
-    x: 13
-    y: 5
-  - type: 71
-    x: 14
-    y: 5
-  - type: 38
-    x: 15
-    y: 5
-  - type: 38
-    x: 16
-    y: 5
-  - type: 38
-    x: 4
-    y: 4
-  - type: 38
-    x: 5
-    y: 4
-  - type: 38
-    x: 6
-    y: 4
-  - type: 43
-    x: 7
-    y: 4
-  - type: 43
-    x: 8
-    y: 4
-  - type: 43
-    x: 9
-    y: 4
-  - type: 43
-    x: 10
-    y: 4
-  - type: 38
-    x: 11
-    y: 4
-  - type: 71
-    x: 12
-    y: 4
-  - type: 38
-    x: 13
-    y: 4
-  - type: 38
-    x: 14
-    y: 4
-  - type: 38
-    x: 15
-    y: 4
-  - type: 38
-    x: 5
-    y: 3
-  - type: 38
-    x: 6
-    y: 3
-  - type: 38
-    x: 7
-    y: 3
-  - type: 43
-    x: 8
-    y: 3
-  - type: 43
-    x: 9
-    y: 3
-  - type: 43
-    x: 10
-    y: 3
-  - type: 38
-    x: 11
-    y: 3
-  - type: 38
-    x: 12
-    y: 3
-  - type: 38
-    x: 13
-    y: 3
-  - type: 38
-    x: 14
-    y: 3
-  - type: 38
-    x: 7
-    y: 2
-  - type: 38
-    x: 8
-    y: 2
-  - type: 43
-    x: 9
-    y: 2
-  - type: 43
-    x: 10
-    y: 2
-  - type: 38
-    x: 11
-    y: 2
-  - type: 38
-    x: 12
-    y: 2
-  - type: 38
-    x: 8
-    y: 1
-  - type: 38
-    x: 9
-    y: 1
-  - type: 38
-    x: 10
-    y: 1
-  - type: 38
-    x: 11
-    y: 1
-  - type: 38
-    x: 8
-    y: 0
-  - type: 38
-    x: 9
-    y: 0
-  - type: 38
-    x: 10
-    y: 0
-  - type: 38
-    x: 11
-    y: 0
   traySlotCount: 70
   previewImage: {fileID: 8933590204356236617, guid: 052d6d26726cb1144a349db418b8953b, type: 3}
   dialogue: {fileID: 11400000, guid: 726a130c97802fa42a5968305ab4be43, type: 2}
